@@ -1,0 +1,56 @@
+{
+  "assetsByChunkName": {
+    "path---posts-c-3-xu-z-ji-83-us-ouak-6-a-0-kc-206": [
+      "path---posts-c-3-xu-z-ji-83-us-ouak-6-a-0-kc-206-4007d28d73ee04628746.js",
+      "path---posts-c-3-xu-z-ji-83-us-ouak-6-a-0-kc-206-4007d28d73ee04628746.js.map"
+    ],
+    "page-component---src-pages-index-js": [
+      "page-component---src-pages-index-js-3b5edda52b520508e919.js",
+      "page-component---src-pages-index-js-3b5edda52b520508e919.js.map"
+    ],
+    "page-component---src-templates-blog-post-js": [
+      "page-component---src-templates-blog-post-js-29d4a545a6fdaab7c4cb.js",
+      "page-component---src-templates-blog-post-js-29d4a545a6fdaab7c4cb.js.map"
+    ],
+    "page-component---src-pages-404-js": [
+      "page-component---src-pages-404-js-f68e3df0986f36c07464.js",
+      "page-component---src-pages-404-js-f68e3df0986f36c07464.js.map"
+    ],
+    "path---page-2": [
+      "path---page-2-a0e39f21c11f6a62c5ab.js",
+      "path---page-2-a0e39f21c11f6a62c5ab.js.map"
+    ],
+    "path---index": [
+      "path---index-2797a0e749e85993c9f4.js",
+      "path---index-2797a0e749e85993c9f4.js.map"
+    ],
+    "commons": [
+      "commons-e7ecba07248520c14116.js",
+      "commons-e7ecba07248520c14116.js.map"
+    ],
+    "path---404-html": [
+      "path---404-html-a0e39f21c11f6a62c5ab.js",
+      "path---404-html-a0e39f21c11f6a62c5ab.js.map"
+    ],
+    "path---posts-c-3-v-ajn-ip-9-nu-omus-agce-mq-4-s": [
+      "path---posts-c-3-v-ajn-ip-9-nu-omus-agce-mq-4-s-a4299604f133bf43b14d.js",
+      "path---posts-c-3-v-ajn-ip-9-nu-omus-agce-mq-4-s-a4299604f133bf43b14d.js.map"
+    ],
+    "page-component---src-pages-page-2-js": [
+      "page-component---src-pages-page-2-js-c925eb8b3d9caee8cdd6.js",
+      "page-component---src-pages-page-2-js-c925eb8b3d9caee8cdd6.js.map"
+    ],
+    "app": [
+      "app-52807dda2a399d013f47.js",
+      "app-52807dda2a399d013f47.js.map"
+    ],
+    "path---404": [
+      "path---404-a0e39f21c11f6a62c5ab.js",
+      "path---404-a0e39f21c11f6a62c5ab.js.map"
+    ],
+    "layout-component---index": [
+      "layout-component---index-a132948e02671127bde6.js",
+      "layout-component---index-a132948e02671127bde6.js.map"
+    ]
+  }
+}
