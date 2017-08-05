@@ -22,7 +22,7 @@
     "develop": "gatsby develop",
     "format": "prettier --trailing-comma es5 --no-semi --single-quote --write 'src/**/*.js'",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "gatsby serve -p 8080"
+    "start": "gatsby serve -p 8000"
   },
   "devDependencies": {
     "prettier": "^1.5.2"
