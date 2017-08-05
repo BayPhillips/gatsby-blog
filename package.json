@@ -1,8 +1,11 @@
 {
-  "name": "gatsby-starter-default",
-  "description": "Gatsby default starter",
-  "version": "1.0.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "name": "Bay's Gatsby Blog",
+  "description": "Trying something new",
+  "version": "0.0.1",
+  "author": "Bay Phillips <bay.phillips@gmail.com>",
+  "engines": {
+    "node": "8.1.x"
+  },
   "dependencies": {
     "gatsby": "^1.6.5",
     "gatsby-link": "^1.6.5",
@@ -22,7 +25,7 @@
     "develop": "gatsby develop",
     "format": "prettier --trailing-comma es5 --no-semi --single-quote --write 'src/**/*.js'",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "gatsby serve -p 8000"
+    "start": "gatsby serve"
   },
   "devDependencies": {
     "prettier": "^1.5.2"
