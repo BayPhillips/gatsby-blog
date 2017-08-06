@@ -2,39 +2,17 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Link from 'gatsby-link'
 import Helmet from 'react-helmet'
+import LeftColumn from '../components/leftColumn'
+import { Column, Row } from 'react-foundation'
 
+import 'foundation-sites/dist/css/foundation.css'
+import 'foundation-sites/dist/css/foundation-float.css'
+import 'foundation-sites/dist/css/foundation-rtl.css'
+import 'foundation-sites/dist/css/foundation-prototype.css'
 import './index.css'
 
-const Header = () =>
-  <div
-    style={{
-      background: 'rebeccapurple',
-      marginBottom: '1.45rem',
-    }}
-  >
-    <div
-      style={{
-        margin: '0 auto',
-        maxWidth: 960,
-        padding: '1.45rem 1.0875rem',
-      }}
-    >
-      <h1 style={{ margin: 0 }}>
-        <Link
-          to="/"
-          style={{
-            color: 'white',
-            textDecoration: 'none',
-          }}
-        >
-          Bay's Blog
-        </Link>
-      </h1>
-    </div>
-  </div>
-
 const TemplateWrapper = ({ children }) =>
-  <div>
+  <div id="wrapper">
     <Helmet
       title="Bay Phillips - Software engineer in nyc"
       meta={[
@@ -42,17 +20,12 @@ const TemplateWrapper = ({ children }) =>
         { name: 'keywords', content: 'ios, swift, engineer, nyc, new york city, cooking, Plated' },
       ]}
     />
-    <Header />
-    <div
-      style={{
-        margin: '0 auto',
-        maxWidth: 960,
-        padding: '0px 1.0875rem 1.45rem',
-        paddingTop: 0,
-      }}
-    >
-      {children()}
-    </div>
+    <Row className="display">
+      <LeftColumn />
+      <Column large={9} medium={9} small={9}>
+        {children()}
+      </Column>
+    </Row>
   </div>
 
 TemplateWrapper.propTypes = {
