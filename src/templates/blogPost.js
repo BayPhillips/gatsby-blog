@@ -13,7 +13,8 @@ class BlogPostTemplate extends React.Component {
       postTitle,
       datePosted,
       postContent,
-      author
+      author,
+      postSlug
     } = blogPost
     return (
       <div>
@@ -51,8 +52,8 @@ BlogPostTemplate.propTypes = propTypes
 export default BlogPostTemplate
 
 export const pageQuery = graphql`
-  query blogPostQuery($id: String!) {
-    contentfulBlogPost(id: { eq: $id }) {
+  query blogPostQuery($postSlug: String!) {
+    contentfulBlogPost(postSlug: { eq: $postSlug }) {
       id
       postTitle
       postContent {
@@ -69,6 +70,7 @@ export const pageQuery = graphql`
           }
         }
       }
+      postSlug
     }
   }
 `

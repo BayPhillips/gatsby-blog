@@ -20,7 +20,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
         allContentfulBlogPost(limit: 1000) {
           edges {
             node {
-              id
+              postSlug
             }
           }
         }
@@ -45,10 +45,10 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
             // as a template component. The `context` is
             // optional but is often necessary so the template
             // can query data specific to each page.
-            path: `/posts/${edge.node.id}/`,
+            path: `/posts/${edge.node.postSlug}/`,
             component: slash(blogPostTemplate),
             context: {
-              id: edge.node.id,
+              postSlug: edge.node.postSlug,
             },
           })
         })

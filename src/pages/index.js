@@ -10,7 +10,7 @@ const propTypes = {
 const BlogPost = ({ node }) =>
   <div key={node.id}>
     <h3>
-      <Link to={"/posts/" + node.id }>{node.postTitle}</Link>
+      <Link to={"/posts/" + node.postSlug }>{node.postTitle}</Link>
     </h3>
     <p>
       {node.postContent.postContent}
@@ -82,6 +82,7 @@ export const pageQuery = graphql`
               }
             }
           }
+          postSlug
         }
       }
     }
