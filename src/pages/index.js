@@ -1,5 +1,6 @@
 import React from 'react'
 import Link from 'gatsby-link'
+import { navigateTo } from "gatsby-link"
 import * as PropTypes from "prop-types"
 
 const propTypes = {
@@ -8,7 +9,9 @@ const propTypes = {
 
 const BlogPost = ({ node }) =>
   <div key={node.id}>
-    <h3>{node.postTitle}</h3>
+    <h3>
+      <Link to={"/posts/" + node.id }>{node.postTitle}</Link>
+    </h3>
     <p>
       {node.postContent.postContent}
     </p>
@@ -68,6 +71,16 @@ export const pageQuery = graphql`
           datePosted
           postContent {
             postContent
+          }
+          author {
+            name
+            avatar {
+              file {
+                url
+                fileName
+                contentType
+              }
+            }
           }
         }
       }

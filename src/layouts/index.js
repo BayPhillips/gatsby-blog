@@ -36,9 +36,9 @@ const Header = () =>
 const TemplateWrapper = ({ children }) =>
   <div>
     <Helmet
-      title="Bay's new Blog"
+      title="Bay Phillips - Software engineer in nyc"
       meta={[
-        { name: 'description', content: 'Blog' },
+        { name: 'description', content: 'Personal blog for Bay Phillips, a software engineer based out of NYC building native applications.' },
         { name: 'keywords', content: 'ios, swift, engineer, nyc, new york city, cooking, Plated' },
       ]}
     />

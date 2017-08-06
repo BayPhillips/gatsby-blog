@@ -13,6 +13,7 @@ class BlogPostTemplate extends React.Component {
       postTitle,
       datePosted,
       postContent,
+      author
     } = blogPost
     return (
       <div>
@@ -27,12 +28,16 @@ class BlogPostTemplate extends React.Component {
           </h4>
         </div>
         <div>
+          <p>Posted By: {author.name}</p>
+          <img src={author.avatar.file.url} />
+        </div>
+        <div>
           <span>
             Date Posted: {datePosted}
           </span>
           <div
             dangerouslySetInnerHTML={{
-              __html: postContent,
+              __html: postContent.postContent,
             }}
           />
         </div>
@@ -54,6 +59,16 @@ export const pageQuery = graphql`
         postContent
       }
       datePosted
+      author {
+        name
+        avatar {
+          file {
+            url
+            fileName
+            contentType
+          }
+        }
+      }
     }
   }
 `
