@@ -7,13 +7,15 @@
     "node": "8.1.x"
   },
   "dependencies": {
-    "foundation-sites": "^6.4.1",
-    "gatsby": "^1.6.5",
-    "gatsby-link": "^1.6.5",
-    "gatsby-plugin-react-helmet": "^1.0.1",
+    "foundation-sites": "^6.4.3",
+    "gatsby": "^1.9.44",
+    "gatsby-link": "^1.6.17",
+    "gatsby-plugin-react-helmet": "^1.0.6",
     "gatsby-source-contentful": "latest",
+    "gatsby-transformer-remark": "^1.7.12",
     "lodash": "^4.16.4",
-    "react-foundation": "latest",
+    "react-foundation": "^0.9.2",
+    "react-syntax-highlighter": "^5.7.0",
     "react-typography": "^0.15.0",
     "slash": "^1.0.0"
   },
@@ -30,6 +32,6 @@
     "generate": "rm -rf docs/* && gatsby build && cp -r public/*.* docs && echo blog.bayphillips.com > docs/CNAME"
   },
   "devDependencies": {
-    "prettier": "^1.5.2"
+    "prettier": "^1.7.0"
   }
 }

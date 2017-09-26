@@ -1,6 +1,11 @@
 import React from "react"
 import Link from "gatsby-link"
 import * as PropTypes from "prop-types"
+import SyntaxHighlighter, { registerLanguage } from "react-syntax-highlighter/dist/light";
+import js from 'react-syntax-highlighter/dist/languages/javascript';
+import docco from 'react-syntax-highlighter/dist/styles/docco';
+
+registerLanguage('javascript', js);
 
 const propTypes = {
   data: PropTypes.object.isRequired,
@@ -16,6 +21,7 @@ class BlogPostTemplate extends React.Component {
       author,
       postSlug
     } = blogPost
+    const codeTest = '(num) => num + 1;'
     return (
       <div>
         <div
@@ -29,8 +35,10 @@ class BlogPostTemplate extends React.Component {
           </h4>
         </div>
         <div>
-          <p>Posted By: {author.name}</p>
-          <img src={author.avatar.file.url} />
+          <p>
+            {author.name}
+            <img src={author.avatar.responsiveResolution.src} />
+          </p>
         </div>
         <div>
           <span>
@@ -38,7 +46,7 @@ class BlogPostTemplate extends React.Component {
           </span>
           <div
             dangerouslySetInnerHTML={{
-              __html: postContent.postContent,
+              __html: postContent.childMarkdownRemark.html,
             }}
           />
         </div>
@@ -57,16 +65,17 @@ export const pageQuery = graphql`
       id
       postTitle
       postContent {
-        postContent
+        childMarkdownRemark {
+          html
+        }
       }
       datePosted
       author {
         name
         avatar {
-          file {
-            url
-            fileName
-            contentType
+          id
+          responsiveResolution(width: 60, height: 60) {
+            src
           }
         }
       }
