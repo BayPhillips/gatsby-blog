@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Link from 'gatsby-link'
 import Helmet from 'react-helmet'
-import LeftColumn from '../components/leftColumn'
+import NavigationBar from '../components/navigationBar'
 import { Column, Row } from 'react-foundation'
 
 import 'foundation-sites/dist/css/foundation.css'
@@ -20,9 +20,9 @@ const TemplateWrapper = ({ children }) =>
         { name: 'keywords', content: 'ios, swift, engineer, nyc, new york city, cooking, Plated' },
       ]}
     />
-    <Row className="display">
-      <LeftColumn />
-      <Column large={9} medium={9} small={9}>
+    <NavigationBar />
+    <Row medium={8} large={7}>
+      <Column large={9} medium={9} small={11} centerOnLarge centerOnMedium centerOnSmall>
         {children()}
       </Column>
     </Row>

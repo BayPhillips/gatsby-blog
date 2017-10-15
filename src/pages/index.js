@@ -12,9 +12,11 @@ const BlogPost = ({ node }) =>
     <h3>
       <Link to={"/posts/" + node.postSlug }>{node.postTitle}</Link>
     </h3>
-    <p>
-      {node.postContent.postContent}
-    </p>
+    <div
+      dangerouslySetInnerHTML={{
+        __html: node.contentPreview.childMarkdownRemark.html,
+      }}
+    />
   </div>
 
 class IndexPage extends React.Component {
@@ -41,9 +43,6 @@ export const pageQuery = graphql`
           id
           postTitle
           datePosted
-          postContent {
-            postContent
-          }
           author {
             name
             avatar {
@@ -54,7 +53,12 @@ export const pageQuery = graphql`
               }
             }
           }
-          postSlug
+          postSlug,
+          contentPreview {
+            childMarkdownRemark {
+              html
+            }
+          }
         }
       }
     }

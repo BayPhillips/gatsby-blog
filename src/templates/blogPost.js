@@ -19,7 +19,8 @@ class BlogPostTemplate extends React.Component {
       datePosted,
       postContent,
       author,
-      postSlug
+      postSlug,
+      contentPreview
     } = blogPost
     const codeTest = '(num) => num + 1;'
     return (
@@ -79,7 +80,12 @@ export const pageQuery = graphql`
           }
         }
       }
-      postSlug
+      postSlug,
+      contentPreview {
+        childMarkdownRemark {
+          html
+        }
+      }
     }
   }
 `
