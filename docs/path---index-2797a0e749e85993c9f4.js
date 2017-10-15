@@ -1,2 +1,0 @@
-webpackJsonp([0x81b8806e42603000],{"./node_modules/json-loader/index.js!./.cache/json/index.json":function(o,t){o.exports={data:{all:{edges:[{node:{id:"c3xuZJi83UsOUAK6a0kc206",postTitle:"Hello World 2 Again",datePosted:"2017-08-18",postContent:{postContent:"This is my second blog post!"}}},{node:{id:"c3vAJNIp9NuOmusAGCEMq4S",postTitle:"Hello World",datePosted:"2017-08-07",postContent:{postContent:"What's good in the hood????"}}}]}},pathContext:{}}}});
-//# sourceMappingURL=path---index-2797a0e749e85993c9f4.js.map

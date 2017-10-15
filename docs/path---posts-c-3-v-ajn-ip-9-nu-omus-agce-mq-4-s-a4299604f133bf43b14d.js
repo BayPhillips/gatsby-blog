@@ -1,2 +1,0 @@
-webpackJsonp([0xae9f047378c79800],{"./node_modules/json-loader/index.js!./.cache/json/posts-c-3-v-ajn-ip-9-nu-omus-agce-mq-4-s.json":function(o,t){o.exports={data:{contentfulBlogPost:{id:"c3vAJNIp9NuOmusAGCEMq4S",postTitle:"Hello World",postContent:{postContent:"What's good in the hood????"},datePosted:"2017-08-07"}},pathContext:{id:"c3vAJNIp9NuOmusAGCEMq4S"}}}});
-//# sourceMappingURL=path---posts-c-3-v-ajn-ip-9-nu-omus-agce-mq-4-s-a4299604f133bf43b14d.js.map

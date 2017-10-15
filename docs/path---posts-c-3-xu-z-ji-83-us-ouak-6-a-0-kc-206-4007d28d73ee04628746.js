@@ -1,2 +1,0 @@
-webpackJsonp([0x317820cce08eda00],{"./node_modules/json-loader/index.js!./.cache/json/posts-c-3-xu-z-ji-83-us-ouak-6-a-0-kc-206.json":function(o,s){o.exports={data:{contentfulBlogPost:{id:"c3xuZJi83UsOUAK6a0kc206",postTitle:"Hello World 2 Again",postContent:{postContent:"This is my second blog post!"},datePosted:"2017-08-18"}},pathContext:{id:"c3xuZJi83UsOUAK6a0kc206"}}}});
-//# sourceMappingURL=path---posts-c-3-xu-z-ji-83-us-ouak-6-a-0-kc-206-4007d28d73ee04628746.js.map
