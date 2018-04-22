@@ -1,14 +1,22 @@
-# gatsby-starter-default
-The default Gatsby starter
+# Bay's New Blog
+This is my next attempt at figuring out what is going on with static website site builders while still using an API to drive its content.
 
-For an overview of the project structure please refer to the [Gatsby documentation - Building with Components](https://www.gatsbyjs.org/docs/building-with-components/)
+[Live URL](https://blog.bayphillips.com)
 
-Install this starter (assuming Gatsby is installed) by running from your CLI:
-```
-gatsby new gatsby-example-site
-```
+# Tooling used
+* GatsbyJS
+* Contentful
+* UIKit
+* GitHub Pages
 
-## Deploy
+# How to run
+* `npm run dev` to develop locally.
+* `npm run generate` to build for production. Add and commit files and push to the repository for the changes to be made live.
 
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/gatsbyjs/gatsby-starter-default)
-"# gatsby-blog"  git init git add README.md git commit -m "first commit" git remote add origin git@github.com:BayPhillips/gatsby-blog.git git push -u origin master
+# Things to do
+- [ ] Proper formatting on blog posts
+- [ ] Break out the blog portion to its own namespace (`/blog`)
+- [ ] Create a contact form page
+- [ ] Create an about me page
+- [ ] Port over existing WP content that I actually care about
+- [ ] Remove old WP blog and use actual domain to point to GitHub Pages
