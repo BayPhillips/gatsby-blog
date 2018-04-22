@@ -3,16 +3,17 @@ import PropTypes from 'prop-types'
 import Link from 'gatsby-link'
 import Helmet from 'react-helmet'
 import NavigationBar from '../components/navigationBar'
-import { Column, Row } from 'react-foundation'
+import UIkit from 'uikit';
+import Icons from 'uikit/dist/js/uikit-icons';
 
-import 'foundation-sites/dist/css/foundation.css'
-import 'foundation-sites/dist/css/foundation-float.css'
-import 'foundation-sites/dist/css/foundation-rtl.css'
-import 'foundation-sites/dist/css/foundation-prototype.css'
-import './index.css'
+// local components
+import StylingOverrides from '../components/localStyling';
+
+// UIKit is undefined in static build
+if (typeof UIkit.use === 'function') UIkit.use(Icons);
 
 const TemplateWrapper = ({ children }) =>
-  <div id="wrapper">
+  <div>
     <Helmet
       title="Bay Phillips - Software engineer in nyc"
       meta={[
@@ -20,12 +21,12 @@ const TemplateWrapper = ({ children }) =>
         { name: 'keywords', content: 'ios, swift, engineer, nyc, new york city, cooking, Plated' },
       ]}
     />
-    <NavigationBar />
-    <Row medium={8} large={7}>
-      <Column large={9} medium={9} small={11} centerOnLarge centerOnMedium centerOnSmall>
-        {children()}
-      </Column>
-    </Row>
+    <StylingOverrides>
+        <NavigationBar />
+        <div className="uk-container-large">
+          { children() }
+        </div>
+    </StylingOverrides>
   </div>
 
 TemplateWrapper.propTypes = {
