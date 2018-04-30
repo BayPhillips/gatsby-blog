@@ -7,10 +7,12 @@
     "node": "9.5.x"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "gatsby": "^1.9.243",
     "gatsby-cli": "^1.1.49",
     "gatsby-image": "^1.0.47",
     "gatsby-link": "^1.6.40",
+    "gatsby-node-helpers": "^0.1.4",
     "gatsby-plugin-react-helmet": "^1.0.8",
     "gatsby-plugin-sharp": "^1.6.43",
     "gatsby-source-contentful": "^1.3.44",
@@ -31,7 +33,7 @@
   "main": "n/a",
   "scripts": {
     "build": "gatsby build",
-    "dev": "gatsby develop",
+    "dev": "npm run build --prefix plugins/gatsby-source-plated && gatsby develop",
     "format": "prettier --trailing-comma es5 --no-semi --single-quote --write 'src/**/*.js'",
     "test": "echo \"Error: no test specified\" && exit 1",
     "generate": "rm -rf docs && gatsby build && cp -r public docs/ && echo blog.bayphillips.com > docs/CNAME"

@@ -5,3 +5,5 @@ node_modules
 # Build directory
 public/
 .DS_Store
+plugins/gatsby-source-plated/nodes.js
+plugins/gatsby-source-plated/gatsby-node.js
