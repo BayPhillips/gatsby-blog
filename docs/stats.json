@@ -45,9 +45,9 @@
       "path---posts-hello-world-47bfa36e9c7be3dc852e.js.map"
     ],
     "app": [
-      "app-20631b26636948ae2784.js",
+      "app-2cb6b370bcad443cf69c.js",
       "build-js-styles.css",
-      "app-20631b26636948ae2784.js.map",
+      "app-2cb6b370bcad443cf69c.js.map",
       "build-js-styles.css.map"
     ],
     "component---src-templates-contentful-page-js": [
@@ -63,8 +63,8 @@
       "path---404-a0e39f21c11f6a62c5ab.js.map"
     ],
     "path---about": [
-      "path---about-43ac5a52a07e3a0faf19.js",
-      "path---about-43ac5a52a07e3a0faf19.js.map"
+      "path---about-0da4a99ab8cbdf6392be.js",
+      "path---about-0da4a99ab8cbdf6392be.js.map"
     ]
   }
 }
