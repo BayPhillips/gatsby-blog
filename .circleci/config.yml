@@ -35,6 +35,8 @@ jobs:
         
       - run: npm run generate
       
+      - run: git config user.email "bay.phillips@gmail.com" && git config user.name "Bay Phillips"
+
       - run: git add . && git commit -am "automated deploy [ci skip]" && git push origin master
 
 
