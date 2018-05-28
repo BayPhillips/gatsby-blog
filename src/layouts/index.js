@@ -23,7 +23,7 @@ const TemplateWrapper = ({ children, data }) =>
     />
     <StylingOverrides>
         <NavigationBar menu={data.menu.edges[0]} />
-        <div className="uk-container-large">
+        <div className="uk-container">
           { children() }
         </div>
     </StylingOverrides>

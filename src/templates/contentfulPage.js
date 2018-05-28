@@ -22,7 +22,7 @@ class ContentfulPageTemplate extends React.Component {
     } = page
 
     return (
-      <div key={id}>
+      <section key={id} className="uk-margin">
         <h1>
           {title}
         </h1>
@@ -34,7 +34,7 @@ class ContentfulPageTemplate extends React.Component {
             }}
           />
         </div>
-      </div>
+      </section>
     )
   }
 
