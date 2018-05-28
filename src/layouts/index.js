@@ -12,17 +12,17 @@ import StylingOverrides from '../components/localStyling';
 // UIKit is undefined in static build
 if (typeof UIkit.use === 'function') UIkit.use(Icons);
 
-const TemplateWrapper = ({ children }) =>
+const TemplateWrapper = ({ children, data }) =>
   <div>
     <Helmet
-      title="Bay Phillips - Software engineer in nyc"
+      title={data.site.siteMetadata.title}
       meta={[
-        { name: 'description', content: 'Personal blog for Bay Phillips, a software engineer based out of NYC building native applications.' },
-        { name: 'keywords', content: 'ios, swift, engineer, nyc, new york city, cooking, Plated' },
+        { name: 'description', content: data.site.siteMetadata.description },
+        { name: 'keywords', content: data.site.siteMetadata.keywords },
       ]}
     />
     <StylingOverrides>
-        <NavigationBar />
+        <NavigationBar menu={data.menu.edges[0]} />
         <div className="uk-container-large">
           { children() }
         </div>
@@ -34,3 +34,31 @@ TemplateWrapper.propTypes = {
 }
 
 export default TemplateWrapper
+
+export const query = graphql`
+  query LayoutQuery {
+    site: site {
+      siteMetadata {
+        title
+        description
+        keywords
+      }
+    }
+    menu: allContentfulMenu(filter: { name: { eq: "Main menu"}}) {
+      edges {
+        node {
+          id
+          name
+          items {
+            id
+            name
+            page {
+              id
+              slug
+            }
+          }
+        }
+      }
+    }
+  }
+`

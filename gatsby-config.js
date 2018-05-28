@@ -1,6 +1,8 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
+    title: `Bay Phillips | Software Engineer in NYC`,
+    description: `Personal blog for Bay Phillips, a software engineer based out of NYC building native applications.`,
+    keywords: `ios, swift, fullstack, engineer, engineering manager, nyc, new york city, cooking, Plated`
   },
   plugins: [
     {

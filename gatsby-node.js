@@ -13,7 +13,15 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
     graphql(
       `
       {
-        allContentfulBlogPost(limit: 1000) {
+        pages: allContentfulPage {
+          edges {
+            node {
+              id
+              slug
+            }
+          }
+        }
+        blogPosts: allContentfulBlogPost(limit: 1000) {
           edges {
             node {
               postSlug
@@ -28,8 +36,19 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
           reject(result.errors)
         }
 
+        const contentfulPageTemplate = path.resolve(`./src/templates/contentfulPage.js`)
+        _.each(result.data.pages.edges, edge => {
+          createPage({
+            path: `/${edge.node.slug}`,
+            component: slash(contentfulPageTemplate),
+            context: {
+              slug: edge.node.slug
+            }
+          })
+        })
+
         const blogPostTemplate = path.resolve(`./src/templates/blogPost.js`)
-        _.each(result.data.allContentfulBlogPost.edges, edge => {
+        _.each(result.data.blogPosts.edges, edge => {
           createPage({
             path: `/posts/${edge.node.postSlug}/`,
             component: slash(blogPostTemplate),
