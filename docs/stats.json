@@ -40,14 +40,18 @@
       "path---404-html-a0e39f21c11f6a62c5ab.js",
       "path---404-html-a0e39f21c11f6a62c5ab.js.map"
     ],
+    "path---hello-melanie": [
+      "path---hello-melanie-f66f79b7f3179eff7f2e.js",
+      "path---hello-melanie-f66f79b7f3179eff7f2e.js.map"
+    ],
     "path---posts-hello-world": [
       "path---posts-hello-world-47bfa36e9c7be3dc852e.js",
       "path---posts-hello-world-47bfa36e9c7be3dc852e.js.map"
     ],
     "app": [
-      "app-2cb6b370bcad443cf69c.js",
+      "app-15c4f1825a0f40241dd1.js",
       "build-js-styles.css",
-      "app-2cb6b370bcad443cf69c.js.map",
+      "app-15c4f1825a0f40241dd1.js.map",
       "build-js-styles.css.map"
     ],
     "component---src-templates-contentful-page-js": [
