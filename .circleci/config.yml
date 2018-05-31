@@ -24,16 +24,16 @@ jobs:
       - run: 
         name: Generate
         command: yarn generate
-      - persist_to_workspace:
-        root: build
-        paths:
-          - ./*
+      # - persist_to_workspace:
+      #   root: build
+      #   paths:
+      #     - ./*
 
   deploy:
     <<: *defaults
     steps:
-      - attach_workspace:
-        at: ~/workspace/build
+      # - attach_workspace:
+      #   at: ~/workspace/build
       - run: 
         name: Deploy to GitHub
         command: |
