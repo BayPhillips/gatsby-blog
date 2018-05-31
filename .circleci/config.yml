@@ -49,15 +49,16 @@ workflows:
   build_only:
     jobs:
       - build
-    filters:
-      branches:
-        ignore: /master/
+        filters:
+          branches:
+            ignore: /master/
   build_and_deploy:
     jobs:
-      - build
       - deploy
-    filters:
-      branches:
-        only: /master/
+        requires:
+          - build
+        filters:
+          branches:
+            only: /master/
 
 
