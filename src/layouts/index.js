@@ -6,6 +6,8 @@ import NavigationBar from '../components/navigationBar'
 import UIkit from 'uikit';
 import Icons from 'uikit/dist/js/uikit-icons';
 
+import "../styles/main.scss"
+
 // local components
 import StylingOverrides from '../components/localStyling';
 
