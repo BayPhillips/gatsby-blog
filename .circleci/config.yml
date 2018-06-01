@@ -7,21 +7,21 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-        key: v1-dependencies-{{ checksum "package.json" }}
+          key: v1-dependencies-{{ checksum "package.json" }}
       - run: 
-        name: Install Dependencies
-        command: yarn install
+          name: Install Dependencies
+          command: yarn install
       - save_cache:
-        paths:
-          - node_modules
-        key: v1-dependencies-{{ checksum "package.json" }}
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
       - run: 
-        name: Generate
-        command: yarn generate
+          name: Generate
+          command: yarn generate
       - persist_to_workspace:
-        root: build
-        paths:
-          - ./*
+          root: build
+          paths:
+            - ./*
 
   deploy:
     working_directory: ~/workspace
@@ -29,15 +29,15 @@ jobs:
       - image: circleci/node:9.5.0
     steps:
       - attach_workspace:
-        at: ~/workspace/build
+          at: ~/workspace/build
       - run: 
-        name: Deploy to GitHub
-        command: |
-          git config user.email "bay.phillips@gmail.com"
-          git config user.name "Bay Phillips"
-          git add . 
-          git commit -am "automated deploy [ci skip]"
-          git push origin master
+          name: Deploy to GitHub
+          command: |
+            git config user.email "bay.phillips@gmail.com"
+            git config user.name "Bay Phillips"
+            git add . 
+            git commit -am "automated deploy [ci skip]"
+            git push origin master
 
 workflows:
   version: 2
@@ -45,10 +45,10 @@ workflows:
     jobs:
       - build
       - deploy:
-        requires:
-          - build
-        filters:
-          branches:
-            only: master
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
 
 
