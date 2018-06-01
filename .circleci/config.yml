@@ -22,6 +22,7 @@ jobs:
           root: ./
           paths:
             - ./docs
+            - ./.git
 
   deploy:
     working_directory: ~/workspace
