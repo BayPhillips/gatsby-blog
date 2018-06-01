@@ -35,7 +35,7 @@ class IndexPage extends React.Component {
             <h3 className="uk-padding">Ninabee</h3>
           </div>
         </div>
-        <section className="uk-margin">
+        <section className="uk-section uk-margin">
           <h3>Recent Blog Posts</h3>
           <div className="uk-flex uk-flex-column">
             {allPosts.map(({ node }, i) => <BlogPost key={node.id} node={node} />)}
