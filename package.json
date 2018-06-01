@@ -1,0 +1,44 @@
+{
+  "name": "bays-gatsby-blog",
+  "description": "Trying something new",
+  "version": "0.0.1",
+  "author": "Bay Phillips <bay.phillips@gmail.com>",
+  "engines": {
+    "node": "9.5.x"
+  },
+  "dependencies": {
+    "gatsby": "^1.9.243",
+    "gatsby-cli": "^1.1.49",
+    "gatsby-image": "^1.0.47",
+    "gatsby-link": "^1.6.40",
+    "gatsby-plugin-react-helmet": "^1.0.8",
+    "gatsby-plugin-sass": "^1.0.26",
+    "gatsby-plugin-sharp": "^1.6.43",
+    "gatsby-source-contentful": "^1.3.44",
+    "gatsby-transformer-remark": "^1.7.39",
+    "gatsby-transformer-sharp": "^1.6.23",
+    "lodash": "^4.17.5",
+    "react-syntax-highlighter": "^5.8.0",
+    "react-typography": "^0.15.0",
+    "sharp": "^0.20.1",
+    "slash": "^1.0.0",
+    "styled-components": "^3.2.5",
+    "uikit": "^3.0.0-rc.4"
+  },
+  "keywords": [
+    "gatsby"
+  ],
+  "license": "MIT",
+  "main": "n/a",
+  "scripts": {
+    "build": "gatsby build",
+    "dev": "gatsby develop",
+    "format": "prettier --trailing-comma es5 --no-semi --single-quote --write 'src/**/*.js'",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "generate": "rm -rf docs && gatsby build && cp -r public docs/ && echo blog.bayphillips.com > docs/CNAME"
+  },
+  "devDependencies": {
+    "prettier": "^1.11.1"
+  },
+  "postinstall": "execstack -c node_modules/sharp/vendor/lib/librsvg-2.so.2"
+}
