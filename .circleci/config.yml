@@ -21,8 +21,7 @@ jobs:
       - persist_to_workspace:
           root: ./
           paths:
-            - ./docs
-            - ./.git
+            - ./
 
   deploy:
     working_directory: ~/workspace
