@@ -16,10 +16,10 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
       - run: 
-          name: Generate
+          name: Generate Site
           command: yarn generate
       - persist_to_workspace:
-          root: build
+          root: ./
           paths:
             - ./*
 
