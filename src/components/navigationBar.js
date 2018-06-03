@@ -6,17 +6,18 @@ class NavigationBar extends React.Component {
     const items = this.props.menu.node.items
     
     return (
-      <nav className="uk-navbar-container" uk-navbar>
+      <nav className="uk-container uk-navbar-container uk-navbar-transparent uk-margin-bottom" uk-navbar>
         <div className="uk-navbar-left">
           <Link to={"/"} className="uk-navbar-item uk-logo">Bay Phillips</Link>
           <ul className="uk-navbar-nav">
             {items.map(item => (
               <li key={item.id}>
-                <Link to={item.page.slug}>{item.name}</Link>
+                <Link to={"/" + item.page.slug}>{item.name}</Link>
               </li>
             ))}
           </ul>
         </div>
+        <hr />
       </nav>
     )
   }
