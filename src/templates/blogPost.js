@@ -24,34 +24,17 @@ class BlogPostTemplate extends React.Component {
     } = blogPost
     const codeTest = '(num) => num + 1;'
     return (
-      <div>
-        <div
-          style={{
-            display: `flex`,
-            alignItems: `center`,
+      <article className="uk-article">
+        <h1 className="uk-article-title">{postTitle}</h1>
+        <div className="uk-article-meta">
+          Posted on {datePosted}
+        </div>
+        <div className="uk-margin"
+          dangerouslySetInnerHTML={{
+            __html: postContent.childMarkdownRemark.html,
           }}
-        >
-          <h4>
-            {postTitle}
-          </h4>
-        </div>
-        <div>
-          <p>
-            {author.name}
-            <img src={author.avatar.responsiveResolution.src} />
-          </p>
-        </div>
-        <div>
-          <span>
-            Date Posted: {datePosted}
-          </span>
-          <div
-            dangerouslySetInnerHTML={{
-              __html: postContent.childMarkdownRemark.html,
-            }}
-          />
-        </div>
-      </div>
+        />
+      </article>
     )
   }
 }
