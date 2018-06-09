@@ -9,17 +9,25 @@ const propTypes = {
 }
 
 const BlogPostPreview = ({ node }) =>
-  <div key={node.id} className="uk-card uk-card-default uk-card-hover uk-margin">
-    <div className="uk-card-header">
-      <h3 className="uk-card-title">
-        <Link to={"/posts/" + node.postSlug }>{node.postTitle}</Link>
-      </h3>
-    </div>
-    <div className="uk-card-body"
-      dangerouslySetInnerHTML={{
-        __html: node.contentPreview.childMarkdownRemark.html,
-      }}
-    />
+  <div key={node.id}>
+    <Link to={"/posts/" + node.postSlug }>
+      <div className="uk-card uk-card-default">
+        <Img 
+          sizes={node.headerImage.sizes} 
+          outerWrapperClassName={`uk-card-media-top`}
+        />
+        <div className="uk-card-header">
+          <h3 className="uk-card-title">
+            {node.postTitle}
+          </h3>
+        </div>
+        <div className="uk-card-body"
+          dangerouslySetInnerHTML={{
+            __html: node.contentPreview.childMarkdownRemark.html,
+          }}
+        />
+      </div>
+    </Link>
   </div>
 
 class IndexPage extends React.Component {
@@ -30,20 +38,16 @@ class IndexPage extends React.Component {
     return (
       <div>
         <section className="uk-section-small">
-          <div className="uk-panel">
-            <Img 
-              sizes={bay.avatar.sizes} 
-              style={{width: `100px`, height: `100px`}} 
-              imgStyle={`uk-margin-left uk-margin-remove-adjacent`} 
-            />
-            <p>
-              This is a blurb about me isn't it great
-            </p>
+          <div className="uk-flex uk-flex-center uk-flex-middle">
+            <div className="uk-margin-right">
+              <h1>Welcome!</h1>
+              <p className="uk-text-small">This is my new blog, it is much faster</p>
+            </div>
           </div>
         </section>
         <section className="uk-section">
-          <h2>Recent Blog Posts</h2>
-          <div className="uk-flex uk-flex-column">
+          <h2>Some of my recent blog posts...</h2>
+          <div className="uk-grid-medium uk-grid-match uk-child-width-1-3@xl uk-child-width-1-3@l uk-child-width-1-2@m uk-child-width-1-1@s" data-uk-grid>
             {allPosts.map(({ node }, i) => <BlogPostPreview key={node.id} node={node} />)}
           </div>
         </section> 
@@ -62,12 +66,12 @@ export const pageQuery = graphql`
       id
       name
       avatar {
-        sizes(maxWidth: 100) {
+        sizes(maxWidth: 200) {
           ...GatsbyContentfulSizes_noBase64
         }
       }
     },
-    blogPosts: allContentfulBlogPost(limit: 5) {
+    blogPosts: allContentfulBlogPost(limit: 5, sort: { fields: [datePosted], order: DESC}) {
       edges {
         node {
           id
@@ -77,6 +81,11 @@ export const pageQuery = graphql`
           contentPreview {
             childMarkdownRemark {
               html
+            }
+          }
+          headerImage {
+            sizes(maxHeight: 225) {
+              ...GatsbyContentfulSizes_noBase64
             }
           }
         }

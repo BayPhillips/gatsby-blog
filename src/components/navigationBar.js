@@ -6,19 +6,26 @@ class NavigationBar extends React.Component {
     const items = this.props.menu.node.items
     
     return (
-      <nav className="uk-container uk-navbar-container uk-navbar-transparent uk-margin-bottom" uk-navbar>
-        <div className="uk-navbar-left">
-          <Link to={"/"} className="uk-navbar-item uk-logo">Bay Phillips</Link>
-          <ul className="uk-navbar-nav">
-            {items.map(item => (
-              <li key={item.id}>
-                <Link to={"/" + item.page.slug}>{item.name}</Link>
-              </li>
-            ))}
-          </ul>
-        </div>
+      <div className="uk-container">
+        <nav className="uk-navbar-container uk-navbar-transparent uk-margin-bottom" data-uk-navbar>
+          <div className="uk-navbar-left">
+            <Link to={"/"} className="uk-navbar-item uk-logo">Bay Phillips</Link>
+            <ul className="uk-navbar-nav">
+              {items.map(item => (
+                <li key={item.id}>
+                  <Link to={"/" + item.page.slug}>{item.name}</Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="uk-navbar-right">
+              <ul className="uk-navbar-nav">
+                <li><a href="http://www.github.com/bayphillips" data-uk-icon="icon: github"></a></li>
+              </ul>
+          </div>
+        </nav>
         <hr />
-      </nav>
+      </div>
     )
   }
 }
