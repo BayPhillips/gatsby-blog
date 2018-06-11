@@ -37,7 +37,7 @@ class IndexPage extends React.Component {
 
     return (
       <div>
-        <section className="uk-section-small uk-margin-top">
+        <section className="uk-section-small">
           <div className="uk-flex uk-flex-center uk-flex-middle">
             <div className="uk-margin-right uk-width-2-3">
               <h1>Welcome!</h1>

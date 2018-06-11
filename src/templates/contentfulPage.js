@@ -22,7 +22,7 @@ class ContentfulPageTemplate extends React.Component {
     } = page
 
     return (
-      <section key={id} className="uk-section">
+      <section key={id} className="uk-section uk-padding-remove">
         <h1>
           {title}
         </h1>
