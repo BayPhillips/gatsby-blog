@@ -1,3 +1,4 @@
+// Use ../node_modules/uikit/src/scss/variables.scss as guidelines
 $global-link-color: #1e3044;
 $global-link-hover-color: purple;
 $base-link-hover-text-decoration: none;
@@ -7,3 +8,6 @@ $global-secondary-background: #1e3044;
 $global-muted-background: #e1e9f0;
 
 $global-color: #666;
+$base-heading-font-family: 'Roboto', sans-serif;
+$global-font-family: 'Nunito Sans', sans-serif;
+$nav-header-text-transform: none !default;

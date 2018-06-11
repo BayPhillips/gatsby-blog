@@ -10,8 +10,8 @@ const propTypes = {
 
 const BlogPostPreview = ({ node }) =>
   <div key={node.id}>
-    <Link to={"/posts/" + node.postSlug }>
-      <div className="uk-card uk-card-default">
+    <Link to={"/blog/" + node.postSlug }>
+      <div className="uk-card uk-card-default uk-card-hover">
         <Img 
           sizes={node.headerImage.sizes} 
           outerWrapperClassName={`uk-card-media-top`}
@@ -33,20 +33,25 @@ const BlogPostPreview = ({ node }) =>
 class IndexPage extends React.Component {
   render() {
     const allPosts = this.props.data.blogPosts.edges
-    const bay = this.props.data.bay
+    const welcomeMessage = this.props.data.welcomeMessage
 
     return (
       <div>
-        <section className="uk-section-small">
+        <section className="uk-section-small uk-margin-top">
           <div className="uk-flex uk-flex-center uk-flex-middle">
-            <div className="uk-margin-right">
+            <div className="uk-margin-right uk-width-2-3">
               <h1>Welcome!</h1>
-              <p className="uk-text-small">This is my new blog, it is much faster</p>
+              <p 
+                className="uk-text-small" 
+                dangerouslySetInnerHTML={{
+                  __html: welcomeMessage.body.childMarkdownRemark.html
+                }}
+              />
             </div>
           </div>
         </section>
-        <section className="uk-section">
-          <h2>Some of my recent blog posts...</h2>
+        <section className="uk-section-small">
+          <h2>Recently posted</h2>
           <div className="uk-grid-medium uk-grid-match uk-child-width-1-3@xl uk-child-width-1-3@l uk-child-width-1-2@m uk-child-width-1-1@s" data-uk-grid>
             {allPosts.map(({ node }, i) => <BlogPostPreview key={node.id} node={node} />)}
           </div>
@@ -62,12 +67,11 @@ export default IndexPage
 
 export const pageQuery = graphql`
   query PageQuery {
-    bay: contentfulAuthor(name: {eq: "Bay Phillips"}) {
-      id
+    welcomeMessage: contentfulBlurb(name: { eq: "welcome-message"}) {
       name
-      avatar {
-        sizes(maxWidth: 200) {
-          ...GatsbyContentfulSizes_noBase64
+      body {
+        childMarkdownRemark {
+          html
         }
       }
     },

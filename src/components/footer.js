@@ -3,11 +3,9 @@ import Link from 'gatsby-link'
 
 class Footer extends React.Component {
   render() {
+    // Keep this empty for now
     return (
-      <footer className="uk-container" key={"mainFooter"}>
-        <hr />
-        Hello footer
-      </footer>
+      <footer className="uk-container" key={"mainFooter"} />
     )
   }
 }
