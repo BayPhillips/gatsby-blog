@@ -1,2 +1,0 @@
-webpackJsonp([0xaa5e1b1c9163],{337:function(e,l){e.exports={data:{page:{id:"c1jrVkjF2Lg2gcs06i0wIAU",title:"Hello Melanie",slug:"hello-melanie",headerImage:null,body:{childMarkdownRemark:{html:"<p>This is neat!</p>"}}}},pathContext:{slug:"hello-melanie"}}}});
-//# sourceMappingURL=path---hello-melanie-f66f79b7f3179eff7f2e.js.map
