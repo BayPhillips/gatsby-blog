@@ -50,7 +50,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
         const blogPostTemplate = path.resolve(`./src/templates/blogPost.js`)
         _.each(result.data.blogPosts.edges, edge => {
           createPage({
-            path: `/posts/${edge.node.postSlug}/`,
+            path: `/blog/${edge.node.postSlug}/`,
             component: slash(blogPostTemplate),
             context: {
               postSlug: edge.node.postSlug,

@@ -6,14 +6,15 @@ import NavigationBar from '../components/navigationBar'
 import Footer from '../components/footer'
 import UIkit from 'uikit';
 import Icons from 'uikit/dist/js/uikit-icons';
-
+import "typeface-roboto"
+import "typeface-nunito-sans"
 import "../styles/main.scss"
 
 // UIKit is undefined in static build
 if (typeof UIkit.use === 'function') UIkit.use(Icons);
 
 const TemplateWrapper = ({ children, data }) =>
-  <div>
+  <div className="uk-offcanvas-content">
     <Helmet
       title={data.site.siteMetadata.title}
       meta={[
