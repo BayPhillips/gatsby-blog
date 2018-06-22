@@ -1,8 +1,8 @@
 import React from 'react'
-import Link from 'gatsby-link'
-import { navigateTo } from "gatsby-link"
+import { Link, graphql } from 'gatsby'
 import * as PropTypes from "prop-types"
 import Img from "gatsby-image"
+import Layout from "../components/layout"
 
 const propTypes = {
   data: PropTypes.object.isRequired,
@@ -13,7 +13,7 @@ const BlogPostPreview = ({ node }) =>
     <Link to={"/blog/" + node.postSlug }>
       <div className="uk-card uk-card-default uk-card-hover">
         <Img 
-          sizes={node.headerImage.sizes} 
+          fluid={node.headerImage.fluid} 
           outerWrapperClassName={`uk-card-media-top`}
         />
         <div className="uk-card-header">
@@ -36,7 +36,7 @@ class IndexPage extends React.Component {
     const welcomeMessage = this.props.data.welcomeMessage
 
     return (
-      <div>
+      <Layout>
         <section className="uk-section-small">
           <div className="uk-flex uk-flex-center uk-flex-middle">
             <div className="uk-margin-right uk-width-2-3">
@@ -56,7 +56,7 @@ class IndexPage extends React.Component {
             {allPosts.map(({ node }, i) => <BlogPostPreview key={node.id} node={node} />)}
           </div>
         </section> 
-      </div>      
+      </Layout>      
     )
   }
 }
@@ -88,8 +88,8 @@ export const pageQuery = graphql`
             }
           }
           headerImage {
-            sizes(maxHeight: 225) {
-              ...GatsbyContentfulSizes_noBase64
+            fluid(maxHeight: 225) {
+              ...GatsbyContentfulFluid_noBase64
             }
           }
         }

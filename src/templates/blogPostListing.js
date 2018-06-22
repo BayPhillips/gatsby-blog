@@ -1,9 +1,10 @@
 import React from "react"
-import Link from "gatsby-link"
+import { Link } from "gatsby"
 import moment from "moment"
+import Layout from "../components/layout"
 
-const BlogPostListingTemplate = ({ data, pathContext }) => {
-  const { group, index, first, last, pageCount } = pathContext
+const BlogPostListingTemplate = ({ data, pageContext }) => {
+  const { group, index, first, last, pageCount } = pageContext
   
   const nextPageUrl = index == pageCount 
     ? null 
@@ -16,28 +17,30 @@ const BlogPostListingTemplate = ({ data, pathContext }) => {
     : `/blog/${(index - 1).toString()}`
 
   return (
-    <section className="uk-section">
-      { group.map(({ node }) => (
-        <article key={ node.id } className="uk-article">
-          <h1 className="uk-article-title">
-            <Link to={`/blog/${node.postSlug}`} className="uk-link-heading">{ node.postTitle }</Link>
-          </h1>
-          <div className="uk-article-meta">
-            { moment(node.datePosted).fromNow() }
-          </div>
-          <div className="uk-margin"
-            dangerouslySetInnerHTML={{
-              __html: node.contentPreview.childMarkdownRemark.html,
-            }}
-          />
-          <hr className="uk-divider-small" />
-        </article>
-      ))}
-      <div data-uk-grid="" className="uk-margin">
-        { previousPageUrl ? <Link to={previousPageUrl}>&lt; Older Posts</Link> : null }
-        { nextPageUrl ? <Link to={nextPageUrl} className="uk-width-expand uk-text-right">Newer Posts &gt;</Link> : null }
-      </div>
-    </section>
+    <Layout>
+      <section className="uk-section">
+        { group.map(({ node }) => (
+          <article key={ node.id } className="uk-article">
+            <h1 className="uk-article-title">
+              <Link to={`/blog/${node.postSlug}`} className="uk-link-heading">{ node.postTitle }</Link>
+            </h1>
+            <div className="uk-article-meta">
+              { moment(node.datePosted).fromNow() }
+            </div>
+            <div className="uk-margin"
+              dangerouslySetInnerHTML={{
+                __html: node.contentPreview.childMarkdownRemark.html,
+              }}
+            />
+            <hr className="uk-divider-small" />
+          </article>
+        ))}
+        <div data-uk-grid="" className="uk-margin">
+          { previousPageUrl ? <Link to={previousPageUrl}>&lt; Older Posts</Link> : null }
+          { nextPageUrl ? <Link to={nextPageUrl} className="uk-width-expand uk-text-right">Newer Posts &gt;</Link> : null }
+        </div>
+      </section>
+    </Layout>
   )
 }
 

@@ -1,7 +1,8 @@
 import React from "react"
-import Link from "gatsby-link"
+import { graphql } from "gatsby"
 import * as PropTypes from "prop-types"
 import Img from "gatsby-image"
+import Layout from "../components/layout"
 
 const propTypes = {
   data: PropTypes.object.isRequired,
@@ -20,19 +21,21 @@ class ContentfulPageTemplate extends React.Component {
     } = page
 
     return (
-      <section key={id} className="uk-section uk-padding-remove">
-        <h1>
-          {title}
-        </h1>
-        { this.renderHeaderImage() }
-        <div>
-          <div
-            dangerouslySetInnerHTML={{
-              __html: body.childMarkdownRemark.html,
-            }}
-          />
-        </div>
-      </section>
+      <Layout>
+        <section key={id} className="uk-section uk-padding-remove">
+          <h1>
+            {title}
+          </h1>
+          { this.renderHeaderImage() }
+          <div>
+            <div
+              dangerouslySetInnerHTML={{
+                __html: body.childMarkdownRemark.html,
+              }}
+            />
+          </div>
+        </section>
+      </Layout>
     )
   }
 
@@ -41,7 +44,7 @@ class ContentfulPageTemplate extends React.Component {
 
     if(image) {
       return (
-        <Img sizes={image.sizes} />
+        <Img sizes={image.fluid} />
       )
     } else { 
       return null
@@ -60,7 +63,7 @@ export const pageQuery = graphql`
       title
       slug
       headerImage {
-        sizes {
+        fluid {
           srcSet
         }
       }
