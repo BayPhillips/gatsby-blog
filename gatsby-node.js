@@ -8,8 +8,8 @@ const createPaginatedPages = require("gatsby-paginate");
 // called after the Gatsby bootstrap is finished so you have
 // access to any information necessary to programatically
 // create pages.
-exports.createPages = ({ graphql, boundActionCreators }) => {
-  const { createPage } = boundActionCreators
+exports.createPages = ({ graphql, actions }) => {
+  const { createPage } = actions
   return new Promise((resolve, reject) => {
     graphql(
       `
@@ -81,9 +81,9 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
   })
 }
 
-exports.modifyWebpackConfig = ({ config, stage }) => {
+exports.onCreateWebpackConfig = ({ stage, actions }) => {
   if (stage === "build-html") {
-    config.loader("null", {
+    actions.loader("null", {
       test: /uikit/,
       loader: "null-loader",
     });

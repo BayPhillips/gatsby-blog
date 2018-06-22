@@ -1,10 +1,11 @@
 import React from "react"
-import Link from "gatsby-link"
+import { Link, graphql } from "gatsby"
 import * as PropTypes from "prop-types"
 import SyntaxHighlighter, { registerLanguage } from "react-syntax-highlighter/dist/light";
 import js from 'react-syntax-highlighter/dist/languages/javascript';
 import docco from 'react-syntax-highlighter/dist/styles/docco';
 import moment from 'moment'
+import Layout from "../components/layout"
 
 registerLanguage('javascript', js);
 
@@ -23,19 +24,20 @@ class BlogPostTemplate extends React.Component {
       postSlug,
       contentPreview
     } = blogPost
-    const codeTest = '(num) => num + 1;'
     return (
-      <article className="uk-article">
-        <h1 className="uk-article-title">{postTitle}</h1>
-        <div className="uk-article-meta">
-          Posted on { moment(datePosted).format('MMMM Do YYYY') }
-        </div>
-        <div className="uk-margin"
-          dangerouslySetInnerHTML={{
-            __html: postContent.childMarkdownRemark.html,
-          }}
-        />
-      </article>
+      <Layout>
+        <article className="uk-article">
+          <h1 className="uk-article-title">{postTitle}</h1>
+          <div className="uk-article-meta">
+            Posted on { moment(datePosted).format('MMMM Do YYYY') }
+          </div>
+          <div className="uk-margin"
+            dangerouslySetInnerHTML={{
+              __html: postContent.childMarkdownRemark.html,
+            }}
+          />
+        </article>
+      </Layout>
     )
   }
 }
@@ -57,12 +59,6 @@ export const pageQuery = graphql`
       datePosted
       author {
         name
-        avatar {
-          id
-          responsiveResolution(width: 60, height: 60) {
-            src
-          }
-        }
       }
       postSlug,
       contentPreview {
