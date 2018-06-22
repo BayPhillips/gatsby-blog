@@ -4,6 +4,7 @@ import * as PropTypes from "prop-types"
 import SyntaxHighlighter, { registerLanguage } from "react-syntax-highlighter/dist/light";
 import js from 'react-syntax-highlighter/dist/languages/javascript';
 import docco from 'react-syntax-highlighter/dist/styles/docco';
+import moment from 'moment'
 
 registerLanguage('javascript', js);
 
@@ -27,7 +28,7 @@ class BlogPostTemplate extends React.Component {
       <article className="uk-article">
         <h1 className="uk-article-title">{postTitle}</h1>
         <div className="uk-article-meta">
-          Posted on {datePosted}
+          Posted on { moment(datePosted).format('MMMM Do YYYY') }
         </div>
         <div className="uk-margin"
           dangerouslySetInnerHTML={{
