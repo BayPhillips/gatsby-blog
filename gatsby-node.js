@@ -2,6 +2,7 @@ const _ = require(`lodash`)
 const Promise = require(`bluebird`)
 const path = require(`path`)
 const slash = require(`slash`)
+const createPaginatedPages = require("gatsby-paginate");
 
 // Implement the Gatsby API “createPages”. This is
 // called after the Gatsby bootstrap is finished so you have
@@ -21,9 +22,17 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
             }
           }
         }
-        blogPosts: allContentfulBlogPost(limit: 1000) {
+        blogPosts: allContentfulBlogPost(limit: 1000, sort: { fields: [datePosted], order: DESC}) {
           edges {
             node {
+              id
+              postTitle
+              datePosted
+              contentPreview {
+                childMarkdownRemark {
+                  html
+                }
+              }
               postSlug
             }
           }
@@ -47,8 +56,16 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
           })
         })
 
+        createPaginatedPages({
+          edges: result.data.blogPosts.edges,
+          createPage: createPage,
+          pageTemplate: `src/templates/blogPostListing.js`,
+          pageLength: 10,
+          pathPrefix: `blog`
+        })
+
         const blogPostTemplate = path.resolve(`./src/templates/blogPost.js`)
-        _.each(result.data.blogPosts.edges, edge => {
+        for (let edge of result.data.blogPosts.edges) {
           createPage({
             path: `/blog/${edge.node.postSlug}/`,
             component: slash(blogPostTemplate),
@@ -56,7 +73,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
               postSlug: edge.node.postSlug,
             },
           })
-        })
+        }
       })
       .then(() => {
         resolve()

@@ -3,8 +3,6 @@ import Link from "gatsby-link"
 import * as PropTypes from "prop-types"
 import Img from "gatsby-image"
 
-// registerLanguage('javascript', js);
-
 const propTypes = {
   data: PropTypes.object.isRequired,
 }
