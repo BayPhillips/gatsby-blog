@@ -22,6 +22,16 @@ jobs:
           root: ./
           paths:
             - ./
+      - run:
+          name: Optionally deploy
+          command: |
+            if [$CIRCLE_BRANCH == 'contentful']
+              git config user.email "bay.phillips@gmail.com"
+              git config user.name "Bay Phillips"
+              git checkout . && git checkout master
+              git commit --allow-empty -m "Content updated on Contentful"
+              git push origin master
+            fi
 
   deploy:
     working_directory: ~/workspace
