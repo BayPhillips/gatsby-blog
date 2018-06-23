@@ -18,18 +18,15 @@ jobs:
       - run: 
           name: Generate Site
           command: CONTENTFUL_SPACE_ID=$CONTENTFUL_SPACE_ID CONTENTFUL_ACCESS_TOKEN=$CONTENTFUL_ACCESS_TOKEN yarn generate
-      - persist_to_workspace:
-          root: ./
-          paths:
-            - ./
 
   deploy:
     working_directory: ~/workspace
+    branches:
+      only:
+        - master
     docker:
       - image: circleci/node:9.5.0
     steps:
-      - attach_workspace:
-          at: ~/workspace
       - run: 
           name: Deploy to GitHub
           command: |
@@ -40,15 +37,21 @@ jobs:
             git add . 
             git commit -am "automated deploy [ci skip]"
             git push origin master
-
-workflows:
-  version: 2
-  build-and-deploy:
-    jobs:
-      - build
-      - deploy:
-          requires:
-            - build
-          filters:
-            branches:
-              only: master
+  
+  new-content:
+    branches:
+      only:
+        - contentful
+    docker:
+      - image: circleci/node:9.5.0
+    steps:
+      - run:
+        name: "Trigger rebuild on master"
+        command: |
+          mkdir ~/.ssh
+          echo "github.com ssh-rsa $GITHUB_DEPLOY_KNOWN_HOST" >> ~/.ssh/known_hosts
+          git config user.email "bay.phillips@gmail.com"
+          git config user.name "Bay Phillips"
+          git checkout master
+          git commit -am "updated content on Contentful"
+          git push origin master
