@@ -22,7 +22,8 @@ jobs:
   deploy:
     working_directory: ~/workspace
     branches:
-      only: master
+      only:
+        - master
     docker:
       - image: circleci/node:9.5.0
     steps:
@@ -39,17 +40,18 @@ jobs:
   
   new-content:
     branches:
-      only: contentful
+      only:
+        - contentful
     docker:
       - image: circleci/node:9.5.0
     steps:
       - run:
-          name: "Trigger rebuild on master"
-          command: |
-            mkdir ~/.ssh
-            echo "github.com ssh-rsa $GITHUB_DEPLOY_KNOWN_HOST" >> ~/.ssh/known_hosts
-            git config user.email "bay.phillips@gmail.com"
-            git config user.name "Bay Phillips"
-            git checkout master
-            git commit -am "updated content on Contentful"
-            git push origin master
+        name: "Trigger rebuild on master"
+        command: |
+          mkdir ~/.ssh
+          echo "github.com ssh-rsa $GITHUB_DEPLOY_KNOWN_HOST" >> ~/.ssh/known_hosts
+          git config user.email "bay.phillips@gmail.com"
+          git config user.name "Bay Phillips"
+          git checkout master
+          git commit -am "updated content on Contentful"
+          git push origin master
