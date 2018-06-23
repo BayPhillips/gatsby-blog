@@ -83,9 +83,15 @@ exports.createPages = ({ graphql, actions }) => {
 
 exports.onCreateWebpackConfig = ({ stage, actions }) => {
   if (stage === "build-html") {
-    actions.loader("null", {
-      test: /uikit/,
-      loader: "null-loader",
-    });
+    actions.setWebpackConfig({
+      module: {
+        rules: [
+          {
+            test: /uikit/,
+            use: "null-loader"
+          }
+        ]
+      }
+    })
   }
 };
