@@ -1,2 +1,0 @@
-webpackJsonp([0xe929da62932],{338:function(a,e){a.exports={data:{page:{id:"c4ovnQxOJIAWGwqScC2uCS0",title:"Reach out",slug:"reach-out",headerImage:null,body:{childMarkdownRemark:{html:"<p>Contact me yo</p>"}}}},pathContext:{slug:"reach-out"}}}});
-//# sourceMappingURL=path---reach-out-0f816834abbac3e5a273.js.map
