@@ -25,7 +25,8 @@ jobs:
       - run:
           name: Optionally deploy
           command: |
-            if [$CIRCLE_BRANCH == 'contentful']
+            if [ $CIRCLE_BRANCH == 'contentful' ]
+            then
               git config user.email "bay.phillips@gmail.com"
               git config user.name "Bay Phillips"
               git checkout . && git checkout master
