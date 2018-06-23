@@ -6,15 +6,18 @@ import Layout from "../components/layout"
 const BlogPostListingTemplate = ({ data, pageContext }) => {
   const { group, index, first, last, pageCount } = pageContext
   
+  console.log(`What is index ${index} and what is pageCount ${pageCount}`)
+
   const nextPageUrl = index == pageCount 
     ? null 
     : `/blog/${(index + 1).toString()}`
-  
-  const previousPageUrl = index - 1 == 0
-    ? nextPageUrl 
-      ? "/blog" 
-      : null 
-    : `/blog/${(index - 1).toString()}`
+
+  const previousIndex = index - 1
+  const previousPageUrl = previousIndex >= 1
+    ? previousIndex == 1 
+      ? `/blog`
+      : `/blog/${previousIndex.toString()}` 
+    : null
 
   return (
     <Layout>
@@ -36,8 +39,8 @@ const BlogPostListingTemplate = ({ data, pageContext }) => {
           </article>
         ))}
         <div data-uk-grid="" className="uk-margin">
-          { previousPageUrl ? <Link to={previousPageUrl}>&lt; Older Posts</Link> : null }
-          { nextPageUrl ? <Link to={nextPageUrl} className="uk-width-expand uk-text-right">Newer Posts &gt;</Link> : null }
+          { previousPageUrl ? <Link to={previousPageUrl}>&lt; Newer Posts</Link> : null }
+          { nextPageUrl ? <Link to={nextPageUrl} className="uk-width-expand uk-text-right">Older Posts &gt;</Link> : null }
         </div>
       </section>
     </Layout>
