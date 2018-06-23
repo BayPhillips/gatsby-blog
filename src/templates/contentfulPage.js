@@ -44,7 +44,7 @@ class ContentfulPageTemplate extends React.Component {
 
     if(image) {
       return (
-        <Img sizes={image.fluid} />
+        <Img fixed={image.fixed} />
       )
     } else { 
       return null
@@ -63,8 +63,8 @@ export const pageQuery = graphql`
       title
       slug
       headerImage {
-        fluid {
-          srcSet
+        fixed(height: 300) {
+          ...GatsbyContentfulFixed_noBase64
         }
       }
       body {
