@@ -42,7 +42,7 @@
     "dev": "gatsby develop",
     "format": "prettier --trailing-comma es5 --no-semi --single-quote --write 'src/**/*.js'",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "generate": "rm -rf docs && gatsby build && cp -r public docs/ && echo bayphillips.com > docs/CNAME"
+    "generate": "rm -rf docs && gatsby build && cp -r public docs/ && echo blog.bayphillips.com > docs/CNAME"
   },
   "devDependencies": {
     "prettier": "^1.11.1"
