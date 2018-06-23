@@ -1,10 +1,18 @@
 {
   "assetsByChunkName": {
+<<<<<<< 7cec2dbbfc5aa3abdcbe5e78511ef419370ea913
+=======
+    "path---posts-old-school-drag-and-drop": [
+      "path---posts-old-school-drag-and-drop-ee0e1924237a6f1442fa.js",
+      "path---posts-old-school-drag-and-drop-ee0e1924237a6f1442fa.js.map"
+    ],
+>>>>>>> fix this up
     "path---reach-out": [
       "path---reach-out-0f816834abbac3e5a273.js",
       "path---reach-out-0f816834abbac3e5a273.js.map"
     ],
     "component---src-pages-index-js": [
+<<<<<<< 7cec2dbbfc5aa3abdcbe5e78511ef419370ea913
       "component---src-pages-index-js-6cc136e32361ddd9c852.js",
       "component---src-pages-index-js-6cc136e32361ddd9c852.js.map"
     ],
@@ -51,11 +59,32 @@
     "path---index": [
       "path---index-fb2a07d7780250f8e2bb.js",
       "path---index-fb2a07d7780250f8e2bb.js.map"
+=======
+      "component---src-pages-index-js-248b087defc56efd511e.js",
+      "component---src-pages-index-js-248b087defc56efd511e.js.map"
+    ],
+    "path---": [
+      "path----e467d9eb2ccf5afc2f32.js",
+      "path----e467d9eb2ccf5afc2f32.js.map"
+    ],
+    "component---src-templates-blog-post-js": [
+      "component---src-templates-blog-post-js-c8e577a1379957209ef2.js",
+      "component---src-templates-blog-post-js-c8e577a1379957209ef2.js.map"
+    ],
+    "component---src-layouts-index-js": [
+      "component---src-layouts-index-js-7603a252d996e564dd12.js",
+      "component---src-layouts-index-js-7603a252d996e564dd12.js.map"
+    ],
+    "path---index": [
+      "path---index-7be64bb5461937c5567d.js",
+      "path---index-7be64bb5461937c5567d.js.map"
+>>>>>>> fix this up
     ],
     "component---src-pages-404-js": [
       "component---src-pages-404-js-4503918ea3a16cfcdb75.js",
       "component---src-pages-404-js-4503918ea3a16cfcdb75.js.map"
     ],
+<<<<<<< 7cec2dbbfc5aa3abdcbe5e78511ef419370ea913
     "path---blog-the-move-to-gatsbyjs-2213": [
       "path---blog-the-move-to-gatsbyjs-2213-c479274bf4201dd28d34.js",
       "path---blog-the-move-to-gatsbyjs-2213-c479274bf4201dd28d34.js.map"
@@ -63,11 +92,17 @@
     "commons": [
       "commons-756bbab8a72aae56a03e.js",
       "commons-756bbab8a72aae56a03e.js.map"
+=======
+    "commons": [
+      "commons-892d06806ab0cf06f0f3.js",
+      "commons-892d06806ab0cf06f0f3.js.map"
+>>>>>>> fix this up
     ],
     "path---404-html": [
       "path---404-html-a0e39f21c11f6a62c5ab.js",
       "path---404-html-a0e39f21c11f6a62c5ab.js.map"
     ],
+<<<<<<< 7cec2dbbfc5aa3abdcbe5e78511ef419370ea913
     "path---blog-old-school-drag-and-drop": [
       "path---blog-old-school-drag-and-drop-ee0e1924237a6f1442fa.js",
       "path---blog-old-school-drag-and-drop-ee0e1924237a6f1442fa.js.map"
@@ -121,14 +156,38 @@
     "path---blog-the-move-to-gatsbyjs-2222": [
       "path---blog-the-move-to-gatsbyjs-2222-910e3fd021fec293fb58.js",
       "path---blog-the-move-to-gatsbyjs-2222-910e3fd021fec293fb58.js.map"
+=======
+    "path---posts-hello-world": [
+      "path---posts-hello-world-47bfa36e9c7be3dc852e.js",
+      "path---posts-hello-world-47bfa36e9c7be3dc852e.js.map"
+    ],
+    "app": [
+      "app-933c81cf00b6dac8fe4c.js",
+      "build-js-styles.css",
+      "app-933c81cf00b6dac8fe4c.js.map",
+      "build-js-styles.css.map"
+    ],
+    "component---src-templates-contentful-page-js": [
+      "component---src-templates-contentful-page-js-2a11cd04c9c5306dbb1f.js",
+      "component---src-templates-contentful-page-js-2a11cd04c9c5306dbb1f.js.map"
+    ],
+    "path---posts-hello-world-2": [
+      "path---posts-hello-world-2-a3d5ec3976e766eda8e0.js",
+      "path---posts-hello-world-2-a3d5ec3976e766eda8e0.js.map"
+>>>>>>> fix this up
     ],
     "path---404": [
       "path---404-a0e39f21c11f6a62c5ab.js",
       "path---404-a0e39f21c11f6a62c5ab.js.map"
     ],
     "path---about": [
+<<<<<<< 7cec2dbbfc5aa3abdcbe5e78511ef419370ea913
       "path---about-0da4a99ab8cbdf6392be.js",
       "path---about-0da4a99ab8cbdf6392be.js.map"
+=======
+      "path---about-43ac5a52a07e3a0faf19.js",
+      "path---about-43ac5a52a07e3a0faf19.js.map"
+>>>>>>> fix this up
     ]
   }
 }
