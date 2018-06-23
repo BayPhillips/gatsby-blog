@@ -7,6 +7,7 @@
     "node": "9.5.x"
   },
   "dependencies": {
+    "dotenv": "^6.0.0",
     "gatsby": "next",
     "gatsby-cli": "^1.1.58",
     "gatsby-image": "next",
