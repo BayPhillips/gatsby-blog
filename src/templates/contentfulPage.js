@@ -45,7 +45,8 @@ class ContentfulPageTemplate extends React.Component {
     if(image) {
       return (
         <Img
-          fluid={image.fluid} 
+          fluid={image.fluid}
+          style={{minHeight: "250px"}}
         />
       )
     } else { 
