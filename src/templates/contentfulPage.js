@@ -27,13 +27,13 @@ class ContentfulPageTemplate extends React.Component {
             {title}
           </h1>
           { this.renderHeaderImage() }
-          <div>
+          <article className="uk-article uk-margin">
             <div
               dangerouslySetInnerHTML={{
                 __html: body.childMarkdownRemark.html,
               }}
             />
-          </div>
+          </article>
         </section>
       </Layout>
     )
@@ -44,7 +44,9 @@ class ContentfulPageTemplate extends React.Component {
 
     if(image) {
       return (
-        <Img fixed={image.fixed} />
+        <Img
+          fluid={image.fluid} 
+        />
       )
     } else { 
       return null
@@ -63,8 +65,8 @@ export const pageQuery = graphql`
       title
       slug
       headerImage {
-        fixed(height: 300) {
-          ...GatsbyContentfulFixed_noBase64
+        fluid(maxWidth: 1200) {
+          ...GatsbyContentfulFluid_withWebp_noBase64
         }
       }
       body {

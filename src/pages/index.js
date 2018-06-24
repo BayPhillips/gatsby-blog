@@ -3,6 +3,7 @@ import { Link, graphql } from 'gatsby'
 import * as PropTypes from "prop-types"
 import Img from "gatsby-image"
 import Layout from "../components/layout"
+import moment from "moment"
 
 const propTypes = {
   data: PropTypes.object.isRequired,
@@ -16,16 +17,19 @@ const BlogPostPreview = ({ node }) =>
           fluid={node.headerImage.fluid} 
           outerWrapperClassName={`uk-card-media-top`}
         />
-        <div className="uk-card-header">
-          <h3 className="uk-card-title">
+        <div className="uk-card-body">
+          <h3 className="uk-card-title uk-margin-remove-bottom">
             {node.postTitle}
           </h3>
+          <p className="uk-text-meta uk-margin-remove-top">
+            Posted {moment(node.datePosted).fromNow()}
+          </p>
+          <div 
+            dangerouslySetInnerHTML={{
+              __html: node.contentPreview.childMarkdownRemark.html,
+            }}
+          />
         </div>
-        <div className="uk-card-body"
-          dangerouslySetInnerHTML={{
-            __html: node.contentPreview.childMarkdownRemark.html,
-          }}
-        />
       </div>
     </Link>
   </div>
