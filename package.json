@@ -12,6 +12,7 @@
     "gatsby-cli": "^1.1.58",
     "gatsby-image": "next",
     "gatsby-paginate": "^1.0.16",
+    "gatsby-plugin-google-analytics": "^1.0.31",
     "gatsby-plugin-react-helmet": "^2.0.11",
     "gatsby-plugin-sass": "^2.0.0-beta.2",
     "gatsby-plugin-sharp": "next",
