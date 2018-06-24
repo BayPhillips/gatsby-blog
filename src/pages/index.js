@@ -45,12 +45,9 @@ class IndexPage extends React.Component {
           <div className="uk-flex uk-flex-center uk-flex-middle">
             <div className="uk-margin-right uk-width-2-3">
               <h1>Welcome!</h1>
-              <p 
-                className="uk-text-small" 
-                dangerouslySetInnerHTML={{
-                  __html: welcomeMessage.body.childMarkdownRemark.html
-                }}
-              />
+              <p className="uk-text-small">
+                My name is Bay Phillips and I'm a software engineer based out of New York City. I've been coding since I was 14 and haven't stopped since. I'm currently an Engineering Manager at <a href="https://www.plated.com" target="_blank">Plated</a> and love what I get to do every day. Sometimes I write blog posts about various things in tech. 
+              </p>
             </div>
           </div>
         </section>
