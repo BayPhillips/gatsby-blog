@@ -3,7 +3,7 @@ import { Link } from "gatsby"
 import moment from "moment"
 import Layout from "../components/layout"
 
-const BlogPostListingTemplate = ({ data, pageContext }) => {
+const BlogPostListingTemplate = ({ data, pageContext, location }) => {
   const { group, index, first, last, pageCount } = pageContext
   
   console.log(`What is index ${index} and what is pageCount ${pageCount}`)
@@ -20,7 +20,7 @@ const BlogPostListingTemplate = ({ data, pageContext }) => {
     : null
 
   return (
-    <Layout>
+    <Layout location={location}>
       <section className="uk-section">
         { group.map(({ node }) => (
           <article key={ node.id } className="uk-article">

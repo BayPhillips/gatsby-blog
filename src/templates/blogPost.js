@@ -1,13 +1,9 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
 import * as PropTypes from "prop-types"
-import SyntaxHighlighter, { registerLanguage } from "react-syntax-highlighter/dist/light";
-import js from 'react-syntax-highlighter/dist/languages/javascript';
-import docco from 'react-syntax-highlighter/dist/styles/docco';
 import moment from 'moment'
 import Layout from "../components/layout"
 
-registerLanguage('javascript', js);
 
 const propTypes = {
   data: PropTypes.object.isRequired,
@@ -25,7 +21,7 @@ class BlogPostTemplate extends React.Component {
       contentPreview
     } = blogPost
     return (
-      <Layout>
+      <Layout location={this.props.location}>
         <article className="uk-article">
           <h1 className="uk-article-title">{postTitle}</h1>
           <div className="uk-article-meta">

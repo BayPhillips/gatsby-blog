@@ -21,7 +21,7 @@ class ContentfulPageTemplate extends React.Component {
     } = page
 
     return (
-      <Layout>
+      <Layout location={this.props.location}>
         <section key={id} className="uk-section uk-padding-remove">
           <h1>
             {title}
