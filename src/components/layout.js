@@ -13,7 +13,7 @@ import { StaticQuery, graphql } from "gatsby"
 // UIKit is undefined in static build
 if (typeof UIkit.use === 'function') UIkit.use(Icons);
 
-const TemplateWrapper = ({ children }) =>
+const TemplateWrapper = ({ children, location }) =>
   <StaticQuery
     query={graphql`
       query LayoutQuery {
@@ -51,7 +51,7 @@ const TemplateWrapper = ({ children }) =>
             { name: 'keywords', content: data.site.siteMetadata.keywords },
           ]}
         />
-        <NavigationBar menu={data.menu.edges[0]} />
+        <NavigationBar location={location} menu={data.menu.edges[0]} />
         <div className="uk-container">
           { children }
         </div>
