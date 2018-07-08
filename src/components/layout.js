@@ -82,9 +82,10 @@ class MainLayout extends React.Component {
       : this.props.data.site.siteMetadata.keywords
     
     const canonicalUrl = `https://blog.bayphillips.com${this.props.location.pathname}`
+    const googleSiteVerification = 'NYAneve0llvi3Mmooz40QrY1GZNCNqsgiqYM-3DSMS4'
 
     return (
-      <div>
+      <div className="main-container">
         <Helmet
           title={this.props.title}
           defaultTitle={this.props.title}
@@ -100,6 +101,7 @@ class MainLayout extends React.Component {
             { name: 'twitter:creator', content: '@bayphillips' },
             { name: 'twitter:site', content: '@bayphillips' },
             { name: 'twitter:image:alt', content: this.props.title },
+            { name: 'google-site-verification', content: googleSiteVerification }
           ]}
         >
           <link rel="canonical" href={ canonicalUrl } />

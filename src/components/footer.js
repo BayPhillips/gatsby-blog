@@ -1,13 +1,21 @@
 import React from "react"
 import SocialMediaLinks from "../components/socialMediaLinks"
+import moment from "moment"
 
 class Footer extends React.Component {
   render() {
     // Keep this empty for now
     return (
-      <footer className="uk-container" key={"mainFooter"}>
-        <div className="uk-hidden@s uk-flex uk-flex-center uk-margin">
-          <SocialMediaLinks />
+      <footer className="uk-section-muted uk-margin-top uk-margin-remove-bottom uk-overflow-hidden" key={"mainFooter"}>
+        <div className="uk-flex uk-flex-column uk-flex-center uk-flex-middle">
+          <section className="uk-section">
+            <div className="uk-text-center">
+              <SocialMediaLinks />
+            </div>
+            <p className="uk-text-primary uk-text-small uk-text-center">
+              Copyright &copy; { moment(Date.now()).format('YYYY') } Bay Phillips
+            </p>
+          </section>
         </div>
       </footer>
     )

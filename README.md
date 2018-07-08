@@ -17,4 +17,4 @@ This is my next attempt at figuring out what is going on with static website sit
 # Things to do
 - [ ] Create a contact form page
 - [ ] Port over existing WP content that I actually care about
-- [ ] Remove old WP blog and use actual domain to point to GitHub Pages
+- [ ] Move off this `blog` subdomain!

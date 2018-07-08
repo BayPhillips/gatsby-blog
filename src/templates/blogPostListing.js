@@ -6,8 +6,6 @@ import Layout from "../components/layout"
 const BlogPostListingTemplate = ({ data, pageContext, location }) => {
   const { group, index, first, last, pageCount } = pageContext
   
-  console.log(`What is index ${index} and what is pageCount ${pageCount}`)
-
   const nextPageUrl = index == pageCount 
     ? null 
     : `/blog/${(index + 1).toString()}`

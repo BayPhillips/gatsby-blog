@@ -3,3 +3,17 @@
 @import "../../node_modules/uikit/src/scss/variables-theme.scss";
 @import "../../node_modules/uikit/src/scss/mixins-theme.scss";
 @import "../../node_modules/uikit/src/scss/uikit-theme.scss";
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: $global-muted-background;
+}
+
+.main-container {
+  background-color: #FFF;
+}
