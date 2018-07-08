@@ -1,6 +1,5 @@
 import React from "react"
 import { Link } from 'gatsby'
-import SocialMediaLinks from "../components/socialMediaLinks"
 
 class NavigationBar extends React.Component {
   render() {
@@ -26,12 +25,9 @@ class NavigationBar extends React.Component {
         <nav className="uk-navbar-container uk-navbar-transparent uk-visible@s" data-uk-navbar>
           <div className="uk-navbar-left">
             <Link to={"/"} className="uk-navbar-item uk-logo">Bay Phillips</Link>
-            <ul className="uk-navbar-nav">
+            <ul className="uk-navbar-nav uk-nav-primary">
               { this.renderNavigationMenuItems() }
             </ul>
-          </div>
-          <div className="uk-navbar-right">
-            <SocialMediaLinks />
           </div>
         </nav>
         <div id="mobile-menu" data-uk-offcanvas="overlay: true">
@@ -53,7 +49,7 @@ class NavigationBar extends React.Component {
     return (
       items.map(item => (
         <li key={item.id}>
-          <Link to={"/" + item.page.slug} activeClassName="uk-text-bold">{item.name}</Link>
+          <Link to={"/" + item.page.slug}>{item.name}</Link>
         </li>
       ))
     )
