@@ -69,6 +69,7 @@ export const pageQuery = graphql`
       contentPreview {
         childMarkdownRemark {
           html
+          excerpt
         }
       }
       headerImage {

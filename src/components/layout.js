@@ -83,6 +83,7 @@ class MainLayout extends React.Component {
       : this.props.data.site.siteMetadata.keywords
     
     const canonicalUrl = `${this.props.data.site.siteMetadata.siteUrl}${this.props.location.pathname}`
+
     const googleSiteVerification = 'NYAneve0llvi3Mmooz40QrY1GZNCNqsgiqYM-3DSMS4'
 
     return (
