@@ -5,7 +5,8 @@ require("dotenv").config({
 module.exports = {
   siteMetadata: {
     description: `Personal blog for Bay Phillips, a Software Engineering Manager based out of NYC working with other really smart people.`,
-    keywords: `ios,swift,react,fullstack,rails,engineer,engineering manager,nyc,new york city,cooking,Plated`
+    keywords: `ios,swift,react,fullstack,rails,engineer,engineering manager,nyc,new york city,cooking,Plated`,
+    siteUrl: `https://blog.bayphillips.com`,
   },
   plugins: [
     {
@@ -42,6 +43,9 @@ module.exports = {
           },
         ],
       },
+    },
+    {
+      resolve: `gatsby-plugin-sitemap`
     }
   ],
 }

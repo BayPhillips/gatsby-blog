@@ -17,6 +17,7 @@
     "gatsby-plugin-remove-trailing-slashes": "next",
     "gatsby-plugin-sass": "next",
     "gatsby-plugin-sharp": "next",
+    "gatsby-plugin-sitemap": "^1.2.25",
     "gatsby-remark-prismjs": "^2.0.4",
     "gatsby-source-contentful": "next",
     "gatsby-transformer-remark": "next",
