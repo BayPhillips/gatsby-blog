@@ -26,7 +26,11 @@ class ContentfulPageTemplate extends React.Component {
     } = body.childMarkdownRemark
 
     return (
-      <Layout location={this.props.location} title={title} description={excerpt}>
+      <Layout 
+        location={this.props.location} 
+        title={title} 
+        description={excerpt}
+        previewImageUrl={headerImage.fluid.src}>
         <section key={id} className="uk-section uk-padding-remove">
           <h1>
             {title}
@@ -68,7 +72,7 @@ export const pageQuery = graphql`
       slug
       headerImage {
         fluid(maxWidth: 1200) {
-          ...GatsbyContentfulFluid_withWebp_noBase64
+          ...GatsbyContentfulFluid_withWebp
         }
       }
       body {

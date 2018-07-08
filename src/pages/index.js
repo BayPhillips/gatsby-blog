@@ -90,7 +90,7 @@ export const pageQuery = graphql`
           }
           headerImage {
             fluid(maxHeight: 225) {
-              ...GatsbyContentfulFluid_noBase64
+              ...GatsbyContentfulFluid_withWebp
             }
           }
         }
