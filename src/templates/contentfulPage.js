@@ -72,6 +72,7 @@ export const pageQuery = graphql`
       slug
       headerImage {
         fluid(maxWidth: 1200) {
+          src
           ...GatsbyContentfulFluid_withWebp
         }
       }
