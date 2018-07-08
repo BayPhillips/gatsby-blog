@@ -99,7 +99,7 @@ class MainLayout extends React.Component {
             { name: 'og:description', content: pageDescription },
             { name: 'og:url', content: canonicalUrl },
             { name: 'og:image', content: `https:${this.props.previewImageUrl}` },
-            { name: 'twitter:card', content: 'summary_large_image'},
+            { name: 'twitter:card', content: 'summary'},
             { name: 'twitter:creator', content: '@bayphillips' },
             { name: 'twitter:site', content: '@bayphillips' },
             { name: 'twitter:image:alt', content: this.props.title },
