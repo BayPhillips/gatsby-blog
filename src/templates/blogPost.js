@@ -19,7 +19,8 @@ class BlogPostTemplate extends React.Component {
       author,
       postSlug,
       contentPreview,
-      metaContent
+      metaContent,
+      headerImage
     } = blogPost
     return (
       <Layout 
@@ -27,6 +28,8 @@ class BlogPostTemplate extends React.Component {
         title = { postTitle } 
         description = { contentPreview.childMarkdownRemark.excerpt }
         keywords = { metaContent.keywords }
+        previewImageUrl = { headerImage.fluid.src }
+        isArticle = {true}
       >
         <article className="uk-article">
           <h1 className="uk-article-title">{postTitle}</h1>
@@ -66,6 +69,11 @@ export const pageQuery = graphql`
       contentPreview {
         childMarkdownRemark {
           html
+        }
+      }
+      headerImage {
+        fluid(maxWidth: 900) {
+          src
         }
       }
       metaContent {

@@ -13,7 +13,14 @@ import { StaticQuery, graphql } from "gatsby"
 // UIKit is undefined in static build
 if (typeof UIkit.use === 'function') UIkit.use(Icons);
 
-const TemplateWrapper = ({ children, location, title, description, keywords, isArticle = false }) =>
+const TemplateWrapper = ({ 
+  children, 
+  location, 
+  title, 
+  description, 
+  keywords, 
+  isArticle = false, 
+  previewImageUrl = null }) =>
   <StaticQuery
     query={graphql`
       query LayoutQuery {
@@ -21,6 +28,11 @@ const TemplateWrapper = ({ children, location, title, description, keywords, isA
           siteMetadata {
             description
             keywords
+          }
+        }
+        defaultImage: contentfulAsset(title: {eq: "Default Avatar"}) {
+          fixed(width: 900, height: 450) {
+            src
           }
         }
         menu: allContentfulMenu(filter: { name: { eq: "Main menu"}}) {
@@ -42,48 +54,68 @@ const TemplateWrapper = ({ children, location, title, description, keywords, isA
       }
     `}
     render={data => (
-      <div>
-        <Helmet
-          title={title}
-          defaultTitle={title}
-          titleTemplate="%s | Bay Phillips"
-          meta={[
-            { name: 'description', content: description !== undefined ? description : data.site.siteMetadata.description },
-            { name: 'keywords', content: keywords !== undefined 
-              ? keywords.map(k => k.toLowerCase()).join(',') 
-              : data.site.siteMetadata.keywords 
-            },
-          ]}
-        >
-          <link rel="canonical" href={ `https://blog.bayphillips.com${location.pathname}`} />
-
-          {/* OpenGraph tags */}
-          <meta property="og:url" content={`https://blog.bayphillips.com${location.pathname}`} />
-          {isArticle ? <meta property="og:type" content="article" /> : null}
-          <meta property="og:title" content={title} />
-          <meta property="og:description" content={description} />
-          <meta property="og:image" content={image} />
-          <meta property="fb:app_id" content={config.fbAppID} />
-
-          {/* Twitter Card tags */}
-          <meta name="twitter:card" content="summary_large_image" />
-          <meta name="twitter:creator" content={config.twitter} />
-          <meta name="twitter:title" content={title} />
-          <meta name="twitter:description" content={description} />
-          <meta name="twitter:image" content={image} />
-
-        </Helmet>
-        <NavigationBar location={location} menu={data.menu.edges[0]} />
-        <div className="uk-container">
-          { children }
-        </div>
-        <Footer />
-      </div>
-    )}
+      <MainLayout 
+        data={data} 
+        children={children} 
+        location={location}
+        title={title}
+        description={description}
+        keywords={keywords}
+        isArticle={isArticle}
+        previewImageUrl={previewImageUrl || data.defaultImage.fixed.src}
+      />
+    )}  
   />
 
 TemplateWrapper.propTypes = {
-  children: PropTypes.func,
+  children: PropTypes.func
+}
+
+class MainLayout extends React.Component {
+  render() {
+    const pageDescription = this.props.description !== undefined 
+      ? this.props.description 
+      : this.props.data.site.siteMetadata.description
+    
+    const pageKeywords = this.props.keywords !== undefined 
+      ? this.props.keywords.map(k => k.toLowerCase()).join(',') 
+      : this.props.data.site.siteMetadata.keywords
+    
+    const canonicalUrl = `https://blog.bayphillips.com${this.props.location.pathname}`
+
+    return (
+      <div>
+        <Helmet
+          title={this.props.title}
+          defaultTitle={this.props.title}
+          titleTemplate="%s | Bay Phillips"
+          meta={[
+            { name: 'description', content: pageDescription },
+            { name: 'keywords', content: pageKeywords },
+            { name: 'og:title', content: this.props.title },
+            { name: 'og:description', content: pageDescription },
+            { name: 'og:url', content: canonicalUrl },
+            { name: 'og:image', content: `https:${this.props.previewImageUrl}` },
+            { name: 'twitter:card', content: 'summary_large_image'},
+            { name: 'twitter:creator', content: '@bayphillips' },
+            { name: 'twitter:site', content: '@bayphillips' },
+            { name: 'twitter:image:alt', content: this.props.title },
+          ]}
+        >
+          <link rel="canonical" href={ canonicalUrl } />
+        </Helmet>
+        <NavigationBar location={ this.props.location } menu={ this.props.data.menu.edges[0] } />
+        <div className="uk-container">
+          { this.props.children }
+        </div>
+        <Footer />
+      </div>
+    )
+  }
+}
+
+MainLayout.propTypes = {
+  data: PropTypes.object.isRequired
 }
 
 export default TemplateWrapper
