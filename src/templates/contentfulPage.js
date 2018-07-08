@@ -20,19 +20,20 @@ class ContentfulPageTemplate extends React.Component {
       body
     } = page
 
+    const { 
+      html, 
+      excerpt 
+    } = body.childMarkdownRemark
+
     return (
-      <Layout location={this.props.location}>
+      <Layout location={this.props.location} title={title} description={excerpt}>
         <section key={id} className="uk-section uk-padding-remove">
           <h1>
             {title}
           </h1>
           { this.renderHeaderImage() }
           <article className="uk-article uk-margin">
-            <div
-              dangerouslySetInnerHTML={{
-                __html: body.childMarkdownRemark.html,
-              }}
-            />
+            <div dangerouslySetInnerHTML={{ __html: html, }} />
           </article>
         </section>
       </Layout>
@@ -73,6 +74,7 @@ export const pageQuery = graphql`
       body {
         childMarkdownRemark {
           html
+          excerpt
         }
       }
     }

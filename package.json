@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "author": "Bay Phillips <bay.phillips@gmail.com>",
   "engines": {
-    "node": "9.5.x"
+    "node": ">= 9.5.x"
   },
   "dependencies": {
     "dotenv": "^6.0.0",

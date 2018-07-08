@@ -18,10 +18,16 @@ class BlogPostTemplate extends React.Component {
       postContent,
       author,
       postSlug,
-      contentPreview
+      contentPreview,
+      metaContent
     } = blogPost
     return (
-      <Layout location={this.props.location}>
+      <Layout 
+        location = { this.props.location } 
+        title = { postTitle } 
+        description = { contentPreview.childMarkdownRemark.excerpt }
+        keywords = { metaContent.keywords }
+      >
         <article className="uk-article">
           <h1 className="uk-article-title">{postTitle}</h1>
           <div className="uk-article-meta">
@@ -61,6 +67,9 @@ export const pageQuery = graphql`
         childMarkdownRemark {
           html
         }
+      }
+      metaContent {
+        keywords
       }
     }
   }

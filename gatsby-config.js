@@ -4,9 +4,8 @@ require("dotenv").config({
 
 module.exports = {
   siteMetadata: {
-    title: `Bay Phillips | Software Engineer in NYC`,
-    description: `Personal blog for Bay Phillips, a software engineer based out of NYC building native applications.`,
-    keywords: `ios, swift, fullstack, engineer, engineering manager, nyc, new york city, cooking, Plated`
+    description: `Personal blog for Bay Phillips, a Software Engineering Manager based out of NYC working with other really smart people.`,
+    keywords: `ios,swift,react,fullstack,rails,engineer,engineering manager,nyc,new york city,cooking,Plated`
   },
   plugins: [
     {

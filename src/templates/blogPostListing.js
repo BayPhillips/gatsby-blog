@@ -19,8 +19,13 @@ const BlogPostListingTemplate = ({ data, pageContext, location }) => {
       : `/blog/${previousIndex.toString()}` 
     : null
 
+  const pageTitle = index > 1
+    ? `Blog | Page ${index}`
+    : `Blog`
+  const description = "Various blog posts regarding programming, technology and random musings of someone who's not that interesting..."
+  
   return (
-    <Layout location={location}>
+    <Layout location={location} title={pageTitle} description={description}>
       <section className="uk-section">
         { group.map(({ node }) => (
           <article key={ node.id } className="uk-article">
