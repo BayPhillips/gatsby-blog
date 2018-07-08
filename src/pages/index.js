@@ -40,7 +40,7 @@ class IndexPage extends React.Component {
     const welcomeMessage = this.props.data.welcomeMessage
 
     return (
-      <Layout location={this.props.location}>
+      <Layout location={this.props.location} title="Bay Phillips | Software Engineer in NYC">
         <section className="uk-section-small">
           <div className="uk-flex uk-flex-center uk-flex-middle">
             <div className="uk-margin-right uk-width-2-3">
