@@ -10,8 +10,9 @@ const propTypes = {
 }
 
 class BlogPostTemplate extends React.Component {
+
   render() {
-    const blogPost = this.props.data.contentfulBlogPost
+    const blogPost = this.props.data.blogPost
     const {
       postTitle,
       datePosted,
@@ -22,6 +23,35 @@ class BlogPostTemplate extends React.Component {
       metaContent,
       headerImage
     } = blogPost
+    const formattedDate = moment(datePosted, moment.ISO_8601)
+    const structuredData = {
+      "@context": "http://schema.org",
+      "@type": "NewsArticle",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": `${this.props.data.site.siteMetadata.siteUrl}${this.props.location.pathname}`
+      },
+      "headLine": `${postTitle}`,
+      "description": `${contentPreview.childMarkdownRemark.excerpt}`,
+      "image": [
+        `http:${headerImage.fluid.src}`
+      ],
+      "datePublished": formattedDate,
+      "dateModified": formattedDate,
+      "author": {
+        "@type": "Person",
+        "name": "Bay Phillips"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Bay Phillips",
+        "logo": {
+          "@type": "imageObject",
+          "url": `http:${headerImage.fluid.src}`
+        }
+      }
+    }
+
     return (
       <Layout 
         location = { this.props.location } 
@@ -29,7 +59,7 @@ class BlogPostTemplate extends React.Component {
         description = { contentPreview.childMarkdownRemark.excerpt }
         keywords = { metaContent.keywords }
         previewImageUrl = { headerImage.fluid.src }
-        isArticle = {true}
+        structuredDataJson = { structuredData }
       >
         <article className="uk-article">
           <h1 className="uk-article-title">{postTitle}</h1>
@@ -53,7 +83,7 @@ export default BlogPostTemplate
 
 export const pageQuery = graphql`
   query blogPostQuery($postSlug: String!) {
-    contentfulBlogPost(postSlug: { eq: $postSlug }) {
+    blogPost: contentfulBlogPost(postSlug: { eq: $postSlug }) {
       id
       postTitle
       postContent {
@@ -79,6 +109,11 @@ export const pageQuery = graphql`
       }
       metaContent {
         keywords
+      }
+    }
+    site: site {
+      siteMetadata {
+        siteUrl
       }
     }
   }
