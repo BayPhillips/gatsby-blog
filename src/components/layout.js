@@ -19,8 +19,8 @@ const TemplateWrapper = ({
   title, 
   description, 
   keywords, 
-  isArticle = false, 
-  previewImageUrl = null }) =>
+  previewImageUrl = null,
+  structuredDataJson = null }) =>
   <StaticQuery
     query={graphql`
       query LayoutQuery {
@@ -62,8 +62,8 @@ const TemplateWrapper = ({
         title={title}
         description={description}
         keywords={keywords}
-        isArticle={isArticle}
         previewImageUrl={previewImageUrl || data.defaultImage.fixed.src}
+        structuredDataJson={structuredDataJson}
       />
     )}  
   />
@@ -105,6 +105,10 @@ class MainLayout extends React.Component {
             { name: 'twitter:image:alt', content: this.props.title },
             { name: 'google-site-verification', content: googleSiteVerification }
           ]}
+          script={[{
+            'type': 'application/ld+json',
+            'innerHTML': `${JSON.stringify(this.props.structuredDataJson)}`
+          }]}
         >
           <link rel="canonical" href={ canonicalUrl } />
         </Helmet>
