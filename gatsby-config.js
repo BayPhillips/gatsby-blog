@@ -2,11 +2,13 @@ require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`,
 });
 
+const siteUrl = `https://blog.bayphillips.com`
+
 module.exports = {
   siteMetadata: {
     description: `Personal blog for Bay Phillips, a Software Engineering Manager based out of NYC working with other really smart people.`,
     keywords: `ios,swift,react,fullstack,rails,engineer,engineering manager,nyc,new york city,cooking,Plated`,
-    siteUrl: `https://blog.bayphillips.com`,
+    siteUrl: siteUrl,
   },
   plugins: [
     {
@@ -46,6 +48,13 @@ module.exports = {
     },
     {
       resolve: `gatsby-plugin-sitemap`
-    }
+    },
+    `gatsby-plugin-remove-trailing-slashes`,
+    {
+      resolve: `gatsby-plugin-canonical-urls`,
+      options: {
+        siteUrl: siteUrl,
+      },
+    },
   ],
 }

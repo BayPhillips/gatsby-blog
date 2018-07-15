@@ -109,9 +109,7 @@ class MainLayout extends React.Component {
             'type': 'application/ld+json',
             'innerHTML': `${JSON.stringify(this.props.structuredDataJson)}`
           }]}
-        >
-          <link rel="canonical" href={ canonicalUrl } />
-        </Helmet>
+        />
         <NavigationBar location={ this.props.location } menu={ this.props.data.menu.edges[0] } />
         <div className="uk-container">
           { this.props.children }

@@ -4707,6 +4707,12 @@ gatsby-paginate@^1.0.16:
   dependencies:
     path "^0.12.7"
 
+gatsby-plugin-canonical-urls@^1.0.18:
+  version "1.0.18"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-canonical-urls/-/gatsby-plugin-canonical-urls-1.0.18.tgz#01162f0638468bac4cc60976c46a99d41bbe90ba"
+  dependencies:
+    babel-runtime "^6.26.0"
+
 gatsby-plugin-google-analytics@next:
   version "2.0.0-beta.2"
   resolved "https://registry.yarnpkg.com/gatsby-plugin-google-analytics/-/gatsby-plugin-google-analytics-2.0.0-beta.2.tgz#39a455aa5b864dc1e8c39dedd9c87d23177e50cb"
@@ -4732,11 +4738,11 @@ gatsby-plugin-react-helmet@next:
   dependencies:
     "@babel/runtime" "7.0.0-beta.51"
 
-gatsby-plugin-remove-trailing-slashes@next:
-  version "2.0.0-beta.2"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-remove-trailing-slashes/-/gatsby-plugin-remove-trailing-slashes-2.0.0-beta.2.tgz#137b914645de0c37e7fbb456ae574bdfa568dc57"
+gatsby-plugin-remove-trailing-slashes@^1.0.9:
+  version "1.0.9"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-remove-trailing-slashes/-/gatsby-plugin-remove-trailing-slashes-1.0.9.tgz#4839d5928f68c533fd703f460801ca27b15c5121"
   dependencies:
-    "@babel/runtime" "7.0.0-beta.51"
+    babel-runtime "^6.26.0"
 
 gatsby-plugin-sass@^2.0.0-beta.5:
   version "2.0.0-beta.5"
@@ -4764,12 +4770,11 @@ gatsby-plugin-sharp@^2.0.0-beta.5:
     sharp "^0.20.2"
     svgo "^0.7.2"
 
-gatsby-plugin-sitemap@^1.2.25:
-  version "1.2.25"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-sitemap/-/gatsby-plugin-sitemap-1.2.25.tgz#175c82518316f9439df66343d213be2815e129b0"
+gatsby-plugin-sitemap@^2.0.0-beta.2:
+  version "2.0.0-beta.2"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-sitemap/-/gatsby-plugin-sitemap-2.0.0-beta.2.tgz#0c648f9c3aaa04aace916436d7d696435572ac89"
   dependencies:
-    babel-runtime "^6.26.0"
-    minimatch "^3.0.4"
+    "@babel/runtime" "7.0.0-beta.51"
     sitemap "^1.12.0"
 
 gatsby-react-router-scroll@^2.0.0-beta.2:
