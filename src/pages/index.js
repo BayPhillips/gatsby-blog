@@ -11,7 +11,7 @@ const propTypes = {
 
 const BlogPostPreview = ({ node }) =>
   <div key={node.id}>
-    <Link to={"/blog/" + node.postSlug }>
+    <Link to={`/blog/${node.postSlug}/` }>
       <div className="uk-card uk-card-default uk-card-hover">
         <Img 
           fluid={node.headerImage.fluid} 

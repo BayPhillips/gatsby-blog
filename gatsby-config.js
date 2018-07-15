@@ -49,7 +49,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-sitemap`
     },
-    `gatsby-plugin-remove-trailing-slashes`,
+    `gatsby-plugin-force-trailing-slashes`,
     {
       resolve: `gatsby-plugin-canonical-urls`,
       options: {
