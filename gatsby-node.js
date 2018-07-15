@@ -4,10 +4,6 @@ const path = require(`path`)
 const slash = require(`slash`)
 const createPaginatedPages = require("gatsby-paginate");
 
-// Implement the Gatsby API “createPages”. This is
-// called after the Gatsby bootstrap is finished so you have
-// access to any information necessary to programatically
-// create pages.
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
   return new Promise((resolve, reject) => {
@@ -19,6 +15,7 @@ exports.createPages = ({ graphql, actions }) => {
             node {
               id
               slug
+              requiresCreation
             }
           }
         }
@@ -47,13 +44,15 @@ exports.createPages = ({ graphql, actions }) => {
 
         const contentfulPageTemplate = path.resolve(`./src/templates/contentfulPage.js`)
         _.each(result.data.pages.edges, edge => {
-          createPage({
-            path: `/${edge.node.slug}`,
-            component: slash(contentfulPageTemplate),
-            context: {
-              slug: edge.node.slug
-            }
-          })
+          if(edge.node.requiresCreation) {
+            createPage({
+              path: `/${edge.node.slug}`,
+              component: slash(contentfulPageTemplate),
+              context: {
+                slug: edge.node.slug
+              }
+            })
+          }
         })
 
         createPaginatedPages({
@@ -67,7 +66,7 @@ exports.createPages = ({ graphql, actions }) => {
         const blogPostTemplate = path.resolve(`./src/templates/blogPost.js`)
         for (let edge of result.data.blogPosts.edges) {
           createPage({
-            path: `/blog/${edge.node.postSlug}/`,
+            path: `/blog/${edge.node.postSlug}`,
             component: slash(blogPostTemplate),
             context: {
               postSlug: edge.node.postSlug,

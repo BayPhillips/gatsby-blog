@@ -49,7 +49,7 @@ class NavigationBar extends React.Component {
     return (
       items.map(item => (
         <li key={item.id}>
-          <Link to={"/" + item.page.slug}>{item.name}</Link>
+          <Link to={`/${item.page.slug}/`}>{item.name}</Link>
         </li>
       ))
     )
