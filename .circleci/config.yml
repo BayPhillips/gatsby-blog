@@ -23,7 +23,7 @@ jobs:
       - persist_to_workspace:
           root: ./
           paths:
-            - ./
+            - public
       - run:
           name: Optionally deploy
           command: |
@@ -47,7 +47,7 @@ jobs:
             pip install awscli --upgrade --user
       - run: 
           name: Deploy to S3
-          command: yarn deploy
+          command: aws s3 sync public s3://www.bayphillips.com --acl public-read
 
 workflows:
   version: 2
