@@ -10,7 +10,9 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
       - run: 
           name: Install Dependencies
-          command: yarn install
+          command: |
+            yarn install
+            pip install awscli --upgrade --user
       - save_cache:
           paths:
             - node_modules
@@ -37,6 +39,9 @@ jobs:
     steps:
       - attach_workspace:
           at: ~/workspace
+      - run:
+          name: Install Dependencies
+          command: pip install awscli --upgrade --user
       - run: 
           name: Deploy to S3
           command: |
