@@ -35,20 +35,13 @@ jobs:
   deploy:
     working_directory: ~/workspace
     docker:
-      - image: circleci/python:3.6.1
+      - image: wilson208/circleci-awscli
     steps:
       - attach_workspace:
           at: ~/workspace
-      - run:
-          name: Install Dependencies
-          command: |
-            python3 -m venv venv
-            . venv/bin/activate
-            pip install --upgrade pip
-            pip install awscli --upgrade --user
       - run: 
           name: Deploy to S3
-          command: ~/.local/bin/aws s3 sync public s3://www.bayphillips.com --acl public-read
+          command: aws s3 sync public s3://www.bayphillips.com --acl public-read
 
 workflows:
   version: 2
