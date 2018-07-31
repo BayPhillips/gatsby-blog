@@ -13,6 +13,8 @@ jobs:
           name: Install Dependencies
           command: |
             yarn install
+            curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+            python get-pip.py --user
             pip install awscli --upgrade --user
       - save_cache:
           paths:
@@ -43,7 +45,10 @@ jobs:
           at: ~/workspace
       - run:
           name: Install Dependencies
-          command: pip install awscli --upgrade --user
+          command: |
+            curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+            python get-pip.py --user
+            pip install awscli --upgrade --user
       - run: 
           name: Deploy to S3
           command: yarn deploy
