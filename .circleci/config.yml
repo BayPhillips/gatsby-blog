@@ -13,9 +13,6 @@ jobs:
           name: Install Dependencies
           command: |
             yarn install
-            python -m venv venv
-            . venv/bin/activate
-            pip install awscli --upgrade --user
       - save_cache:
           paths:
             - node_modules
@@ -38,7 +35,6 @@ jobs:
   deploy:
     working_directory: ~/workspace
     docker:
-      - image: circleci/node:9.5.0
       - image: circleci/python:3.6.1
     steps:
       - attach_workspace:
