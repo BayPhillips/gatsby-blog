@@ -1,5 +1,5 @@
 Arguments: 
-  /home/bay/.nvm/versions/node/v9.5.0/bin/node /home/bay/.nvm/versions/node/v9.5.0/bin/yarn remove gatsby-plugin-remove-trailing-slashes
+  /home/bay/.nvm/versions/node/v9.5.0/bin/node /home/bay/.nvm/versions/node/v9.5.0/bin/yarn upgrade
 
 PATH: 
   /home/bay/bin:/home/bay/.local/bin:/home/bay/.rbenv/shims:/home/bay/.rbenv/bin:/home/bay/.nvm/versions/node/v9.5.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/mnt/c/Program Files (x86)/Razer Chroma SDK/bin:/mnt/c/Program Files/Razer Chroma SDK/bin:/mnt/c/Program Files (x86)/Intel/iCLS Client:/mnt/c/Program Files/Intel/iCLS Client:/mnt/c/Windows/System32:/mnt/c/Windows:/mnt/c/Windows/System32/wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0:/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common:/mnt/c/Program Files (x86)/Intel/Intel(R) Management Engine Components/DAL:/mnt/c/Program Files/Intel/Intel(R) Management Engine Components/DAL:/mnt/c/Program Files (x86)/Intel/Intel(R) Management Engine Components/IPT:/mnt/c/Program Files/Intel/Intel(R) Management Engine Components/IPT:/mnt/c/Users/Bay/AppData/Local/Microsoft/WindowsApps:/mnt/c/Program Files/PuTTY:/mnt/c/Program Files/dotnet:/mnt/c/Program Files/Microsoft SQL Server/130/Tools/Binn:/mnt/c/Program Files/nodejs:/mnt/c/Go/bin:/mnt/c/Program Files/Git/cmd:/mnt/c/Windows/System32:/mnt/c/Windows:/mnt/c/Windows/System32/wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0:/mnt/c/Windows/System32/OpenSSH:/mnt/c/Program Files/Microsoft VS Code/bin:/mnt/c/Users/Bay/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/Bay/AppData/Roaming/npm:/mnt/c/Program Files/Microsoft VS Code/bin:/snap/bin
@@ -63,7 +63,7 @@ npm manifest:
       "dev": "gatsby develop",
       "format": "prettier --trailing-comma es5 --no-semi --single-quote --write 'src/**/*.js'",
       "test": "echo \"Error: no test specified\" && exit 1",
-      "generate": "rm -rf docs && gatsby build && cp -r public docs/ && echo blog.bayphillips.com > docs/CNAME"
+      "deploy": "aws s3 sync public s3://www.bayphillips.com --delete --acl public-read"
     },
     "devDependencies": {
       "prettier": "^1.11.1"
@@ -4854,12 +4854,6 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/gatsby-plugin-react-helmet/-/gatsby-plugin-react-helmet-3.0.0-beta.3.tgz#916ad68ff19de9d084a35cbda4a32ea88fe4b7e9"
     dependencies:
       "@babel/runtime" "7.0.0-beta.51"
-  
-  gatsby-plugin-remove-trailing-slashes@^1.0.9:
-    version "1.0.9"
-    resolved "https://registry.yarnpkg.com/gatsby-plugin-remove-trailing-slashes/-/gatsby-plugin-remove-trailing-slashes-1.0.9.tgz#4839d5928f68c533fd703f460801ca27b15c5121"
-    dependencies:
-      babel-runtime "^6.26.0"
   
   gatsby-plugin-sass@^2.0.0-beta.5:
     version "2.0.0-beta.5"
@@ -11821,4 +11815,4 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/zwitch/-/zwitch-1.0.3.tgz#159fae4b3f737db1e42bf321d3423e4c96688a18"
 
 Trace: 
-  Error: ENOENT: no such file or directory, copyfile '/home/bay/.cache/yarn/v1/npm-react-side-effect-1.1.5-f26059e50ed9c626d91d661b9f3c8bb38cd0ff2d/lib/index.es.js' -> '/mnt/c/Users/Bay/shareddev/gatsby-blog/node_modules/react-side-effect/lib/index.es.js'
+  Error: ENOENT: no such file or directory, copyfile '/home/bay/.cache/yarn/v1/npm-moment-2.22.2-3c257f9839fc0e93ff53149632239eb90783ff66/src/lib/utils/is-date.js' -> '/mnt/c/Users/Bay/shareddev/gatsby-blog/node_modules/moment/src/lib/utils/is-date.js'

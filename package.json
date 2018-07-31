@@ -8,24 +8,24 @@
   },
   "dependencies": {
     "dotenv": "^6.0.0",
-    "gatsby": "^2.0.0-beta.37",
+    "gatsby": "^2.0.0-beta.61",
     "gatsby-cli": "^2.0.0-beta.6",
     "gatsby-image": "^2.0.0-beta.6",
     "gatsby-paginate": "^1.0.16",
-    "gatsby-plugin-canonical-urls": "^1.0.18",
+    "gatsby-plugin-canonical-urls": "^2.0.0-beta.3",
     "gatsby-plugin-force-trailing-slashes": "^1.0.1",
-    "gatsby-plugin-google-analytics": "next",
-    "gatsby-plugin-react-helmet": "next",
-    "gatsby-plugin-sass": "^2.0.0-beta.5",
+    "gatsby-plugin-google-analytics": "^2.0.0-beta.3",
+    "gatsby-plugin-react-helmet": "3.0.0-beta.4",
+    "gatsby-plugin-sass": "^2.0.0-beta.6",
     "gatsby-plugin-sharp": "^2.0.0-beta.5",
-    "gatsby-plugin-sitemap": "^2.0.0-beta.2",
-    "gatsby-remark-prismjs": "^2.0.4",
-    "gatsby-source-contentful": "^2.0.1-beta.13",
-    "gatsby-transformer-remark": "^2.1.1-beta.3",
-    "gatsby-transformer-sharp": "^2.1.1-beta.3",
+    "gatsby-plugin-sitemap": "^2.0.0-beta.3",
+    "gatsby-remark-prismjs": "^3.0.0-beta.5",
+    "gatsby-source-contentful": "^2.0.1-beta.15",
+    "gatsby-transformer-remark": "^2.1.1-beta.5",
+    "gatsby-transformer-sharp": "^2.1.1-beta.6",
     "lodash": "^4.17.5",
     "moment": "^2.22.2",
-    "node-sass": "^4.9.0",
+    "node-sass": "^4.9.2",
     "prismjs": "^1.15.0",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
@@ -35,7 +35,7 @@
     "slash": "^2.0.0",
     "typeface-nunito-sans": "^0.0.54",
     "typeface-roboto": "^0.0.54",
-    "uikit": "^3.0.0-rc.6"
+    "uikit": "^3.0.0-rc.10"
   },
   "keywords": [
     "gatsby"
@@ -44,10 +44,11 @@
   "main": "n/a",
   "scripts": {
     "build": "gatsby build",
+    "serve": "gatsby serve",
     "dev": "gatsby develop",
     "format": "prettier --trailing-comma es5 --no-semi --single-quote --write 'src/**/*.js'",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "generate": "rm -rf docs && gatsby build && cp -r public docs/ && echo blog.bayphillips.com > docs/CNAME"
+    "deploy": "aws s3 sync public s3://www.bayphillips.com --acl public-read"
   },
   "devDependencies": {
     "prettier": "^1.11.1"

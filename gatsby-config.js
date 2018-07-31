@@ -2,7 +2,7 @@ require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`,
 });
 
-const siteUrl = `https://blog.bayphillips.com`
+const siteUrl = `https://www.bayphillips.com`
 
 module.exports = {
   siteMetadata: {
