@@ -13,8 +13,8 @@ jobs:
           name: Install Dependencies
           command: |
             yarn install
-            curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
-            python get-pip.py --user
+            python -m venv venv
+            . venv/bin/activate
             pip install awscli --upgrade --user
       - save_cache:
           paths:
@@ -46,8 +46,8 @@ jobs:
       - run:
           name: Install Dependencies
           command: |
-            curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
-            python get-pip.py --user
+            python -m venv venv
+            . venv/bin/activate
             pip install awscli --upgrade --user
       - run: 
           name: Deploy to S3
