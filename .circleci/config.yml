@@ -4,15 +4,13 @@ jobs:
     working_directory: ~/workspace
     docker:
       - image: circleci/node:9.5.0
-      - image: circleci/python:3.6.1
     steps:
       - checkout
       - restore_cache:
           key: v1-dependencies-{{ checksum "package.json" }}
       - run: 
           name: Install Dependencies
-          command: |
-            yarn install
+          command: yarn install
       - save_cache:
           paths:
             - node_modules
@@ -29,7 +27,11 @@ jobs:
           command: |
             if [ $CIRCLE_BRANCH == 'contentful' ]
             then
-              yarn deploy
+              git config user.email "bay.phillips@gmail.com"
+              git config user.name "Bay Phillips"
+              git checkout . && git checkout master
+              git commit --allow-empty -m "Content updated on Contentful"
+              git push origin master
             fi
 
   deploy:

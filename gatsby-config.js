@@ -56,5 +56,18 @@ module.exports = {
         siteUrl: siteUrl,
       },
     },
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: "Bay Phillips",
+        short_name: "Bay Phillips",
+        start_url: "/",
+        background_color: "#FFFFFF",
+        theme_color: "#FFFFFF",
+        display: "minimal-ui",
+        icon: "src/images/ninaicon.png",
+      },
+    },
+    `gatsby-plugin-offline`,
   ],
 }
