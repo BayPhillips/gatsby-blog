@@ -1,13 +1,13 @@
 # Bay's New Blog
 This is my next attempt at figuring out what is going on with static website site builders while still using an API to drive its content.
 
-[Live URL](https://blog.bayphillips.com)
+[Live URL](https://www.bayphillips.com)
 
 # Tooling used
 * GatsbyJS
 * Contentful
 * UIKit
-* GitHub Pages
+* S3 and Cloudfront
 * CircleCI
 
 # How to run
@@ -17,4 +17,4 @@ This is my next attempt at figuring out what is going on with static website sit
 # Things to do
 - [ ] Create a contact form page
 - [ ] Port over existing WP content that I actually care about
-- [ ] Move off this `blog` subdomain!
+- [x] Move off the `blog` subdomain!
