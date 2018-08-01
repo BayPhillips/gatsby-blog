@@ -4704,6 +4704,12 @@ gatsby-plugin-canonical-urls@^2.0.0-beta.3:
   dependencies:
     "@babel/runtime" "7.0.0-beta.52"
 
+gatsby-plugin-catch-links@^2.0.2-beta.4:
+  version "2.0.2-beta.4"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-catch-links/-/gatsby-plugin-catch-links-2.0.2-beta.4.tgz#18718bd1977e9ca07fab920cefd60f8e5b838ed7"
+  dependencies:
+    "@babel/runtime" "7.0.0-beta.52"
+
 gatsby-plugin-force-trailing-slashes@^1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/gatsby-plugin-force-trailing-slashes/-/gatsby-plugin-force-trailing-slashes-1.0.2.tgz#0b78781852d41e47fce3c845f478b9ac314dc2ad"
@@ -4791,6 +4797,18 @@ gatsby-react-router-scroll@^2.0.0-beta.3:
     "@babel/runtime" "7.0.0-beta.52"
     scroll-behavior "^0.9.9"
     warning "^3.0.0"
+
+gatsby-remark-images-contentful@^2.0.0-beta.3:
+  version "2.0.0-beta.3"
+  resolved "https://registry.yarnpkg.com/gatsby-remark-images-contentful/-/gatsby-remark-images-contentful-2.0.0-beta.3.tgz#3cbc9357919aef137bedf3d88b43dddc6982ee98"
+  dependencies:
+    "@babel/runtime" "7.0.0-beta.52"
+    axios "^0.18.0"
+    cheerio "^1.0.0-rc.2"
+    is-relative-url "^2.0.0"
+    lodash "^4.17.4"
+    sharp "^0.20.2"
+    unist-util-select "^1.5.0"
 
 gatsby-remark-prismjs@^3.0.0-beta.5:
   version "3.0.0-beta.5"

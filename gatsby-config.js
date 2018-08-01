@@ -43,6 +43,12 @@ module.exports = {
               aliases: {},
             },
           },
+          {
+            resolve: `gatsby-remark-images-contentful`,
+            options: {
+              maxWidth: 960,
+            },
+          },
         ],
       },
     },
