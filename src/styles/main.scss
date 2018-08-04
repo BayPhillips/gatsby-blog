@@ -3,6 +3,7 @@
 @import "../../node_modules/uikit/src/scss/mixins-theme.scss";
 @import "theme/_imports.scss";
 @import "components/components.scss";
+@import "~prismjs/themes/prism-coy";
 
 html, body {
   height: 100%;
@@ -11,9 +12,14 @@ html, body {
 }
 
 body {
-  background-color: $global-muted-background;
+  background-color: $global-secondary-background;
 }
 
 .main-container {
   background-color: #FFF;
+}
+
+blockquote {
+  background-color: $global-muted-background;
+  padding: $global-gutter;
 }
