@@ -3,15 +3,10 @@ import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 import NavigationBar from '../components/navigationBar'
 import Footer from '../components/footer'
-import UIkit from 'uikit';
-import Icons from 'uikit/dist/js/uikit-icons';
 import "typeface-roboto"
 import "typeface-nunito-sans"
 import "../styles/main.scss"
 import { StaticQuery, graphql } from "gatsby"
-
-// UIKit is undefined in static build
-if (typeof UIkit.use === 'function') UIkit.use(Icons);
 
 const TemplateWrapper = ({ 
   children, 
@@ -73,6 +68,15 @@ TemplateWrapper.propTypes = {
 }
 
 class MainLayout extends React.Component {
+  componentDidMount() {
+    try {
+      this.UIkit = require("uikit/dist/js/uikit");
+      this.Icons = require("uikit/dist/js/uikit-icons");
+      this.UIkit.use(this.Icons);
+    } catch (e) {
+      console.error(e);
+    }
+  }
   render() {
     const pageDescription = this.props.description !== undefined 
       ? this.props.description 
