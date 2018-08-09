@@ -53,7 +53,7 @@ class IndexPage extends React.Component {
         </section>
         <section className="uk-section-small">
           <h2>Recently posted</h2>
-          <div className="uk-grid-medium uk-grid-match uk-child-width-1-3@xl uk-child-width-1-3@l uk-child-width-1-2@m uk-child-width-1-1@s" data-uk-grid>
+          <div className="uk-grid uk-grid-medium uk-grid-match uk-child-width-1-3@xl uk-child-width-1-3@l uk-child-width-1-2@m uk-child-width-1-1@s" data-uk-grid>
             {allPosts.map(({ node }, i) => <BlogPostPreview key={node.id} node={node} />)}
           </div>
         </section> 
