@@ -3,19 +3,20 @@ import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 import NavigationBar from '../components/navigationBar'
 import Footer from '../components/footer'
-import "typeface-roboto"
-import "typeface-nunito-sans"
-import "../styles/main.scss"
-import { StaticQuery, graphql } from "gatsby"
+import 'typeface-roboto'
+import 'typeface-nunito-sans'
+import '../styles/main.scss'
+import { StaticQuery, graphql } from 'gatsby'
 
-const TemplateWrapper = ({ 
-  children, 
-  location, 
-  title, 
-  description, 
-  keywords, 
+const TemplateWrapper = ({
+  children,
+  location,
+  title,
+  description,
+  keywords,
   previewImageUrl = null,
-  structuredDataJson = null }) =>
+  structuredDataJson = null,
+}) => (
   <StaticQuery
     query={graphql`
       query LayoutQuery {
@@ -26,12 +27,12 @@ const TemplateWrapper = ({
             keywords
           }
         }
-        defaultImage: contentfulAsset(title: {eq: "Default Avatar"}) {
+        defaultImage: contentfulAsset(title: { eq: "Default Avatar" }) {
           fixed(width: 900, height: 450) {
             src
           }
         }
-        menu: allContentfulMenu(filter: { name: { eq: "Main menu"}}) {
+        menu: allContentfulMenu(filter: { name: { eq: "Main menu" } }) {
           edges {
             node {
               id
@@ -50,9 +51,9 @@ const TemplateWrapper = ({
       }
     `}
     render={data => (
-      <MainLayout 
-        data={data} 
-        children={children} 
+      <MainLayout
+        data={data}
+        children={children}
         location={location}
         title={title}
         description={description}
@@ -60,33 +61,38 @@ const TemplateWrapper = ({
         previewImageUrl={previewImageUrl || data.defaultImage.fixed.src}
         structuredDataJson={structuredDataJson}
       />
-    )}  
+    )}
   />
+)
 
 TemplateWrapper.propTypes = {
-  children: PropTypes.func
+  children: PropTypes.func,
 }
 
 class MainLayout extends React.Component {
   componentDidMount() {
     try {
-      this.UIkit = require("uikit/dist/js/uikit");
-      this.Icons = require("uikit/dist/js/uikit-icons");
-      this.UIkit.use(this.Icons);
+      this.UIkit = require('uikit/dist/js/uikit')
+      this.Icons = require('uikit/dist/js/uikit-icons')
+      this.UIkit.use(this.Icons)
     } catch (e) {
-      console.error(e);
+      console.error(e)
     }
   }
   render() {
-    const pageDescription = this.props.description !== undefined 
-      ? this.props.description 
-      : this.props.data.site.siteMetadata.description
-    
-    const pageKeywords = this.props.keywords !== undefined 
-      ? this.props.keywords.map(k => k.toLowerCase()).join(',') 
-      : this.props.data.site.siteMetadata.keywords
-    
-    const canonicalUrl = `${this.props.data.site.siteMetadata.siteUrl}${this.props.location.pathname}`
+    const pageDescription =
+      this.props.description !== undefined
+        ? this.props.description
+        : this.props.data.site.siteMetadata.description
+
+    const pageKeywords =
+      this.props.keywords !== undefined
+        ? this.props.keywords.map(k => k.toLowerCase()).join(',')
+        : this.props.data.site.siteMetadata.keywords
+
+    const canonicalUrl = `${this.props.data.site.siteMetadata.siteUrl}${
+      this.props.location.pathname
+    }`
 
     const googleSiteVerification = 'NYAneve0llvi3Mmooz40QrY1GZNCNqsgiqYM-3DSMS4'
 
@@ -102,24 +108,33 @@ class MainLayout extends React.Component {
             { name: 'og:title', content: this.props.title },
             { name: 'og:description', content: pageDescription },
             { name: 'og:url', content: canonicalUrl },
-            { name: 'og:image', content: `https:${this.props.previewImageUrl}` },
-            { name: 'twitter:card', content: 'summary'},
+            {
+              name: 'og:image',
+              content: `https:${this.props.previewImageUrl}`,
+            },
+            { name: 'twitter:card', content: 'summary' },
             { name: 'twitter:creator', content: '@bayphillips' },
             { name: 'twitter:site', content: '@bayphillips' },
             { name: 'twitter:image:alt', content: this.props.title },
-            { name: 'google-site-verification', content: googleSiteVerification }
+            {
+              name: 'google-site-verification',
+              content: googleSiteVerification,
+            },
           ]}
-          script={[{
-            'type': 'application/ld+json',
-            'innerHTML': `${JSON.stringify(this.props.structuredDataJson)}`
-          }]}
+          script={[
+            {
+              type: 'application/ld+json',
+              innerHTML: `${JSON.stringify(this.props.structuredDataJson)}`,
+            },
+          ]}
         >
-           <html lang="en" />
+          <html lang="en" />
         </Helmet>
-        <NavigationBar location={ this.props.location } menu={ this.props.data.menu.edges[0] } />
-        <div className="uk-container">
-          { this.props.children }
-        </div>
+        <NavigationBar
+          location={this.props.location}
+          menu={this.props.data.menu.edges[0]}
+        />
+        <div className="uk-container">{this.props.children}</div>
         <Footer />
       </div>
     )
@@ -127,7 +142,7 @@ class MainLayout extends React.Component {
 }
 
 MainLayout.propTypes = {
-  data: PropTypes.object.isRequired
+  data: PropTypes.object.isRequired,
 }
 
 export default TemplateWrapper
