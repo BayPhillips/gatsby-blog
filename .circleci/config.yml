@@ -43,7 +43,7 @@ jobs:
           at: ~/workspace
       - run: 
           name: Deploy to S3
-          command: aws s3 sync public s3://www.bayphillips.com --acl public-read
+          command: aws s3 sync public s3://www.bayphillips.com --acl public-read --delete
 
 workflows:
   version: 2
