@@ -76,5 +76,6 @@ module.exports = {
     },
     `gatsby-plugin-offline`,
     `gatsby-plugin-robots-txt`,
+    `gatsby-plugin-catch-links`,
   ],
 }
