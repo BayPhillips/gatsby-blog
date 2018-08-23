@@ -7,3 +7,4 @@ public/
 .DS_Store
 .env.development
 .env.production
+yarn-error.log
