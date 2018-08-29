@@ -55,7 +55,6 @@ module.exports = {
     {
       resolve: `gatsby-plugin-sitemap`
     },
-    `gatsby-plugin-force-trailing-slashes`,
     {
       resolve: `gatsby-plugin-canonical-urls`,
       options: {
@@ -77,5 +76,6 @@ module.exports = {
     `gatsby-plugin-offline`,
     `gatsby-plugin-robots-txt`,
     `gatsby-plugin-catch-links`,
+    `gatsby-plugin-force-trailing-slashes`,
   ],
 }
