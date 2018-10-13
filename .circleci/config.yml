@@ -7,14 +7,14 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          key: v1-dependencies-{{ checksum "package.json" }}
+          key: v1-dependencies-{{ checksum "package-lock.json" }}
       - run: 
           name: Install Dependencies
           command: yarn install
       - save_cache:
           paths:
             - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
+          key: v1-dependencies-{{ checksum "package-lock.json" }}
       - run: 
           name: Generate Site
           command: CONTENTFUL_SPACE_ID=$CONTENTFUL_SPACE_ID CONTENTFUL_ACCESS_TOKEN=$CONTENTFUL_ACCESS_TOKEN yarn build
