@@ -53,7 +53,7 @@ class IndexPage extends React.Component {
                 My name is Bay Phillips and I'm a software engineer based out of
                 New York City. I've been coding since I was 14 and haven't
                 stopped since. I'm currently an Engineering Manager at{' '}
-                <a href="https://www.plated.com" target="_blank">
+                <a href="https://www.plated.com" target="_blank" rel="noopener">
                   Plated
                 </a>{' '}
                 and love what I get to do every day. Sometimes I write blog
