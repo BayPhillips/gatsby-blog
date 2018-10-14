@@ -35,7 +35,7 @@
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
     "react-helmet": "^5.2.0",
-    "sharp": "^0.21.0",
+    "sharp": "^0.20.1",
     "slash": "^2.0.0",
     "typeface-nunito-sans": "^0.0.54",
     "typeface-roboto": "^0.0.54",
