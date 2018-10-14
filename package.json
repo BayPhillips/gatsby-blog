@@ -47,6 +47,7 @@
   "license": "MIT",
   "main": "n/a",
   "scripts": {
+    "prebuild": "rm -rf public",
     "build": "gatsby build",
     "serve": "gatsby serve",
     "dev": "gatsby develop",
