@@ -15,9 +15,11 @@ class Footer extends React.Component {
             <div className="uk-text-center">
               <SocialMediaLinks />
             </div>
-            <p className="uk-text-inverse uk-text-small uk-text-center">
-              Copyright &copy; {moment(Date.now()).format('YYYY')} Bay Phillips
-            </p>
+            <div className="uk-light uk-margin">
+              <p className="uk-text-small uk-text-center">
+                Copyright &copy; {moment(Date.now()).format('YYYY')} Bay Phillips
+              </p>
+            </div>
           </section>
         </div>
       </footer>
