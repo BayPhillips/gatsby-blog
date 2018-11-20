@@ -1,0 +1,5 @@
+{
+  "devDependencies": {
+    "serverless-plugin-cloudfront-lambda-edge": "2.1.0"
+  }
+}

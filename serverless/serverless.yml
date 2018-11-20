@@ -1,0 +1,51 @@
+# Welcome to Serverless!
+#
+# This file is the main config file for your service.
+# It's very minimal at this point and uses default values.
+# You can always add more config options for more control.
+# We've included some commented out config examples here.
+# Just uncomment any of them to get that config option.
+#
+# For full config options, check the docs:
+#    docs.serverless.com
+#
+# Happy Coding!
+
+service: baysblogfunctions # NOTE: update this with your service name
+
+# You can pin your service to only deploy with a specific Serverless version
+# Check out our docs for more details
+# frameworkVersion: "=X.X.X"
+
+plugins:
+  -
+
+custom:
+  s3Bucket: www.bayphillips.com
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+
+# you can overwrite defaults here
+  stage: dev
+  region: us-east-1
+
+functions:
+  addIndexHtmlToEndOfRequests:
+    name: 'append-index-html-to-end-of-request'
+    handler: addIndexHtml.handler
+    memorySize: 128
+    timeout: 1
+    lambdaAtEdge:
+      distribution: 'E2QOIGZER2RN65'
+
+resources:
+  WebsiteS3Bucket:
+    Type: AWS::S3::WebsiteS3Bucket
+    Properties:
+      BucketName: ${self:custom.s3Bucket}
+      AccessControl: PublicRead
+      WebsiteConfiguration:
+        IndexDocument: index.html
+        ErrorDocument: 404.html
