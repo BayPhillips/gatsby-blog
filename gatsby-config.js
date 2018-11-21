@@ -77,5 +77,12 @@ module.exports = {
     `gatsby-plugin-robots-txt`,
     `gatsby-plugin-catch-links`,
     `gatsby-plugin-force-trailing-slashes`,
+    {
+      resolve: `gatsby-plugin-html2amp`,
+      options: {
+        publicPath: `public`,
+        dist: `public/amp`
+      }
+    }
   ],
 }
