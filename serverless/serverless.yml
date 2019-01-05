@@ -1,51 +1,79 @@
-# Welcome to Serverless!
-#
-# This file is the main config file for your service.
-# It's very minimal at this point and uses default values.
-# You can always add more config options for more control.
-# We've included some commented out config examples here.
-# Just uncomment any of them to get that config option.
-#
-# For full config options, check the docs:
-#    docs.serverless.com
-#
-# Happy Coding!
-
-service: baysblogfunctions # NOTE: update this with your service name
-
-# You can pin your service to only deploy with a specific Serverless version
-# Check out our docs for more details
-# frameworkVersion: "=X.X.X"
+service: baysblog 
 
 plugins:
-  -
+  - '@silvermine/serverless-plugin-cloudfront-lambda-edge'
+
+package:
+  exclude:
+    - 'node_modules/**'
 
 custom:
   s3Bucket: www.bayphillips.com
+  defaultRegion: us-east-1
+  defaultEnvironmentGroup: production
+  region: ${opt:region, self:custom.defaultRegion}
+  stage: ${opt:stage, env:USER}
+  objectPrefix: '${self:service}-${self:custom.stage}'
 
 provider:
   name: aws
   runtime: nodejs8.10
-
-# you can overwrite defaults here
-  stage: dev
-  region: us-east-1
+  region: ${self:custom.region}
+  stage: ${self:custom.stage}
+  environment:
+    SLS_SVC_NAME: ${self:service}
+    SLS_STAGE: ${self:custom.stage}
 
 functions:
   addIndexHtmlToEndOfRequests:
-    name: 'append-index-html-to-end-of-request'
-    handler: addIndexHtml.handler
+    name: '${self:custom.objectPrefix}-append-index-html-origin-request'
+    handler: src/addIndexHtml.handler
     memorySize: 128
     timeout: 1
     lambdaAtEdge:
-      distribution: 'E2QOIGZER2RN65'
+      distribution: 'WebsiteDistribution'
+      eventType: 'origin-request'
+  addCachingHeaders:
+    name: '${self:custom.objectPrefix}-add-caching-headers'
+    handler: src/addCachingHeaders.handler
+    memorySize: 128
+    timeout: 1
+    lambdaAtEdge:
+      distribution: 'WebsiteDistribution'
+      eventType: 'origin-response'
 
 resources:
-  WebsiteS3Bucket:
-    Type: AWS::S3::WebsiteS3Bucket
-    Properties:
-      BucketName: ${self:custom.s3Bucket}
-      AccessControl: PublicRead
-      WebsiteConfiguration:
-        IndexDocument: index.html
-        ErrorDocument: 404.html
+  Resources:
+    WebsiteS3Bucket:
+      Type: 'AWS::S3::Bucket'
+      Properties:
+        BucketName: ${self:custom.s3Bucket}
+        AccessControl: PublicRead
+        WebsiteConfiguration:
+          IndexDocument: index.html
+          ErrorDocument: 404.html
+    WebsiteDistribution:
+      Type: 'AWS::CloudFront::Distribution'
+      Properties:
+        DistributionConfig:
+          DefaultCacheBehavior:
+            TargetOriginId: 'WebsiteBucketOrigin'
+            ViewerProtocolPolicy: 'redirect-to-https'
+            DefaultTTL: 600
+            MaxTTL: 600
+            Compress: true
+            ForwardedValues:
+              QueryString: false
+              Cookies:
+                Forward: 'none'
+          DefaultRootObject: 'index.html'
+          Enabled: true
+          PriceClass: 'PriceClass_100'
+          HttpVersion: 'http2'
+          ViewerCertificate:
+            CloudFrontDefaultCertificate: true
+          Origins:
+            -
+              Id: 'WebsiteBucketOrigin'
+              DomainName: { 'Fn::GetAtt': [ 'WebsiteS3Bucket', 'DomainName' ] }
+              S3OriginConfig: {}
