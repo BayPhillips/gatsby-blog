@@ -60,6 +60,7 @@
   "devDependencies": {
     "@silvermine/serverless-plugin-cloudfront-lambda-edge": "^2.1.1",
     "prettier": "^1.15.2",
+    "serverless": "^1.35.1",
     "serverless-s3-sync": "^1.7.1"
   },
   "postinstall": "execstack -c node_modules/sharp/vendor/lib/librsvg-2.so.2"
