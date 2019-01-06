@@ -7,8 +7,8 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Clear Old Dependencies
-          command: rm -rf .cache public node_modules && npm cache clean --force
+          name: Update yarn
+          command: npm install -g yarn
       - restore_cache:
           key: v2-dependencies-{{ checksum "package-lock.json" }}
       - run: 
