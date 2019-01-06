@@ -51,7 +51,7 @@ jobs:
           at: ~/workspace
       - run: 
           name: Deploy Cloudformation
-          command: yarn deploy
+          command: yarn deploy --stage production
 
 workflows:
   version: 2
@@ -63,4 +63,6 @@ workflows:
             - build
           filters:
             branches:
-              only: master
+              only: 
+                - master
+                - serverless
