@@ -8,7 +8,7 @@ jobs:
       - checkout
       - run:
           name: Clear Old Dependencies
-          command: rm -rf .cache public node_modules
+          command: rm -rf .cache public node_modules && npm cache clean --force
       - restore_cache:
           key: v2-dependencies-{{ checksum "package-lock.json" }}
       - run: 
