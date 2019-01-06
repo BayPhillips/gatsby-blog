@@ -6,9 +6,9 @@ jobs:
       - image: circleci/node:9.5.0
     steps:
       - checkout
-      - run:
-          name: Update yarn
-          command: npm install -g yarn
+      # - run:
+      #     name: Update yarn
+      #     command: npm install -g yarn
       - restore_cache:
           key: v2-dependencies-{{ checksum "package-lock.json" }}
       - run: 
