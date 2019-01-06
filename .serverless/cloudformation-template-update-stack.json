@@ -1,0 +1,271 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "The AWS CloudFormation template for this Serverless application",
+  "Resources": {
+    "ServerlessDeploymentBucket": {
+      "Type": "AWS::S3::Bucket"
+    },
+    "AddIndexHtmlToEndOfRequestsLogGroup": {
+      "Type": "AWS::Logs::LogGroup",
+      "Properties": {
+        "LogGroupName": "/aws/lambda/baysblog-bay-append-index-html-origin-request"
+      }
+    },
+    "AddCachingHeadersLogGroup": {
+      "Type": "AWS::Logs::LogGroup",
+      "Properties": {
+        "LogGroupName": "/aws/lambda/baysblog-bay-add-caching-headers"
+      }
+    },
+    "IamRoleLambdaExecution": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "Service": [
+                  "lambda.amazonaws.com",
+                  "edgelambda.amazonaws.com"
+                ]
+              },
+              "Action": [
+                "sts:AssumeRole"
+              ]
+            }
+          ]
+        },
+        "Policies": [
+          {
+            "PolicyName": {
+              "Fn::Join": [
+                "-",
+                [
+                  "bay",
+                  "baysblog",
+                  "lambda"
+                ]
+              ]
+            },
+            "PolicyDocument": {
+              "Version": "2012-10-17",
+              "Statement": [
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "logs:CreateLogStream"
+                  ],
+                  "Resource": [
+                    {
+                      "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/baysblog-bay-append-index-html-origin-request:*"
+                    },
+                    {
+                      "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/baysblog-bay-add-caching-headers:*"
+                    }
+                  ]
+                },
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "logs:PutLogEvents"
+                  ],
+                  "Resource": [
+                    {
+                      "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/baysblog-bay-append-index-html-origin-request:*:*"
+                    },
+                    {
+                      "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/baysblog-bay-add-caching-headers:*:*"
+                    }
+                  ]
+                },
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "logs:CreateLogGroup",
+                    "logs:CreateLogStream",
+                    "logs:PutLogEvents",
+                    "logs:DescribeLogStreams"
+                  ],
+                  "Resource": "arn:aws:logs:*:*:*"
+                }
+              ]
+            }
+          }
+        ],
+        "Path": "/",
+        "RoleName": {
+          "Fn::Join": [
+            "-",
+            [
+              "baysblog",
+              "bay",
+              "us-east-1",
+              "lambdaRole"
+            ]
+          ]
+        }
+      }
+    },
+    "AddIndexHtmlToEndOfRequestsLambdaFunction": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": {
+            "Ref": "ServerlessDeploymentBucket"
+          },
+          "S3Key": "serverless/baysblog/bay/1546750188397-2019-01-06T04:49:48.397Z/baysblog.zip"
+        },
+        "FunctionName": "baysblog-bay-append-index-html-origin-request",
+        "Handler": "lambdas/addIndexHtml.handler",
+        "MemorySize": 128,
+        "Role": {
+          "Fn::GetAtt": [
+            "IamRoleLambdaExecution",
+            "Arn"
+          ]
+        },
+        "Runtime": "nodejs8.10",
+        "Timeout": 1
+      },
+      "DependsOn": [
+        "AddIndexHtmlToEndOfRequestsLogGroup",
+        "IamRoleLambdaExecution"
+      ]
+    },
+    "AddIndexHtmlToEndOfRequestsLambdaVersioncSORwX6rMuz1PvACgFW1lzasUawyHwoYUrXcM6EPbk8": {
+      "Type": "AWS::Lambda::Version",
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "AddIndexHtmlToEndOfRequestsLambdaFunction"
+        },
+        "CodeSha256": "ashuuPvUURQQ3DtUw9IMj0ppgKLX19befu84ef/5oZI="
+      }
+    },
+    "AddCachingHeadersLambdaFunction": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": {
+            "Ref": "ServerlessDeploymentBucket"
+          },
+          "S3Key": "serverless/baysblog/bay/1546750188397-2019-01-06T04:49:48.397Z/baysblog.zip"
+        },
+        "FunctionName": "baysblog-bay-add-caching-headers",
+        "Handler": "lambdas/addCachingHeaders.handler",
+        "MemorySize": 128,
+        "Role": {
+          "Fn::GetAtt": [
+            "IamRoleLambdaExecution",
+            "Arn"
+          ]
+        },
+        "Runtime": "nodejs8.10",
+        "Timeout": 1
+      },
+      "DependsOn": [
+        "AddCachingHeadersLogGroup",
+        "IamRoleLambdaExecution"
+      ]
+    },
+    "AddCachingHeadersLambdaVersionk2iYiKSEtlPbwC7aqBl7uVCc7zOaZ2hEiXcAOUkwsg": {
+      "Type": "AWS::Lambda::Version",
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "AddCachingHeadersLambdaFunction"
+        },
+        "CodeSha256": "ashuuPvUURQQ3DtUw9IMj0ppgKLX19befu84ef/5oZI="
+      }
+    },
+    "WebsiteS3Bucket": {
+      "Type": "AWS::S3::Bucket",
+      "Properties": {
+        "BucketName": "test.bayphillips.com",
+        "AccessControl": "PublicRead",
+        "WebsiteConfiguration": {
+          "IndexDocument": "index.html",
+          "ErrorDocument": "404.html",
+          "RoutingRules": []
+        }
+      }
+    },
+    "WebsiteDistribution": {
+      "Type": "AWS::CloudFront::Distribution",
+      "Properties": {
+        "DistributionConfig": {
+          "DefaultCacheBehavior": {
+            "TargetOriginId": "WebsiteBucketOrigin",
+            "ViewerProtocolPolicy": "redirect-to-https",
+            "DefaultTTL": 600,
+            "MaxTTL": 600,
+            "Compress": true,
+            "ForwardedValues": {
+              "QueryString": false,
+              "Cookies": {
+                "Forward": "none"
+              }
+            },
+            "LambdaFunctionAssociations": [
+              {
+                "EventType": "origin-request",
+                "LambdaFunctionARN": {
+                  "Ref": "AddIndexHtmlToEndOfRequestsLambdaVersioncSORwX6rMuz1PvACgFW1lzasUawyHwoYUrXcM6EPbk8"
+                }
+              },
+              {
+                "EventType": "origin-response",
+                "LambdaFunctionARN": {
+                  "Ref": "AddCachingHeadersLambdaVersionk2iYiKSEtlPbwC7aqBl7uVCc7zOaZ2hEiXcAOUkwsg"
+                }
+              }
+            ]
+          },
+          "DefaultRootObject": "index.html",
+          "Enabled": true,
+          "PriceClass": "PriceClass_100",
+          "HttpVersion": "http2",
+          "ViewerCertificate": {
+            "AcmCertificateArn": "arn:aws:acm:us-east-1:269824395085:certificate/3841a240-e88b-41f5-8aa2-4bc5e4295c75",
+            "SslSupportMethod": "sni-only"
+          },
+          "Aliases": [
+            "test.bayphillips.com"
+          ],
+          "Origins": [
+            {
+              "Id": "WebsiteS3BucketOrigin",
+              "DomainName": "test.bayphillips.com",
+              "CustomOriginConfig": {
+                "HTTPPort": 80,
+                "HTTPSPort": 443,
+                "OriginProtocolPolicy": "https-only"
+              }
+            }
+          ]
+        }
+      }
+    }
+  },
+  "Outputs": {
+    "ServerlessDeploymentBucketName": {
+      "Value": {
+        "Ref": "ServerlessDeploymentBucket"
+      }
+    },
+    "AddIndexHtmlToEndOfRequestsLambdaFunctionQualifiedArn": {
+      "Description": "Current Lambda function version",
+      "Value": {
+        "Ref": "AddIndexHtmlToEndOfRequestsLambdaVersioncSORwX6rMuz1PvACgFW1lzasUawyHwoYUrXcM6EPbk8"
+      }
+    },
+    "AddCachingHeadersLambdaFunctionQualifiedArn": {
+      "Description": "Current Lambda function version",
+      "Value": {
+        "Ref": "AddCachingHeadersLambdaVersionk2iYiKSEtlPbwC7aqBl7uVCc7zOaZ2hEiXcAOUkwsg"
+      }
+    }
+  }
+}

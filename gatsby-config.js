@@ -83,6 +83,12 @@ module.exports = {
         publicPath: `public`,
         dist: `public/amp`
       }
+    },
+    {
+      resolve: `gatsby-plugin-s3`,
+      options: {
+        bucketName: `test.bayphillips.com`
+      }
     }
   ],
 }
