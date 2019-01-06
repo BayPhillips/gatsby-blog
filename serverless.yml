@@ -13,7 +13,7 @@ custom:
     dev: test.bayphillips.com
     production: www.bayphillips.com
   s3Sync:
-  - bucketName: ${self:custom.s3Bucket.${self:custom:stage}}
+  - bucketName: ${self:custom.s3Bucket.${self:custom.stage}}
     localDir: public
     acl: public-read
     defaultContentType: text/html
