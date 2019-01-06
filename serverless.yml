@@ -9,25 +9,27 @@ package:
     - 'node_modules/**'
 
 custom:
-  s3Bucket: test.bayphillips.com
+  s3Bucket:
+    dev: test.bayphillips.com
+    production: www.bayphillips.com
   s3Sync:
-  - bucketName: ${self:custom.s3Bucket}
+  - bucketName: ${self:custom.s3Bucket.${self:custom:stage}}
     localDir: public
     acl: public-read
     defaultContentType: text/html
     params: ${file(./.cache/s3.params.json)}
   defaultRegion: us-east-1
-  defaultEnvironmentGroup: production
+  defaultEnvironmentGroup: 
   region: ${opt:region, self:custom.defaultRegion}
-  stage: ${opt:stage, env:USER}
+  stage: ${opt:stage, self:provider.stage}
   objectPrefix: '${self:service}-${self:custom.stage}'
-  certificateArn: arn:aws:acm:us-east-1:269824395085:certificate/3841a240-e88b-41f5-8aa2-4bc5e4295c75
+  certificateArn: ${opt:certificateArn}
 
 provider:
   name: aws
   runtime: nodejs8.10
   region: ${self:custom.region}
-  stage: ${self:custom.stage}
+  stage: dev
   environment:
     SLS_SVC_NAME: ${self:service}
     SLS_STAGE: ${self:custom.stage}
@@ -52,10 +54,10 @@ functions:
 
 resources:
   Resources:
-    WebsiteS3Bucket:
+    WebsiteBucket:
       Type: 'AWS::S3::Bucket'
       Properties:
-        BucketName: ${self:custom.s3Bucket}
+        BucketName: ${self:custom.s3Bucket.${self:custom:stage}}
         AccessControl: PublicRead
         WebsiteConfiguration:
           IndexDocument: index.html
@@ -83,11 +85,11 @@ resources:
             AcmCertificateArn: ${self:custom.certificateArn}
             SslSupportMethod: 'sni-only'
           Aliases:
-            - '${self:custom.s3Bucket}'
+            - '${self:custom.s3Bucket.${self:custom:stage}}'
           Origins:
             -
-              Id: 'WebsiteS3BucketOrigin'
-              DomainName: test.bayphillips.com
+              Id: 'WebsiteBucketOrigin'
+              DomainName: '${self:custom.s3Bucket.${self:custom:stage}}'
               CustomOriginConfig:
                 HTTPPort: 80
                 HTTPSPort: 443

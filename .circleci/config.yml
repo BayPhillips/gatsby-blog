@@ -51,7 +51,7 @@ jobs:
           at: ~/workspace
       - run: 
           name: Deploy Cloudformation
-          command: yarn deploy --stage production
+          command: yarn deploy --stage dev --certificateArn $CLOUDFRONT_CERTIFICATE_ARN
 
 workflows:
   version: 2
