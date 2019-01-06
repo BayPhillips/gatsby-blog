@@ -57,7 +57,7 @@ resources:
     WebsiteBucket:
       Type: 'AWS::S3::Bucket'
       Properties:
-        BucketName: ${self:custom.s3Bucket.${self:custom:stage}}
+        BucketName: ${self:custom.s3Bucket.${self:custom.stage}}
         AccessControl: PublicRead
         WebsiteConfiguration:
           IndexDocument: index.html
@@ -85,11 +85,11 @@ resources:
             AcmCertificateArn: ${self:custom.certificateArn}
             SslSupportMethod: 'sni-only'
           Aliases:
-            - '${self:custom.s3Bucket.${self:custom:stage}}'
+            - '${self:custom.s3Bucket.${self:custom.stage}}'
           Origins:
             -
               Id: 'WebsiteBucketOrigin'
-              DomainName: '${self:custom.s3Bucket.${self:custom:stage}}'
+              DomainName: '${self:custom.s3Bucket.${self:custom.stage}}'
               CustomOriginConfig:
                 HTTPPort: 80
                 HTTPSPort: 443
