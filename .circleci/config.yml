@@ -6,6 +6,9 @@ jobs:
       - image: circleci/node:9.5.0
     steps:
       - checkout
+      - run:
+          name: Clear Old Dependencies
+          command: rm -rf .cache public node_modules
       - restore_cache:
           key: v2-dependencies-{{ checksum "package-lock.json" }}
       - run: 
