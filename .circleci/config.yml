@@ -7,21 +7,31 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          key: v1-dependencies-{{ checksum "package-lock.json" }}
+          key: v2-dependencies-{{ checksum "package-lock.json" }}
       - run: 
           name: Install Dependencies
           command: yarn install
       - save_cache:
           paths:
             - node_modules
-          key: v1-dependencies-{{ checksum "package-lock.json" }}
+          key: v2-dependencies-{{ checksum "package-lock.json" }}
       - run: 
           name: Generate Site
-          command: CONTENTFUL_SPACE_ID=$CONTENTFUL_SPACE_ID CONTENTFUL_ACCESS_TOKEN=$CONTENTFUL_ACCESS_TOKEN yarn build
+          command: |
+            CONTENTFUL_SPACE_ID=$CONTENTFUL_SPACE_ID \
+            CONTENTFUL_ACCESS_TOKEN=$CONTENTFUL_ACCESS_TOKEN \
+            SITE_URL=$PRODUCTION_URL \
+            S3_BUCKET=$S3_BUCKET \
+            yarn build
       - persist_to_workspace:
           root: ./
           paths:
             - public
+            - .cache
+            - node_modules
+            - package.json
+            - serverless.yml
+            - lambdas
       - run:
           name: Optionally deploy
           command: |
@@ -37,13 +47,15 @@ jobs:
   deploy:
     working_directory: ~/workspace
     docker:
-      - image: wilson208/circleci-awscli
+      - image: circleci/node:9.5.0
     steps:
       - attach_workspace:
           at: ~/workspace
       - run: 
-          name: Deploy to S3
-          command: aws s3 sync public s3://www.bayphillips.com --acl public-read --delete
+          name: Deploy Site to CloudFormation Stack
+          no_output_timeout: 2h
+          command: |
+            yarn deploy --stage production --certificateArn $CLOUDFRONT_CERTIFICATE_ARN --s3Bucket $S3_BUCKET --domainName $S3_BUCKET --hostedZoneName $HOSTED_ZONE_NAME
 
 workflows:
   version: 2
@@ -55,4 +67,5 @@ workflows:
             - build
           filters:
             branches:
-              only: master
+              only: 
+                - master

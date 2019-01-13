@@ -1,0 +1,126 @@
+service: baysblog 
+
+plugins:
+  - '@silvermine/serverless-plugin-cloudfront-lambda-edge'
+  - serverless-s3-sync
+
+package:
+  exclude:
+    - 'node_modules/**'
+    - 'src/**'
+    - '.cache/**'
+    - '.circleci/**'
+
+custom:
+  s3Bucket: ${opt:s3Bucket}
+  s3Sync:
+  - bucketName: ${self:custom.s3Bucket}
+    localDir: public
+    acl: public-read
+    defaultContentType: text/html
+    params: ${file(.cache/s3.params.json)}
+  lambdaAtEdge:
+      retain: true
+  defaultRegion: us-east-1
+  region: ${opt:region, self:custom.defaultRegion}
+  stage: ${opt:stage, self:provider.stage}
+  objectPrefix: '${self:service}-${self:custom.stage}'
+  certificateArn: ${opt:certificateArn}
+  domainName: ${opt:domainName, self:custom.s3Bucket}
+  defaultHostedZoneId: Z2FDTNDATAQYW2 #default zone ID for CloudFront
+  hostedZoneId: ${opt:hostedZoneId, self:custom.defaultHostedZoneId}
+  hostedZoneName: ${opt:hostedZoneName}
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  region: ${self:custom.region}
+  stage: dev
+  environment:
+    SLS_SVC_NAME: ${self:service}
+    SLS_STAGE: ${self:custom.stage}
+
+functions:
+  addIndexHtmlToEndOfRequests:
+    name: '${self:custom.objectPrefix}-append-index-html-origin-request'
+    handler: lambdas/addIndexHtml.handler
+    memorySize: 128
+    timeout: 1
+    lambdaAtEdge:
+      distribution: 'WebsiteDistribution'
+      eventType: 'origin-request'
+  addCachingHeaders:
+    name: '${self:custom.objectPrefix}-add-caching-headers'
+    handler: lambdas/addCachingHeaders.handler
+    memorySize: 128
+    timeout: 1
+    lambdaAtEdge:
+      distribution: 'WebsiteDistribution'
+      eventType: 'origin-response'
+
+resources:
+  Resources:
+    WebsiteBucket:
+      Type: 'AWS::S3::Bucket'
+      Properties:
+        BucketName: ${self:custom.domainName}
+        AccessControl: PublicRead
+        WebsiteConfiguration:
+          IndexDocument: index.html
+          ErrorDocument: 404.html
+          RoutingRules: ${file(.cache/s3.sls.routingRules.json)}
+    WebsiteDistribution:
+      Type: 'AWS::CloudFront::Distribution'
+      DeletionPolicy: Retain
+      Properties:
+        DistributionConfig:
+          DefaultCacheBehavior:
+            TargetOriginId: 'WebsiteBucketOrigin'
+            ViewerProtocolPolicy: 'redirect-to-https'
+            DefaultTTL: 600
+            MaxTTL: 600
+            Compress: true
+            ForwardedValues:
+              QueryString: false
+              Cookies:
+                Forward: 'none'
+          DefaultRootObject: 'index.html'
+          Enabled: true
+          PriceClass: 'PriceClass_All'
+          HttpVersion: 'http2'
+          ViewerCertificate:
+            AcmCertificateArn: ${self:custom.certificateArn}
+            SslSupportMethod: 'sni-only'
+            MinimumProtocolVersion: 'TLSv1.1_2016'
+          Aliases:
+            - '${self:custom.domainName}'
+          Origins:
+            -
+              Id: 'WebsiteBucketOrigin'
+              DomainName: '${self:custom.domainName}.s3.amazonaws.com'
+              CustomOriginConfig:
+                HTTPPort: 80
+                HTTPSPort: 443
+                OriginProtocolPolicy: https-only
+    DomainRecord:
+      Type: AWS::Route53::RecordSet
+      Properties:
+        AliasTarget:
+          DNSName:
+            Fn::GetAtt:
+              - WebsiteDistribution
+              - DomainName
+          HostedZoneId: ${self:custom.hostedZoneId}
+        HostedZoneName: ${self:custom.hostedZoneName}
+        Name: ${self:custom.domainName}
+        Type: 'A'
+  
+  Outputs:
+    StaticSiteS3BucketName:
+      Value:
+        Ref: WebsiteBucket
+    CloudFrontDistribution:
+      Value:
+        Fn::GetAtt:
+          - WebsiteDistribution
+          - DomainName
