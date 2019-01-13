@@ -54,7 +54,7 @@ jobs:
       - run: 
           name: Deploy Site to CloudFormation Stack
           command: |
-            yarn deploy \ 
+            yarn deploy\ 
               --stage production \ 
               --certificateArn $CLOUDFRONT_CERTIFICATE_ARN
               --s3Bucket $S3_BUCKET \
