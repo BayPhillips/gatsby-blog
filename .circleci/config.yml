@@ -53,6 +53,7 @@ jobs:
           at: ~/workspace
       - run: 
           name: Deploy Site to CloudFormation Stack
+          no_output_timeout: 2h
           command: |
             yarn deploy --stage production --certificateArn $CLOUDFRONT_CERTIFICATE_ARN --s3Bucket $S3_BUCKET --domainName $S3_BUCKET --hostedZoneName $HOSTED_ZONE_NAME
 
