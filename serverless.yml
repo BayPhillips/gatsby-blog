@@ -7,15 +7,14 @@ plugins:
 package:
   exclude:
     - 'node_modules/**'
+    - 'src/**'
+    - '.cache/**'
+    - '.circleci/**'
 
 custom:
-  s3Bucket:
-    dev: dev.bayphillips.com
-    test: test.bayphillips.com
-    preview: preview.bayphillips.com
-    production: www.bayphillips.com
+  s3Bucket: ${opt:s3Bucket}
   s3Sync:
-  - bucketName: ${self:custom.s3Bucket.${self:custom.stage}}
+  - bucketName: ${self:custom.s3Bucket}
     localDir: public
     acl: public-read
     defaultContentType: text/html
@@ -27,15 +26,16 @@ custom:
   stage: ${opt:stage, self:provider.stage}
   objectPrefix: '${self:service}-${self:custom.stage}'
   certificateArn: ${opt:certificateArn}
-  domainName: '${self:custom.s3Bucket.${self:custom.stage}}'
-  hostedZoneId: Z2FDTNDATAQYW2
-  hostedZoneName: bayphillips.com.
+  domainName: ${$opt:domainName, self:custom.s3Bucket}
+  defaultHostedZoneId: Z2FDTNDATAQYW2 #default zone ID for CloudFront
+  hostedZoneId: ${opt:hostedZoneId, self:custom.defaultHostedZoneId}
+  hostedZoneName: ${opt:hostedZoneName}
 
 provider:
   name: aws
   runtime: nodejs8.10
   region: ${self:custom.region}
-  stage: test
+  stage: dev
   environment:
     SLS_SVC_NAME: ${self:service}
     SLS_STAGE: ${self:custom.stage}

@@ -16,7 +16,6 @@
     "gatsby-plugin-catch-links": "^2.0.9",
     "gatsby-plugin-force-trailing-slashes": "^1.0.4",
     "gatsby-plugin-google-analytics": "^2.0.8",
-    "gatsby-plugin-html2amp": "^0.3.2",
     "gatsby-plugin-manifest": "^2.0.13",
     "gatsby-plugin-offline": "^2.0.20",
     "gatsby-plugin-react-helmet": "^3.0.5",
@@ -55,8 +54,7 @@
     "dev": "gatsby develop",
     "format": "prettier --trailing-comma es5 --no-semi --single-quote --write 'src/**/*.js'",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "deploy": "serverless deploy",
-    "killDeployment": "serverless remove"
+    "deploy": "serverless deploy"
   },
   "devDependencies": {
     "@silvermine/serverless-plugin-cloudfront-lambda-edge": "^2.1.1",

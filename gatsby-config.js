@@ -2,29 +2,34 @@ require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`,
 });
 
-const siteUrl = `https://www.bayphillips.com`
+const parameters = {
+  siteUrl: process.env.SITE_URL,
+  s3Bucket: process.env.S3_BUCKET,
+  contentful: {
+    spaceId: process.env.CONTENTFUL_SPACE_ID,
+    accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+    host: process.env.CONTENTFUL_HOST
+  },
+  googleAnalytics: {
+    trackingId: process.env.GOOGLE_ANALYTICS_TRACKING_ID,
+    head: false
+  }
+}
 
 module.exports = {
   siteMetadata: {
     description: `Personal blog for Bay Phillips, a Software Engineering Manager based out of NYC working with other really smart people.`,
     keywords: `ios,swift,react,fullstack,rails,engineer,engineering manager,nyc,new york city,cooking,Plated`,
-    siteUrl: siteUrl,
+    siteUrl: parameters.siteUrl,
   },
   plugins: [
     {
       resolve: `gatsby-source-contentful`,
-      options: {
-        spaceId: process.env.CONTENTFUL_SPACE_ID,
-        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
-        host: process.env.CONTENTFUL_HOST
-      },
+      options: parameters.contentful,
     },
     {
       resolve: `gatsby-plugin-google-analytics`,
-      options: {
-        trackingId: process.env.GOOGLE_ANALYTICS_TRACKING_ID,
-        head: false
-      }
+      options: parameters.googleAnalytics
     },
     `gatsby-plugin-react-helmet`,
     `gatsby-transformer-remark`,
@@ -58,7 +63,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-canonical-urls`,
       options: {
-        siteUrl: siteUrl,
+        siteUrl: parameters.siteUrl,
       },
     },
     {
@@ -78,16 +83,9 @@ module.exports = {
     `gatsby-plugin-catch-links`,
     `gatsby-plugin-force-trailing-slashes`,
     {
-      resolve: `gatsby-plugin-html2amp`,
-      options: {
-        publicPath: `public`,
-        dist: `public/amp`
-      }
-    },
-    {
       resolve: `gatsby-plugin-s3`,
       options: {
-        bucketName: `test.bayphillips.com`
+        bucketName: parameters.s3Bucket
       }
     }
   ],
