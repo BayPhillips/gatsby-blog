@@ -10,26 +10,32 @@ package:
 
 custom:
   s3Bucket:
-    dev: test.bayphillips.com
+    dev: dev.bayphillips.com
+    test: test.bayphillips.com
+    preview: preview.bayphillips.com
     production: www.bayphillips.com
   s3Sync:
   - bucketName: ${self:custom.s3Bucket.${self:custom.stage}}
     localDir: public
     acl: public-read
     defaultContentType: text/html
-    params: ${file(./.cache/s3.params.json)}
+    params: ${file(.cache/s3.params.json)}
+  lambdaAtEdge:
+      retain: true
   defaultRegion: us-east-1
-  defaultEnvironmentGroup: 
   region: ${opt:region, self:custom.defaultRegion}
   stage: ${opt:stage, self:provider.stage}
   objectPrefix: '${self:service}-${self:custom.stage}'
   certificateArn: ${opt:certificateArn}
+  domainName: '${self:custom.s3Bucket.${self:custom.stage}}'
+  hostedZoneId: Z2FDTNDATAQYW2
+  hostedZoneName: bayphillips.com.
 
 provider:
   name: aws
   runtime: nodejs8.10
   region: ${self:custom.region}
-  stage: dev
+  stage: test
   environment:
     SLS_SVC_NAME: ${self:service}
     SLS_STAGE: ${self:custom.stage}
@@ -57,14 +63,15 @@ resources:
     WebsiteBucket:
       Type: 'AWS::S3::Bucket'
       Properties:
-        BucketName: ${self:custom.s3Bucket.${self:custom.stage}}
+        BucketName: ${self:custom.domainName}
         AccessControl: PublicRead
         WebsiteConfiguration:
           IndexDocument: index.html
           ErrorDocument: 404.html
-          RoutingRules: ${file(./.cache/s3.sls.routingRules.json)}
+          RoutingRules: ${file(.cache/s3.sls.routingRules.json)}
     WebsiteDistribution:
       Type: 'AWS::CloudFront::Distribution'
+      DeletionPolicy: Retain
       Properties:
         DistributionConfig:
           DefaultCacheBehavior:
@@ -79,18 +86,40 @@ resources:
                 Forward: 'none'
           DefaultRootObject: 'index.html'
           Enabled: true
-          PriceClass: 'PriceClass_100'
+          PriceClass: 'PriceClass_All'
           HttpVersion: 'http2'
           ViewerCertificate:
             AcmCertificateArn: ${self:custom.certificateArn}
             SslSupportMethod: 'sni-only'
           Aliases:
-            - '${self:custom.s3Bucket.${self:custom.stage}}'
+            - '${self:custom.domainName}'
           Origins:
             -
               Id: 'WebsiteBucketOrigin'
-              DomainName: '${self:custom.s3Bucket.${self:custom.stage}}'
+              DomainName: '${self:custom.domainName}.s3.amazonaws.com'
               CustomOriginConfig:
                 HTTPPort: 80
                 HTTPSPort: 443
                 OriginProtocolPolicy: https-only
+    DomainRecord:
+      Type: AWS::Route53::RecordSet
+      Properties:
+        AliasTarget:
+          DNSName:
+            Fn::GetAtt:
+              - WebsiteDistribution
+              - DomainName
+          HostedZoneId: ${self:custom.hostedZoneId}
+        HostedZoneName: ${self:custom.hostedZoneName}
+        Name: ${self:custom.domainName}
+        Type: 'A'
+  
+  Outputs:
+    StaticSiteS3BucketName:
+      Value:
+        Ref: WebsiteBucket
+    CloudFrontDistribution:
+      Value:
+        Fn::GetAtt:
+          - WebsiteDistribution
+          - DomainName

@@ -55,7 +55,8 @@
     "dev": "gatsby develop",
     "format": "prettier --trailing-comma es5 --no-semi --single-quote --write 'src/**/*.js'",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "deploy": "serverless deploy"
+    "deploy": "serverless deploy",
+    "killDeployment": "serverless remove"
   },
   "devDependencies": {
     "@silvermine/serverless-plugin-cloudfront-lambda-edge": "^2.1.1",

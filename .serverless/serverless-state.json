@@ -5,14 +5,14 @@
       "name": "baysblog"
     },
     "provider": {
-      "stage": "bay",
+      "stage": "test",
       "region": "us-east-1",
       "variableSyntax": "\\${([ ~:a-zA-Z0-9._'\",\\-\\/\\(\\)]+?)}",
       "name": "aws",
       "runtime": "nodejs8.10",
       "environment": {
         "SLS_SVC_NAME": "baysblog",
-        "SLS_STAGE": "bay"
+        "SLS_STAGE": "test"
       },
       "versionFunctions": true,
       "remoteFunctionData": null,
@@ -26,13 +26,13 @@
           "AddIndexHtmlToEndOfRequestsLogGroup": {
             "Type": "AWS::Logs::LogGroup",
             "Properties": {
-              "LogGroupName": "/aws/lambda/baysblog-bay-append-index-html-origin-request"
+              "LogGroupName": "/aws/lambda/baysblog-test-append-index-html-origin-request"
             }
           },
           "AddCachingHeadersLogGroup": {
             "Type": "AWS::Logs::LogGroup",
             "Properties": {
-              "LogGroupName": "/aws/lambda/baysblog-bay-add-caching-headers"
+              "LogGroupName": "/aws/lambda/baysblog-test-add-caching-headers"
             }
           },
           "IamRoleLambdaExecution": {
@@ -61,7 +61,7 @@
                     "Fn::Join": [
                       "-",
                       [
-                        "bay",
+                        "test",
                         "baysblog",
                         "lambda"
                       ]
@@ -77,10 +77,10 @@
                         ],
                         "Resource": [
                           {
-                            "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/baysblog-bay-append-index-html-origin-request:*"
+                            "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/baysblog-test-append-index-html-origin-request:*"
                           },
                           {
-                            "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/baysblog-bay-add-caching-headers:*"
+                            "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/baysblog-test-add-caching-headers:*"
                           }
                         ]
                       },
@@ -91,10 +91,10 @@
                         ],
                         "Resource": [
                           {
-                            "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/baysblog-bay-append-index-html-origin-request:*:*"
+                            "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/baysblog-test-append-index-html-origin-request:*:*"
                           },
                           {
-                            "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/baysblog-bay-add-caching-headers:*:*"
+                            "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/baysblog-test-add-caching-headers:*:*"
                           }
                         ]
                       },
@@ -118,7 +118,7 @@
                   "-",
                   [
                     "baysblog",
-                    "bay",
+                    "test",
                     "us-east-1",
                     "lambdaRole"
                   ]
@@ -133,9 +133,9 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/baysblog/bay/1546750188397-2019-01-06T04:49:48.397Z/baysblog.zip"
+                "S3Key": "serverless/baysblog/test/1547398456138-2019-01-13T16:54:16.138Z/baysblog.zip"
               },
-              "FunctionName": "baysblog-bay-append-index-html-origin-request",
+              "FunctionName": "baysblog-test-append-index-html-origin-request",
               "Handler": "lambdas/addIndexHtml.handler",
               "MemorySize": 128,
               "Role": {
@@ -150,16 +150,17 @@
             "DependsOn": [
               "AddIndexHtmlToEndOfRequestsLogGroup",
               "IamRoleLambdaExecution"
-            ]
+            ],
+            "DeletionPolicy": "Retain"
           },
-          "AddIndexHtmlToEndOfRequestsLambdaVersioncSORwX6rMuz1PvACgFW1lzasUawyHwoYUrXcM6EPbk8": {
+          "AddIndexHtmlToEndOfRequestsLambdaVersionuI1fU13ERVEEV6ksnAz64gnw8eRBqgp1DhGuwUu0e4": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "AddIndexHtmlToEndOfRequestsLambdaFunction"
               },
-              "CodeSha256": "ashuuPvUURQQ3DtUw9IMj0ppgKLX19befu84ef/5oZI="
+              "CodeSha256": "dkkfpg8pa0Ac1OAni+9saZtsyy5PGUGgODYMSPPh6D0="
             }
           },
           "AddCachingHeadersLambdaFunction": {
@@ -169,9 +170,9 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/baysblog/bay/1546750188397-2019-01-06T04:49:48.397Z/baysblog.zip"
+                "S3Key": "serverless/baysblog/test/1547398456138-2019-01-13T16:54:16.138Z/baysblog.zip"
               },
-              "FunctionName": "baysblog-bay-add-caching-headers",
+              "FunctionName": "baysblog-test-add-caching-headers",
               "Handler": "lambdas/addCachingHeaders.handler",
               "MemorySize": 128,
               "Role": {
@@ -186,19 +187,20 @@
             "DependsOn": [
               "AddCachingHeadersLogGroup",
               "IamRoleLambdaExecution"
-            ]
+            ],
+            "DeletionPolicy": "Retain"
           },
-          "AddCachingHeadersLambdaVersionk2iYiKSEtlPbwC7aqBl7uVCc7zOaZ2hEiXcAOUkwsg": {
+          "AddCachingHeadersLambdaVersionoX72aYSAUjwsVDQFtMs0vQxehO2qlkR6xNp70RaNI": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "AddCachingHeadersLambdaFunction"
               },
-              "CodeSha256": "ashuuPvUURQQ3DtUw9IMj0ppgKLX19befu84ef/5oZI="
+              "CodeSha256": "dkkfpg8pa0Ac1OAni+9saZtsyy5PGUGgODYMSPPh6D0="
             }
           },
-          "WebsiteS3Bucket": {
+          "WebsiteBucket": {
             "Type": "AWS::S3::Bucket",
             "Properties": {
               "BucketName": "test.bayphillips.com",
@@ -212,6 +214,7 @@
           },
           "WebsiteDistribution": {
             "Type": "AWS::CloudFront::Distribution",
+            "DeletionPolicy": "Retain",
             "Properties": {
               "DistributionConfig": {
                 "DefaultCacheBehavior": {
@@ -230,20 +233,20 @@
                     {
                       "EventType": "origin-request",
                       "LambdaFunctionARN": {
-                        "Ref": "AddIndexHtmlToEndOfRequestsLambdaVersioncSORwX6rMuz1PvACgFW1lzasUawyHwoYUrXcM6EPbk8"
+                        "Ref": "AddIndexHtmlToEndOfRequestsLambdaVersionuI1fU13ERVEEV6ksnAz64gnw8eRBqgp1DhGuwUu0e4"
                       }
                     },
                     {
                       "EventType": "origin-response",
                       "LambdaFunctionARN": {
-                        "Ref": "AddCachingHeadersLambdaVersionk2iYiKSEtlPbwC7aqBl7uVCc7zOaZ2hEiXcAOUkwsg"
+                        "Ref": "AddCachingHeadersLambdaVersionoX72aYSAUjwsVDQFtMs0vQxehO2qlkR6xNp70RaNI"
                       }
                     }
                   ]
                 },
                 "DefaultRootObject": "index.html",
                 "Enabled": true,
-                "PriceClass": "PriceClass_100",
+                "PriceClass": "PriceClass_All",
                 "HttpVersion": "http2",
                 "ViewerCertificate": {
                   "AcmCertificateArn": "arn:aws:acm:us-east-1:269824395085:certificate/3841a240-e88b-41f5-8aa2-4bc5e4295c75",
@@ -254,8 +257,8 @@
                 ],
                 "Origins": [
                   {
-                    "Id": "WebsiteS3BucketOrigin",
-                    "DomainName": "test.bayphillips.com",
+                    "Id": "WebsiteBucketOrigin",
+                    "DomainName": "test.bayphillips.com.s3.amazonaws.com",
                     "CustomOriginConfig": {
                       "HTTPPort": 80,
                       "HTTPSPort": 443,
@@ -264,6 +267,23 @@
                   }
                 ]
               }
+            }
+          },
+          "DomainRecord": {
+            "Type": "AWS::Route53::RecordSet",
+            "Properties": {
+              "AliasTarget": {
+                "DNSName": {
+                  "Fn::GetAtt": [
+                    "WebsiteDistribution",
+                    "DomainName"
+                  ]
+                },
+                "HostedZoneId": "Z2FDTNDATAQYW2"
+              },
+              "HostedZoneName": "bayphillips.com.",
+              "Name": "test.bayphillips.com",
+              "Type": "A"
             }
           }
         },
@@ -276,13 +296,26 @@
           "AddIndexHtmlToEndOfRequestsLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "AddIndexHtmlToEndOfRequestsLambdaVersioncSORwX6rMuz1PvACgFW1lzasUawyHwoYUrXcM6EPbk8"
+              "Ref": "AddIndexHtmlToEndOfRequestsLambdaVersionuI1fU13ERVEEV6ksnAz64gnw8eRBqgp1DhGuwUu0e4"
             }
           },
           "AddCachingHeadersLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "AddCachingHeadersLambdaVersionk2iYiKSEtlPbwC7aqBl7uVCc7zOaZ2hEiXcAOUkwsg"
+              "Ref": "AddCachingHeadersLambdaVersionoX72aYSAUjwsVDQFtMs0vQxehO2qlkR6xNp70RaNI"
+            }
+          },
+          "StaticSiteS3BucketName": {
+            "Value": {
+              "Ref": "WebsiteBucket"
+            }
+          },
+          "CloudFrontDistribution": {
+            "Value": {
+              "Fn::GetAtt": [
+                "WebsiteDistribution",
+                "DomainName"
+              ]
             }
           }
         }
@@ -306,7 +339,12 @@
       "vpc": {}
     },
     "custom": {
-      "s3Bucket": "test.bayphillips.com",
+      "s3Bucket": {
+        "dev": "dev.bayphillips.com",
+        "test": "test.bayphillips.com",
+        "preview": "preview.bayphillips.com",
+        "production": "www.bayphillips.com"
+      },
       "s3Sync": [
         {
           "bucketName": "test.bayphillips.com",
@@ -326,12 +364,17 @@
           }
         }
       ],
+      "lambdaAtEdge": {
+        "retain": true
+      },
       "defaultRegion": "us-east-1",
-      "defaultEnvironmentGroup": "production",
       "region": "us-east-1",
-      "stage": "bay",
-      "objectPrefix": "baysblog-bay",
-      "certificateArn": "arn:aws:acm:us-east-1:269824395085:certificate/3841a240-e88b-41f5-8aa2-4bc5e4295c75"
+      "stage": "test",
+      "objectPrefix": "baysblog-test",
+      "certificateArn": "arn:aws:acm:us-east-1:269824395085:certificate/3841a240-e88b-41f5-8aa2-4bc5e4295c75",
+      "domainName": "test.bayphillips.com",
+      "hostedZoneId": "Z2FDTNDATAQYW2",
+      "hostedZoneName": "bayphillips.com."
     },
     "plugins": [
       "@silvermine/serverless-plugin-cloudfront-lambda-edge",
@@ -340,7 +383,7 @@
     "pluginsData": {},
     "functions": {
       "addIndexHtmlToEndOfRequests": {
-        "name": "baysblog-bay-append-index-html-origin-request",
+        "name": "baysblog-test-append-index-html-origin-request",
         "handler": "lambdas/addIndexHtml.handler",
         "memorySize": 128,
         "timeout": 1,
@@ -355,7 +398,7 @@
         "vpc": {}
       },
       "addCachingHeaders": {
-        "name": "baysblog-bay-add-caching-headers",
+        "name": "baysblog-test-add-caching-headers",
         "handler": "lambdas/addCachingHeaders.handler",
         "memorySize": 128,
         "timeout": 1,
@@ -372,7 +415,7 @@
     },
     "resources": {
       "Resources": {
-        "WebsiteS3Bucket": {
+        "WebsiteBucket": {
           "Type": "AWS::S3::Bucket",
           "Properties": {
             "BucketName": "test.bayphillips.com",
@@ -386,6 +429,7 @@
         },
         "WebsiteDistribution": {
           "Type": "AWS::CloudFront::Distribution",
+          "DeletionPolicy": "Retain",
           "Properties": {
             "DistributionConfig": {
               "DefaultCacheBehavior": {
@@ -403,7 +447,7 @@
               },
               "DefaultRootObject": "index.html",
               "Enabled": true,
-              "PriceClass": "PriceClass_100",
+              "PriceClass": "PriceClass_All",
               "HttpVersion": "http2",
               "ViewerCertificate": {
                 "AcmCertificateArn": "arn:aws:acm:us-east-1:269824395085:certificate/3841a240-e88b-41f5-8aa2-4bc5e4295c75",
@@ -414,8 +458,8 @@
               ],
               "Origins": [
                 {
-                  "Id": "WebsiteS3BucketOrigin",
-                  "DomainName": "test.bayphillips.com",
+                  "Id": "WebsiteBucketOrigin",
+                  "DomainName": "test.bayphillips.com.s3.amazonaws.com",
                   "CustomOriginConfig": {
                     "HTTPPort": 80,
                     "HTTPSPort": 443,
@@ -425,15 +469,46 @@
               ]
             }
           }
+        },
+        "DomainRecord": {
+          "Type": "AWS::Route53::RecordSet",
+          "Properties": {
+            "AliasTarget": {
+              "DNSName": {
+                "Fn::GetAtt": [
+                  "WebsiteDistribution",
+                  "DomainName"
+                ]
+              },
+              "HostedZoneId": "Z2FDTNDATAQYW2"
+            },
+            "HostedZoneName": "bayphillips.com.",
+            "Name": "test.bayphillips.com",
+            "Type": "A"
+          }
         }
       },
-      "Outputs": {}
+      "Outputs": {
+        "StaticSiteS3BucketName": {
+          "Value": {
+            "Ref": "WebsiteBucket"
+          }
+        },
+        "CloudFrontDistribution": {
+          "Value": {
+            "Fn::GetAtt": [
+              "WebsiteDistribution",
+              "DomainName"
+            ]
+          }
+        }
+      }
     },
     "layers": {},
     "artifact": "/mnt/c/Users/Bay/shareddev/gatsby-blog/.serverless/baysblog.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/baysblog/bay/1546750188397-2019-01-06T04:49:48.397Z",
+    "artifactDirectoryName": "serverless/baysblog/test/1547398456138-2019-01-13T16:54:16.138Z",
     "artifact": "baysblog.zip"
   }
 }
