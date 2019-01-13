@@ -91,6 +91,7 @@ resources:
           ViewerCertificate:
             AcmCertificateArn: ${self:custom.certificateArn}
             SslSupportMethod: 'sni-only'
+            MinimumProtocolVersion: 'TLSv1.1_2016'
           Aliases:
             - '${self:custom.domainName}'
           Origins:
