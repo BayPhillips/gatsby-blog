@@ -69,4 +69,3 @@ workflows:
             branches:
               only: 
                 - master
-                - serverless
