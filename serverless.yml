@@ -69,6 +69,11 @@ resources:
           IndexDocument: index.html
           ErrorDocument: 404.html
           RoutingRules: ${file(.cache/s3.sls.routingRules.json)}
+    WebsiteOriginAccessIdentity:
+      Type: AWS::CloudFront::CloudFrontOriginAccessIdentity
+      Properties:
+        CloudFrontOriginAccessIdentityConfig:
+          Comment: "CloudFrontOriginAccessIdentity for ${self:service}-${self:provider.stage}"
     WebsiteDistribution:
       Type: 'AWS::CloudFront::Distribution'
       DeletionPolicy: Retain
@@ -98,10 +103,8 @@ resources:
             -
               Id: 'WebsiteBucketOrigin'
               DomainName: '${self:custom.domainName}.s3.amazonaws.com'
-              CustomOriginConfig:
-                HTTPPort: 80
-                HTTPSPort: 443
-                OriginProtocolPolicy: https-only
+              S3OriginConfig:
+                OriginAccessIdentity: { "Fn::Join" : ["", ["origin-access-identity/cloudfront/", { Ref: WebsiteOriginAccessIdentity } ] ]  }
     DomainRecord:
       Type: AWS::Route53::RecordSet
       Properties:
