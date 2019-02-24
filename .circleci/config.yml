@@ -39,8 +39,7 @@ jobs:
             then
               git config user.email "bay.phillips@gmail.com"
               git config user.name "Bay Phillips"
-              git checkout . && git checkout master
-              git pull
+              git checkout . && git checkout master && git reset --hard origin/master
               git commit --allow-empty -m "Content updated on Contentful"
               git push origin master
             fi
