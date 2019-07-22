@@ -1,44 +1,16 @@
 import React from 'react'
-import { Link, graphql } from 'gatsby'
+import { graphql } from 'gatsby'
 import * as PropTypes from 'prop-types'
-import Img from 'gatsby-image'
 import Layout from '../components/layout'
-import moment from 'moment'
+import BlogPostPreview from '../components/blogPostPreview'
 
 const propTypes = {
   data: PropTypes.object.isRequired,
 }
 
-const BlogPostPreview = ({ node }) => (
-  <div key={node.id}>
-    <Link to={`/blog/${node.postSlug}/`}>
-      <div className="uk-card uk-card-default uk-card-hover">
-        <Img
-          fluid={node.headerImage.fluid}
-          outerWrapperClassName={`uk-card-media-top`}
-        />
-        <div className="uk-card-body">
-          <h3 className="uk-card-title uk-margin-remove-bottom">
-            {node.postTitle}
-          </h3>
-          <p className="uk-text-meta uk-margin-remove-top">
-            Posted {moment(node.datePosted).fromNow()}
-          </p>
-          <div
-            dangerouslySetInnerHTML={{
-              __html: node.contentPreview.childMarkdownRemark.html,
-            }}
-          />
-        </div>
-      </div>
-    </Link>
-  </div>
-)
-
 class IndexPage extends React.Component {
   render() {
     const allPosts = this.props.data.blogPosts.edges
-    const welcomeMessage = this.props.data.welcomeMessage
 
     return (
       <Layout
@@ -65,11 +37,11 @@ class IndexPage extends React.Component {
         <section className="uk-section-small">
           <h2>Recently posted</h2>
           <div
-            className="uk-grid uk-grid-medium uk-grid-match uk-child-width-1-3@xl uk-child-width-1-3@l uk-child-width-1-2@m uk-child-width-1-1@s"
+            className="uk-grid uk-grid-medium uk-child-width-1-1"
             data-uk-grid
           >
-            {allPosts.map(({ node }, i) => (
-              <BlogPostPreview key={node.id} node={node} />
+            {allPosts.map(({ node }) => (
+              <BlogPostPreview blogPost={node} />
             ))}
 
           </div>
@@ -112,6 +84,10 @@ export const pageQuery = graphql`
             fluid(maxHeight: 225) {
               ...GatsbyContentfulFluid_withWebp
             }
+          }
+          tags {
+            tagSlug
+            displayName
           }
         }
       }

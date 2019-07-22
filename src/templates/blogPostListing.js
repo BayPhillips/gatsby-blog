@@ -1,7 +1,8 @@
 import React from 'react'
 import { Link } from 'gatsby'
-import moment from 'moment'
+import { DateFormatter } from '../helpers/utils'
 import Layout from '../components/layout'
+import BlogPostPreview from '../components/blogPostPreview'
 
 const BlogPostListingTemplate = ({ data, pageContext, location }) => {
   const { group, index, first, last, pageCount } = pageContext
@@ -24,25 +25,14 @@ const BlogPostListingTemplate = ({ data, pageContext, location }) => {
   return (
     <Layout location={location} title={pageTitle} description={description}>
       <section className="uk-section">
-        {group.map(({ node }) => (
-          <article key={node.id} className="uk-article">
-            <h1 className="uk-article-title">
-              <Link to={`/blog/${node.postSlug}/`} className="uk-link-heading">
-                {node.postTitle}
-              </Link>
-            </h1>
-            <div className="uk-article-meta">
-              {moment(node.datePosted).fromNow()}
-            </div>
-            <div
-              className="uk-margin"
-              dangerouslySetInnerHTML={{
-                __html: node.contentPreview.childMarkdownRemark.html,
-              }}
-            />
-            <hr className="uk-divider-small" />
-          </article>
-        ))}
+        <div
+          className="uk-grid uk-grid-medium uk-child-width-1-1"
+          data-uk-grid
+        >
+          {group.map(({ node }) => (
+            <BlogPostPreview blogPost={node} />
+          ))}
+        </div>
         <div data-uk-grid="" className="uk-margin">
           {previousPageUrl ? (
             <Link to={previousPageUrl}>&lt; Newer Posts</Link>

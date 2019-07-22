@@ -31,6 +31,18 @@ exports.createPages = ({ graphql, actions }) => {
                 }
               }
               postSlug
+              tags {
+                tagSlug
+                displayName
+              }
+            }
+          }
+        }
+        tags: allContentfulTag {
+          edges {
+            node {
+              displayName
+              tagSlug
             }
           }
         }
@@ -53,6 +65,18 @@ exports.createPages = ({ graphql, actions }) => {
               }
             })
           }
+        })
+
+        const taggedBlogPostListingTemplate = path.resolve(`./src/templates/taggedBlogPostListing.js`)
+
+        _.each(result.data.tags.edges, edge => {
+          createPage({
+            path: `/blog/${edge.node.tagSlug}/`,
+            component: slash(taggedBlogPostListingTemplate),
+            context: {
+              tagSlug: edge.node.tagSlug
+            }
+          })
         })
 
         createPaginatedPages({
