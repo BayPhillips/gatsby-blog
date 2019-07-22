@@ -15,7 +15,7 @@ class TaggedBlogPostListing extends React.Component {
 
     return (
       <Layout 
-        location={location} 
+        location={this.props.location} 
         title={`${tag.displayName} Blog Posts`}
         description={`Read my blog posts assocaited with ${tag.displayName}`}
       >
