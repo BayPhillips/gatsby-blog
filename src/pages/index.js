@@ -11,7 +11,6 @@ const propTypes = {
 class IndexPage extends React.Component {
   render() {
     const allPosts = this.props.data.blogPosts.edges
-    const welcomeMessage = this.props.data.welcomeMessage
 
     return (
       <Layout
@@ -41,7 +40,7 @@ class IndexPage extends React.Component {
             className="uk-grid uk-grid-medium uk-child-width-1-1"
             data-uk-grid
           >
-            {allPosts.map(({ node }, i) => (
+            {allPosts.map(({ node }) => (
               <BlogPostPreview blogPost={node} />
             ))}
 
@@ -85,6 +84,10 @@ export const pageQuery = graphql`
             fluid(maxHeight: 225) {
               ...GatsbyContentfulFluid_withWebp
             }
+          }
+          tags {
+            tagSlug
+            displayName
           }
         }
       }

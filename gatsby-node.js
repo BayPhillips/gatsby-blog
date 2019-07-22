@@ -31,6 +31,10 @@ exports.createPages = ({ graphql, actions }) => {
                 }
               }
               postSlug
+              tags {
+                tagSlug
+                displayName
+              }
             }
           }
         }
@@ -66,7 +70,6 @@ exports.createPages = ({ graphql, actions }) => {
         const taggedBlogPostListingTemplate = path.resolve(`./src/templates/taggedBlogPostListing.js`)
 
         _.each(result.data.tags.edges, edge => {
-          console.log(`Creating page for tag: ${JSON.stringify(edge)}`)
           createPage({
             path: `/blog/${edge.node.tagSlug}/`,
             component: slash(taggedBlogPostListingTemplate),

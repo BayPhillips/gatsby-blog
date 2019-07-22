@@ -37,7 +37,7 @@ export default TaggedBlogPostListing
 
 export const pageQuery = graphql`
   query tagPostsQuery($tagSlug: String!) {
-    primaryTag: contentfulTag(tagSlug: { eq: "aws" }) {
+    primaryTag: contentfulTag(tagSlug: { eq: $tagSlug }) {
       displayName
     }
     blogPosts: allContentfulBlogPost(filter: { tags: {elemMatch: {tagSlug: {eq: $tagSlug}}}}) {
@@ -68,6 +68,10 @@ export const pageQuery = graphql`
           }
           metaContent {
             keywords
+          }
+          tags {
+            tagSlug
+            displayName
           }
         }
       }
