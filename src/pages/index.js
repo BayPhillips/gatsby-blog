@@ -26,7 +26,7 @@ class IndexPage extends React.Component {
                 New York City. I've been coding since I was 14 and haven't
                 stopped since. I'm currently an Engineering Manager at{' '}
                 <a href="https://www.dropbox.com" target="_blank" rel="noopener">
-                  Jetblack
+                  Dropbox
                 </a>{' '}
                 and love what I get to do every day. Sometimes I write blog
                 posts about various things in tech.
