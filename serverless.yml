@@ -30,6 +30,10 @@ custom:
   defaultHostedZoneId: Z2FDTNDATAQYW2 #default zone ID for CloudFront
   hostedZoneId: ${opt:hostedZoneId, self:custom.defaultHostedZoneId}
   hostedZoneName: ${opt:hostedZoneName}
+  cloudfrontInvalidate:
+    distributionId: ${self:custom.hostedZoneId}
+    items:
+      - "*"
 
 provider:
   name: aws
