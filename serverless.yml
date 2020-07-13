@@ -33,7 +33,7 @@ custom:
   cloudfrontInvalidate:
     distributionId: ${self:custom.hostedZoneId}
     items:
-      - "*"
+      - "/*"
 
 provider:
   name: aws
