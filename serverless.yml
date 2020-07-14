@@ -3,6 +3,7 @@ service: baysblog
 plugins:
   - '@silvermine/serverless-plugin-cloudfront-lambda-edge'
   - serverless-s3-sync
+  - serverless-cloudfront-invalidate
 
 package:
   exclude:
@@ -31,7 +32,7 @@ custom:
   hostedZoneId: ${opt:hostedZoneId, self:custom.defaultHostedZoneId}
   hostedZoneName: ${opt:hostedZoneName}
   cloudfrontInvalidate:
-    distributionId: ${self:custom.hostedZoneId}
+    distributionIdKey: "CDNDistributionId"
     items:
       - "/*"
 
@@ -131,3 +132,7 @@ resources:
         Fn::GetAtt:
           - WebsiteDistribution
           - DomainName
+    CDNDistributionId:
+      Description: CDN distribution id.
+      Value:
+        Ref: WebsiteDistribution
