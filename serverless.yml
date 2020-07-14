@@ -3,6 +3,7 @@ service: baysblog
 plugins:
   - '@silvermine/serverless-plugin-cloudfront-lambda-edge'
   - serverless-s3-sync
+  - serverless-cloudfront-invalidate
 
 package:
   exclude:
