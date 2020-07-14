@@ -32,7 +32,7 @@ custom:
   hostedZoneId: ${opt:hostedZoneId, self:custom.defaultHostedZoneId}
   hostedZoneName: ${opt:hostedZoneName}
   cloudfrontInvalidate:
-    distributionId: ${self:custom.hostedZoneId}
+    distributionIdKey: "CDNDistributionId"
     items:
       - "/*"
 
@@ -132,3 +132,7 @@ resources:
         Fn::GetAtt:
           - WebsiteDistribution
           - DomainName
+    CDNDistributionId:
+      Description: CDN distribution id.
+      Value:
+        Ref: WebsiteDistribution
