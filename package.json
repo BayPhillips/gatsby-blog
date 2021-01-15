@@ -58,6 +58,7 @@
   },
   "devDependencies": {
     "@silvermine/serverless-plugin-cloudfront-lambda-edge": "^2.1.1",
+    "serverless-cloudfront-invalidate": "^1.5.0",
     "prettier": "^1.15.2",
     "serverless": "^2.18.0",
     "serverless-s3-sync": "^1.7.1"
