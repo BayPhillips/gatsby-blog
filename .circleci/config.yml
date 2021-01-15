@@ -3,7 +3,7 @@ jobs:
   build:
     working_directory: ~/workspace
     docker:
-      - image: circleci/node:13.8.0
+      - image: circleci/node:14.15.3
     steps:
       - checkout
       - restore_cache:
@@ -47,7 +47,7 @@ jobs:
   deploy:
     working_directory: ~/workspace
     docker:
-      - image: circleci/node:9.5.0
+      - image: circleci/node:14.15.3
     steps:
       - attach_workspace:
           at: ~/workspace
