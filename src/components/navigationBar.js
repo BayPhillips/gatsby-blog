@@ -17,6 +17,7 @@ class NavigationBar extends React.Component {
               data-uk-navbar-toggle-icon
               data-uk-toggle="target: #mobile-menu"
               href="#"
+              aria-label="Menu"
             >
             &nbsp;&nbsp;
             </button>
