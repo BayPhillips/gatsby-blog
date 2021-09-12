@@ -59,12 +59,12 @@
     "deploy": "serverless deploy"
   },
   "devDependencies": {
-    "babel-preset-gatsby": "1.0.0",
-    "@silvermine/serverless-plugin-cloudfront-lambda-edge": "^2.1.1",
+    "babel-preset-gatsby": "1.14.0-next.2",
+    "@silvermine/serverless-plugin-cloudfront-lambda-edge": "^2.2.3",
     "prettier": "^2.2.1",
-    "serverless": "^2.28.0",
-    "serverless-cloudfront-invalidate": "^1.8.0",
-    "serverless-s3-sync": "^1.16.1"
+    "serverless": "^2.57.0",
+    "serverless-cloudfront-invalidate": "^1.11.0",
+    "serverless-s3-sync": "^1.17.1"
   },
   "postinstall": "execstack -c node_modules/sharp/vendor/lib/librsvg-2.so.2"
 }
