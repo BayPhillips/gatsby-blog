@@ -38,7 +38,7 @@ module.exports = {
     },
     {
       resolve: `gatsby-plugin-google-gtag`,
-      options: gTag
+      options: parameters.gTag
     },
     `gatsby-plugin-react-helmet`,
     `gatsby-transformer-remark`,
