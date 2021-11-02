@@ -15,7 +15,7 @@
     "gatsby-plugin-canonical-urls": "^3.13.0",
     "gatsby-plugin-catch-links": "^3.13.0",
     "gatsby-plugin-force-trailing-slashes": "^1.0.5",
-    "gatsby-plugin-google-analytics": "^3.13.0",
+    "gatsby-plugin-google-gtag": "^4.0.0",
     "gatsby-plugin-image": "^1.13.0",
     "gatsby-plugin-manifest": "^3.13.0",
     "gatsby-plugin-offline": "^4.14.0-next.2",
@@ -59,8 +59,8 @@
     "deploy": "serverless deploy"
   },
   "devDependencies": {
-    "babel-preset-gatsby": "1.14.0-next.2",
     "@silvermine/serverless-plugin-cloudfront-lambda-edge": "^2.2.3",
+    "babel-preset-gatsby": "1.14.0-next.2",
     "prettier": "^2.2.1",
     "serverless": "^2.57.0",
     "serverless-cloudfront-invalidate": "^1.11.0",
