@@ -10,16 +10,25 @@ const parameters = {
     accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
     host: process.env.CONTENTFUL_HOST
   },
-  googleAnalytics: {
-    trackingId: process.env.GOOGLE_ANALYTICS_TRACKING_ID,
-    head: false
+  gTag: {
+    trackingIds: [
+      process.env.GOOGLE_ANALYTICS_TRACKING_ID,
+    ],
+    gtagConfig: {
+      anonymize_ip: true,
+      cookie_expires: 0,
+    },
+    pluginConfig: {
+      head: false,
+      respectDNT: true,
+    }
   }
 }
 
 module.exports = {
   siteMetadata: {
-    description: `Personal blog for Bay Phillips, a Software Engineering Manager based out of NYC working with other really smart people.`,
-    keywords: `ios,swift,react,fullstack,rails,engineer,engineering manager,nyc,new york city,cooking,Plated`,
+    description: `Personal blog for Bay Phillips, a Software Engineering leader based out of Denver working with other really smart people.`,
+    keywords: `ios,swift,react,fullstack,rails,engineer,engineering manager,nyc,new york city,cooking,Plated,seed,seedhealth`,
     siteUrl: parameters.siteUrl,
   },
   plugins: [
@@ -28,8 +37,8 @@ module.exports = {
       options: parameters.contentful,
     },
     {
-      resolve: `gatsby-plugin-google-analytics`,
-      options: parameters.googleAnalytics
+      resolve: `gatsby-plugin-google-gtag`,
+      options: gTag
     },
     `gatsby-plugin-react-helmet`,
     `gatsby-transformer-remark`,
