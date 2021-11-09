@@ -30,7 +30,7 @@ const BlogPostListingTemplate = ({ data, pageContext, location }) => {
           data-uk-grid
         >
           {group.map(({ node }) => (
-            <BlogPostPreview blogPost={node} />
+            <BlogPostPreview key={`blogpost-${node.id}`} blogPost={node} />
           ))}
         </div>
         <div data-uk-grid="" className="uk-margin">

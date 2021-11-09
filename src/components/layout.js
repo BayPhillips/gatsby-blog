@@ -22,6 +22,7 @@ const TemplateWrapper = ({
       query LayoutQuery {
         site: site {
           siteMetadata {
+            siteTitle
             siteUrl
             description
             keywords
@@ -96,11 +97,13 @@ class MainLayout extends React.Component {
 
     const googleSiteVerification = 'NYAneve0llvi3Mmooz40QrY1GZNCNqsgiqYM-3DSMS4'
 
+    const title = this.props.title || this.props.data.site.siteMetadata.siteTitle;
+
     return (
       <div className="main-container">
         <Helmet
-          title={this.props.title}
-          defaultTitle={this.props.title}
+          title={title}
+          defaultTitle={this.props.data.site.siteMetadata.siteTitle}
           titleTemplate="%s | Bay Phillips"
           meta={[
             { name: 'description', content: pageDescription },

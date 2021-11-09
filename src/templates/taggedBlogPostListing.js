@@ -25,7 +25,7 @@ class TaggedBlogPostListing extends React.Component {
             className="uk-grid uk-grid-medium uk-child-width-1-1"
             data-uk-grid
           >
-            { blogPosts.map(({ node }) => <BlogPostPreview blogPost={node} />) }
+            { blogPosts.map(({ node }) => <BlogPostPreview key={node.id} blogPost={node} />) }
           </div>
         </section>
       </Layout>

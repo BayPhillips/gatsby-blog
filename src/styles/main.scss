@@ -23,3 +23,7 @@ blockquote {
   background-color: $global-muted-background;
   padding: $global-gutter;
 }
+
+.post-preview p {
+  color: $global-color;
+}

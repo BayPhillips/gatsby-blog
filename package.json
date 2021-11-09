@@ -4,7 +4,7 @@
   "version": "2.0.0",
   "author": "Bay Phillips <bay.phillips@gmail.com>",
   "engines": {
-    "node": "= 14.15.3"
+    "node": "= 16.9.1"
   },
   "dependencies": {
     "dotenv": "^8.2.0",
@@ -32,12 +32,12 @@
     "gatsby-transformer-sharp": "^3.14.0-next.2",
     "lodash": "^4.17.21",
     "moment": "^2.29.1",
-    "node-sass": "^4.14.1",
     "postcss": "^8.3.6",
     "prismjs": "^1.24.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-helmet": "^6.1.0",
+    "sass": "^1.43.4",
     "sharp": "^0.26.0",
     "slash": "^3.0.0",
     "typeface-nunito-sans": "^1.1.13",

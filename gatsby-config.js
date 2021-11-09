@@ -27,6 +27,7 @@ const parameters = {
 
 module.exports = {
   siteMetadata: {
+    siteTitle: `Bay Phillips | Software Engineer in Denver`,
     description: `Personal blog for Bay Phillips, a Software Engineering leader based out of Denver working with other really smart people.`,
     keywords: `ios,swift,react,fullstack,rails,engineer,engineering manager,nyc,new york city,cooking,Plated,seed,seedhealth`,
     siteUrl: parameters.siteUrl,

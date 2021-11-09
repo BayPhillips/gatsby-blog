@@ -11,26 +11,21 @@ const propTypes = {
 class IndexPage extends React.Component {
   render() {
     const allPosts = this.props.data.blogPosts.edges
-
+    
     return (
       <Layout
         location={this.props.location}
-        title="Bay Phillips | Software Engineer in NYC"
       >
         <section className="uk-section-small">
           <div className="uk-flex uk-flex-center uk-flex-middle">
             <div className="uk-margin-right uk-width-2-3">
               <h1>Welcome!</h1>
-              <p className="uk-text-small">
-                My name is Bay Phillips and I'm a software engineer based out of
-                New York City. I've been coding since I was 14 and haven't
-                stopped since. I'm currently the Head of Engineering at{' '}
-                <a href="https://www.seed.com" target="_blank" rel="noopener">
-                  Seed Health
-                </a>{' '}
-                and love what I get to do every day. Sometimes I write blog
-                posts about various things in tech.
-              </p>
+              <p 
+                className="uk-text-small" 
+                dangerouslySetInnerHTML={{
+                  __html: this.props.data.welcomeMessage.body.childMarkdownRemark.html
+                }}
+              />
             </div>
           </div>
         </section>
@@ -41,7 +36,7 @@ class IndexPage extends React.Component {
             data-uk-grid
           >
             {allPosts.map(({ node }) => (
-              <BlogPostPreview blogPost={node} />
+              <BlogPostPreview key={node.id} blogPost={node} />
             ))}
 
           </div>
